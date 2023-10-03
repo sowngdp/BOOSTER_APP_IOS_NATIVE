@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "E9CF3C11-AB5A-42AC-8EA0-629E4D204A45"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Booster/view/Slide.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "6"
+            endingLineNumber = "6"
+            landmarkName = "Slide"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3 - 980db810872d9507"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.Slide.imageView.getter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/Slide.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3 - b447969a75b12d1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.Slide.imageView.setter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/Slide.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3 - 58f03e89999aa2fd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.Slide.imageView.modify : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/Slide.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3 - bade535a2f0f54d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.Slide.imageView.modify : Swift.Optional&lt;__C.UIImageView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/Slide.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3 - 3683d4bfe1bc1eb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.Slide.init(frame: __C.CGRect) -&gt; Booster.Slide"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/Slide.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "CDC6B4FD-AC6E-4D57-A286-EE8A28D537B3 - cf0bb2b72256a73d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.Slide.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Booster.Slide&gt;"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/Slide.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "6"
+                  endingLineNumber = "6"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

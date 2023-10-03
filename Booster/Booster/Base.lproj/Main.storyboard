@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,12 +20,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="1pA-nV-Zgc">
-                                <rect key="frame" x="176" y="105" width="80" height="80"/>
+                                <rect key="frame" x="167" y="98" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="i0K-Vn-3cH"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f85-Ts-vmS">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f85-Ts-vmS">
                                 <rect key="frame" x="0.0" y="213" width="414" height="501"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyP-Rm-cJJ" customClass="Slide" customModule="Booster">
@@ -86,18 +85,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.070000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1pA-nV-Zgc" secondAttribute="trailing" constant="158" id="3t6-S2-Nun"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1pA-nV-Zgc" secondAttribute="trailing" constant="167" id="3t6-S2-Nun"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7gz-Qk-LUQ" secondAttribute="trailing" constant="149" id="5hd-Xg-kmi"/>
                             <constraint firstItem="f85-Ts-vmS" firstAttribute="top" secondItem="1pA-nV-Zgc" secondAttribute="bottom" constant="28" id="6Ww-wW-GER"/>
                             <constraint firstItem="f85-Ts-vmS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7WX-dE-shN"/>
                             <constraint firstItem="vfs-Yk-AsH" firstAttribute="top" secondItem="7gz-Qk-LUQ" secondAttribute="bottom" constant="18" id="KMd-Gs-B2s"/>
                             <constraint firstItem="vfs-Yk-AsH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="Ncc-5W-mZQ"/>
                             <constraint firstItem="7gz-Qk-LUQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="149" id="WVh-34-Eeq"/>
-                            <constraint firstItem="1pA-nV-Zgc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="176" id="XDD-sF-ATo"/>
+                            <constraint firstItem="1pA-nV-Zgc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="167" id="XDD-sF-ATo"/>
                             <constraint firstItem="f85-Ts-vmS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZcR-4n-rep"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vfs-Yk-AsH" secondAttribute="trailing" constant="65" id="qgP-GE-NNo"/>
                             <constraint firstItem="vfs-Yk-AsH" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="svc-8j-M0b"/>
-                            <constraint firstItem="1pA-nV-Zgc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="17" id="tf8-Q3-dg8"/>
+                            <constraint firstItem="1pA-nV-Zgc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="tf8-Q3-dg8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JtQ-hF-T99"/>
@@ -115,17 +114,71 @@
         <scene sceneID="dMD-of-Qef">
             <objects>
                 <viewController id="9BW-0i-H4i" customClass="LoginControllerViewController" customModule="Booster" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="p6s-cE-cYk" customClass="UIImageView">
+                    <view key="view" contentMode="scaleToFill" id="S7j-qM-dgQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cFV-Xj-snj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="RBl-Nd-Ot4">
+                                <rect key="frame" x="0.0" y="-18" width="414" height="928"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Illustration" translatesAutoresizingMaskIntoConstraints="NO" id="ICN-mU-D9F">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="378"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background_blur" translatesAutoresizingMaskIntoConstraints="NO" id="gGF-iD-FCZ">
+                                <rect key="frame" x="0.0" y="230" width="414" height="666"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P00-iJ-ubL">
+                                <rect key="frame" x="75" y="507" width="85" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wellcome Back!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L9-SR-FJc">
+                                <rect key="frame" x="104" y="295" width="207" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="wellcome back we missed you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcX-pf-R6V">
+                                <rect key="frame" x="75" y="339" width="265" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDL-iO-ZVr">
+                                <rect key="frame" x="75" y="423" width="91" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="20" background="item_persons" translatesAutoresizingMaskIntoConstraints="NO" id="nwS-9f-Qio">
+                                <rect key="frame" x="75" y="455" width="265" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="20" background="item_persons" translatesAutoresizingMaskIntoConstraints="NO" id="pux-Gw-PZX">
+                                <rect key="frame" x="75" y="546" width="265" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fn3-Hy-RqB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="rSB-hD-bno"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25U-88-QKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1776" y="86"/>
+            <point key="canvasLocation" x="1775.3623188405797" y="85.714285714285708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bPM-ME-fzs">
@@ -147,11 +200,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Illustration" width="414" height="378"/>
         <image name="background" width="1500" height="3248"/>
+        <image name="background_blur" width="414" height="703"/>
         <image name="bg_bt" width="282.5" height="45"/>
         <image name="icon" width="80" height="80"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="item_persons" width="70" height="67"/>
     </resources>
 </document>
