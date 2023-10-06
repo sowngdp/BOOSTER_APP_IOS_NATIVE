@@ -10,6 +10,7 @@
 		0D84BFF02ACBF9B500AFA3D1 /* Slides.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D968B272ACBF52C001A1CBF /* Slides.xib */; };
 		0D84BFF12ACBF9B800AFA3D1 /* Slides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D968B282ACBF52C001A1CBF /* Slides.swift */; };
 		0D968B232ACBF368001A1CBF /* LoginControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */; };
+		0D99948C2ACFB0E3004BFA71 /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */; };
 		0DBCB52D2ACA9E9A00084934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBCB52C2ACA9E9A00084934 /* AppDelegate.swift */; };
 		0DBCB52F2ACA9E9A00084934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBCB52E2ACA9E9A00084934 /* SceneDelegate.swift */; };
 		0DBCB5312ACA9E9A00084934 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBCB5302ACA9E9A00084934 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 		0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControllerViewController.swift; sourceTree = "<group>"; };
 		0D968B272ACBF52C001A1CBF /* Slides.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slides.xib; sourceTree = "<group>"; };
 		0D968B282ACBF52C001A1CBF /* Slides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slides.swift; sourceTree = "<group>"; };
+		0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup_VC.swift; sourceTree = "<group>"; };
 		0DBCB5292ACA9E9A00084934 /* Booster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Booster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DBCB52C2ACA9E9A00084934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DBCB52E2ACA9E9A00084934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				0D968B262ACBF52C001A1CBF /* view */,
 				0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */,
 				0DBCB5322ACA9E9A00084934 /* Main.storyboard */,
+				0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */,
 				0DBCB5352ACA9E9B00084934 /* Assets.xcassets */,
 				0DBCB5372ACA9E9B00084934 /* LaunchScreen.storyboard */,
 				0DBCB53A2ACA9E9B00084934 /* Info.plist */,
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D99948C2ACFB0E3004BFA71 /* Signup_VC.swift in Sources */,
 				0D968B232ACBF368001A1CBF /* LoginControllerViewController.swift in Sources */,
 				0DBCB5312ACA9E9A00084934 /* ViewController.swift in Sources */,
 				0DBCB52D2ACA9E9A00084934 /* AppDelegate.swift in Sources */,
