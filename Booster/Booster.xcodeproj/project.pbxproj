@@ -108,6 +108,9 @@
 		0D8BDC3B2AEA577A003DA7A0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */,
+				0DBCB5302ACA9E9A00084934 /* ViewController.swift */,
+				0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -161,9 +164,6 @@
 			children = (
 				0DBCB5372ACA9E9B00084934 /* LaunchScreen.storyboard */,
 				0DBCB5322ACA9E9A00084934 /* Main.storyboard */,
-				0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */,
-				0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */,
-				0DBCB5302ACA9E9A00084934 /* ViewController.swift */,
 				0D968B272ACBF52C001A1CBF /* Slides.xib */,
 				0D968B282ACBF52C001A1CBF /* Slides.swift */,
 			);
