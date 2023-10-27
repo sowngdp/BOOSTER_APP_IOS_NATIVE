@@ -53,6 +53,7 @@
 		0D8BDC3F2AEA5EAD003DA7A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D8BDC782AEA6439003DA7A0 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		0D8BDC7A2AEA64A9003DA7A0 /* UserInputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputData.swift; sourceTree = "<group>"; };
+		0D916FB82AEB4EF500806BFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Booster/Info.plist; sourceTree = SOURCE_ROOT; };
 		0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControllerViewController.swift; sourceTree = "<group>"; };
 		0D968B272ACBF52C001A1CBF /* Slides.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slides.xib; sourceTree = "<group>"; };
 		0D968B282ACBF52C001A1CBF /* Slides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slides.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		0DBCB5332ACA9E9A00084934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0DBCB5352ACA9E9B00084934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DBCB5382ACA9E9B00084934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0DBCB53A2ACA9E9B00084934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				0DBCB5352ACA9E9B00084934 /* Assets.xcassets */,
-				0DBCB53A2ACA9E9B00084934 /* Info.plist */,
+				0D916FB82AEB4EF500806BFD /* Info.plist */,
 				0D8BDC3F2AEA5EAD003DA7A0 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
