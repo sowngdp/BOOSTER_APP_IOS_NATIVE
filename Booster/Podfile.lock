@@ -52,7 +52,7 @@ DEPENDENCIES:
   - FirebaseStorage
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - FirebaseAppCheckInterop
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -84,4 +84,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9d10f5afbf2b72dc5c8162a51cc136f781600e46
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.6.2

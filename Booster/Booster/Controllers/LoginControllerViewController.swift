@@ -10,9 +10,11 @@ import UIKit
 class LoginControllerViewController: UIViewController {
 
     
+    var user: UserModel = UserModel(email: "", name: "", password: "")
     
     @IBOutlet weak var PWTF: UITextField!
     @IBOutlet weak var Hide_or_Unhide_pw: UIImageView!
+    @IBOutlet weak var userNameTF: UITextField!
     var iconClick = true
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,22 @@ class LoginControllerViewController: UIViewController {
         
     }
 
+    @IBAction func signinButton(_ sender: Any) {
+        
+        self.user.email = userNameTF.text
+        self.user.password = PWTF.text
 
+//        AuthViewModel.share.login(withUser: user){ Result in
+//            print(".....")
+//        }
+        
+        AuthViewModel.share.login(withUser: user){
+            Result in
+            print(Result)
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

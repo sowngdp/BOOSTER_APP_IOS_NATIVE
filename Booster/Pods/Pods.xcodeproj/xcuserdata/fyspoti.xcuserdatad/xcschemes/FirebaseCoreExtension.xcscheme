@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3501E9D631188C7A75F4B2BB8A0CD4D"
-               BuildableName = "GTMSessionFetcher.framework"
-               BlueprintName = "GTMSessionFetcher"
+               BlueprintIdentifier = "6690F545D0B09FE9C8462DAF5D8B86C1"
+               BuildableName = "FirebaseCoreExtension.framework"
+               BlueprintName = "FirebaseCoreExtension"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="70t-zd-I8t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="70t-zd-I8t">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="j4o-Az-cK3">
-                                <rect key="frame" x="0.0" y="-11" width="414" height="907"/>
+                                <rect key="frame" x="0.0" y="-15" width="414" height="911"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="1pA-nV-Zgc">
-                                <rect key="frame" x="167" y="102" width="80" height="80"/>
+                                <rect key="frame" x="167" y="98" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="sD3-aT-7K4"/>
                                 </constraints>
@@ -259,6 +259,9 @@
                                     <backgroundConfiguration key="background" image="bg_bt"/>
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="signinButton:" destination="9BW-0i-H4i" eventType="touchUpInside" id="Nwq-1u-3uG"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Z9A-aq-4QO">
                                 <rect key="frame" x="0.0" y="658" width="414" height="18"/>
@@ -397,6 +400,7 @@
                     <connections>
                         <outlet property="Hide_or_Unhide_pw" destination="fHk-Wp-2qv" id="QSN-iy-1S2"/>
                         <outlet property="PWTF" destination="tXf-YU-PxI" id="eWI-PO-6k5"/>
+                        <outlet property="userNameTF" destination="ZgJ-d5-wZV" id="pTJ-z5-toW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25U-88-QKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -427,7 +431,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EFK-ug-ywX">
-                                <rect key="frame" x="33" y="262" width="348" height="60"/>
+                                <rect key="frame" x="33" y="258" width="348" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="iAf-sf-xl9"/>
                                 </constraints>
@@ -436,7 +440,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Forever. No Credit Card Needed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1lk-vU-51g">
-                                <rect key="frame" x="58" y="330" width="298" height="22"/>
+                                <rect key="frame" x="58" y="326" width="298" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="jW5-hw-IeV"/>
                                 </constraints>
@@ -668,6 +672,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IaL-Xk-FLl"/>
+                    <connections>
+                        <outlet property="emailUser" destination="in9-Hv-20J" id="Nyg-Rz-SxD"/>
+                        <outlet property="nameUser" destination="eQQ-9X-QFg" id="cz7-hX-wrf"/>
+                        <outlet property="passwordUser" destination="l6Y-VY-cyC" id="d6v-TL-Lqo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0br-en-cCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -679,7 +688,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="70t-zd-I8t" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TSP-G9-LMa">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -709,7 +718,7 @@
         <image name="item_right_line" width="392" height="4"/>
         <image name="item_weak" width="288" height="64"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

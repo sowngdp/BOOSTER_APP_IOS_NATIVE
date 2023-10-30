@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3501E9D631188C7A75F4B2BB8A0CD4D"
-               BuildableName = "GTMSessionFetcher.framework"
-               BlueprintName = "GTMSessionFetcher"
+               BlueprintIdentifier = "E64286C9170DAB57C09FE39418FF811B"
+               BuildableName = "RecaptchaInterop.framework"
+               BlueprintName = "RecaptchaInterop"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
