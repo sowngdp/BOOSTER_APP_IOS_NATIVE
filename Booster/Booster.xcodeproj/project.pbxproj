@@ -19,7 +19,6 @@
 		0DBCB5392ACA9E9B00084934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBCB5372ACA9E9B00084934 /* LaunchScreen.storyboard */; };
 		0DBCB5422ACAC02000084934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBCB5322ACA9E9A00084934 /* Main.storyboard */; };
 		8362C47ECE6505057A3B3363 /* Pods_Booster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA4FA408C0100B7D3FE37DE /* Pods_Booster.framework */; };
-		E6D26D322AEB63DE001E1A46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6D26D312AEB63DE001E1A46 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +37,6 @@
 		0DBCB53A2ACA9E9B00084934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1180EA168DA3CFFA4E2DC892 /* Pods-Booster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Booster.debug.xcconfig"; path = "Target Support Files/Pods-Booster/Pods-Booster.debug.xcconfig"; sourceTree = "<group>"; };
 		4DA4FA408C0100B7D3FE37DE /* Pods_Booster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Booster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6D26D312AEB63DE001E1A46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ECE5A834ACACB15DBF7E5415 /* Pods-Booster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Booster.release.xcconfig"; path = "Target Support Files/Pods-Booster/Pods-Booster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,7 +95,6 @@
 				E6D26D332AEB63E7001E1A46 /* Controllers */,
 				0D968B262ACBF52C001A1CBF /* view */,
 				0DBCB5322ACA9E9A00084934 /* Main.storyboard */,
-				E6D26D312AEB63DE001E1A46 /* GoogleService-Info.plist */,
 				0DBCB5352ACA9E9B00084934 /* Assets.xcassets */,
 				0DBCB5372ACA9E9B00084934 /* LaunchScreen.storyboard */,
 				0DBCB53A2ACA9E9B00084934 /* Info.plist */,
@@ -152,8 +149,7 @@
 				0DBCB5252ACA9E9A00084934 /* Sources */,
 				0DBCB5262ACA9E9A00084934 /* Frameworks */,
 				0DBCB5272ACA9E9A00084934 /* Resources */,
-				34DCB160E58C7ECAA1469ACB /* [CP] Embed Pods Frameworks */,
-				70704D4DA26C63B291F8CB78 /* [CP] Copy Pods Resources */,
+				0BEE4A3B6E769253C36A2A34 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -204,7 +200,6 @@
 			files = (
 				0DBCB5392ACA9E9B00084934 /* LaunchScreen.storyboard in Resources */,
 				0DBCB5362ACA9E9B00084934 /* Assets.xcassets in Resources */,
-				E6D26D322AEB63DE001E1A46 /* GoogleService-Info.plist in Resources */,
 				0DBCB5422ACAC02000084934 /* Main.storyboard in Resources */,
 				0D84BFF02ACBF9B500AFA3D1 /* Slides.xib in Resources */,
 			);
@@ -213,38 +208,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		34DCB160E58C7ECAA1469ACB /* [CP] Embed Pods Frameworks */ = {
+		0BEE4A3B6E769253C36A2A34 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Booster/Pods-Booster-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/abseil/absl.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Booster/Pods-Booster-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/absl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Booster/Pods-Booster-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,28 +245,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		70704D4DA26C63B291F8CB78 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Booster/Pods-Booster-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessaging/InAppMessagingDisplayResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Booster/Pods-Booster-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
