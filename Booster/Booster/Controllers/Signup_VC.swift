@@ -31,5 +31,21 @@ class Signup_VC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func signUpButton(_ sender: Any) {
+        
+        var user : UserModel = UserModel()
+        user.email = emailUser.text
+        user.name = nameUser.text
+        user.password = passwordUser.text
+        
+        AuthViewModel.share.signup(withUser: user){
+            Result in
+            
+            print(Result)
+            
+        }
+        
+        performSegue(withIdentifier: "toSignIn", sender: nil)
+    }
+    
 }

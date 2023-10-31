@@ -12,3 +12,13 @@ struct UserModel {
     var name: String?
     var password: String?
 }
+
+struct UserSession {
+    let email: String
+    let name: String
+
+    init( email: String, name: String) {
+        self.email = email
+        self.name = name
+    }
+}
