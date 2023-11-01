@@ -45,7 +45,7 @@ class Signup_VC: UIViewController {
             
         }
         
-        performSegue(withIdentifier: "toSignIn", sender: nil)
+        performSegue(withIdentifier: "signUpToTabbarView", sender: nil)
     }
     
 }

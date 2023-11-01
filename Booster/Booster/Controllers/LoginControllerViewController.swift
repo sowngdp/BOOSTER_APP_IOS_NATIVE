@@ -36,21 +36,29 @@ class LoginControllerViewController: UIViewController {
         }
         
     }
+    
+    func transitionToTabBarView() {
+        
+        performSegue(withIdentifier: "signInToTabbarView", sender: nil)
+        
+    }
+
 
     @IBAction func signinButton(_ sender: Any) {
         
         self.user.email = userNameTF.text
         self.user.password = PWTF.text
 
-//        AuthViewModel.share.login(withUser: user){ Result in
-//            print(".....")
-//        }
-        
-        AuthViewModel.share.login(withUser: user){
-            Result in
-            print(Result)
+        AuthViewModel.share.login(withUser: user) { [weak self] result in
+            switch result {
+            case .success:
+                // Login successful
+                self?.transitionToTabBarView()
+            case .failure(let error):
+                // Handle login failure
+                print("Login error: \(error.localizedDescription)")
+            }
         }
-        
     }
     
     /*
