@@ -11,6 +11,8 @@ class LoginControllerViewController: UIViewController {
 
     
     var user: UserModel = UserModel(email: "", name: "", password: "")
+    let sceneDelegate = UIApplication.shared.connectedScenes
+                    .first!.delegate as! SceneDelegate
     
     @IBOutlet weak var PWTF: UITextField!
     @IBOutlet weak var Hide_or_Unhide_pw: UIImageView!
@@ -37,11 +39,7 @@ class LoginControllerViewController: UIViewController {
         
     }
     
-    func transitionToTabBarView() {
-        
-        performSegue(withIdentifier: "signInToTabbarView", sender: nil)
-        
-    }
+
 
 
     @IBAction func signinButton(_ sender: Any) {
@@ -49,11 +47,12 @@ class LoginControllerViewController: UIViewController {
         self.user.email = userNameTF.text
         self.user.password = PWTF.text
 
-        AuthViewModel.share.login(withUser: user) { [weak self] result in
+        AuthViewModel.share.login(withUser: user) { [weak self]
+            result in
             switch result {
             case .success:
                 // Login successful
-                self?.transitionToTabBarView()
+                self?.sceneDelegate.setRootViewTabbar()
             case .failure(let error):
                 // Handle login failure
                 print("Login error: \(error.localizedDescription)")

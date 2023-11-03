@@ -44,18 +44,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func initTabbar()  {
         if let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarID") as? UITabBarController {
-            self.tabbarController = tabbar
             
-            if let navHome = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navHome") as? UINavigationController {
-                self.tabbarController?.viewControllers?.append(navHome)
-                self.tabbarController?.selectedIndex = 0
-            }
-            if let navProfile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navProfile") as? UINavigationController {
-                self.tabbarController?.viewControllers?.append(navProfile)
-            }
-            if let settingId = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingID") as? UITableViewController {
-                self.tabbarController?.viewControllers?.append(settingId)
-            }
+            
+            let navHome = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navHome") as? UINavigationController
+            let navProfile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navProfile") as? UINavigationController
+            let settingId = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingID") as? UITableViewController
+            
+            let homeVC = navHome!
+            let profileVC = navProfile!
+            let settingVC = settingId!
+            
+            tabbar.viewControllers = [homeVC, profileVC, settingVC]
+            
+            self.tabbarController = tabbar
         }
     }
     
@@ -74,11 +75,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     func setRootViewTabbar()  {
         if self.tabbarController != nil {
-            print(self.tabbarController)
-            self.window?.rootViewController = self.tabbarController?.selectedViewController
+            self.window?.rootViewController = self.tabbarController
         } else {
             initTabbar()
-            self.window?.rootViewController = self.tabbarController?.selectedViewController
+            self.window?.rootViewController = self.tabbarController
         }
         //get tabbar from storyboard : id : tabbarID
         //set roootView window.rootview = tabbar
