@@ -6,17 +6,80 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var tabbarController : UITabBarController?
+    var navWelcomeController : UINavigationController?
     
+    func isLoggedIn() -> Bool {
+        return Auth.auth().currentUser != nil
+    }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        
+        self.initTabbar()
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        // guard let _ = (scene as? UIWindowScene) else { return }
+        if isLoggedIn() {
+            setRootViewTabbar()
+        } else {
+            setRootViewWelcome()
+        }
+        
+    }
+    
+    
+    func initNavWelcome() {
+        if let navWelcome = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navWelcome") as? UINavigationController {
+            self.navWelcomeController = navWelcome
+        }
+    }
+    
+    
+    func initTabbar()  {
+        if let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarID") as? UITabBarController {
+            self.tabbarController = tabbar
+            
+            if let navHome = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navHome") as? UINavigationController {
+                self.tabbarController?.viewControllers?.append(navHome)
+            }
+            if let navProfile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navProfile") as? UINavigationController {
+                self.tabbarController?.viewControllers?.append(navProfile)
+            }
+            if let settingId = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingID") as? UITableViewController {
+                self.tabbarController?.viewControllers?.append(settingId)
+            }
+        }
+    }
+    
+    func setRootViewWelcome()  {
+        // get Welcome Controller from Storyboard
+        //Window.rootview = welcomeVC
+        if self.navWelcomeController != nil {
+            self.window?.rootViewController = self.navWelcomeController
+        } else {
+            initNavWelcome()
+            self.window?.rootViewController = self.navWelcomeController
+        }
+        
+        
+        
+    }
+    func setRootViewTabbar()  {
+        if self.tabbarController != nil {
+            self.window?.rootViewController = self.tabbarController
+        } else {
+            initTabbar()
+            self.window?.rootViewController = self.tabbarController
+        }
+        //get tabbar from storyboard : id : tabbarID
+        //set roootView window.rootview = tabbar
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,20 +110,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-        
-        var window: UIWindow?
-        
-        func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            
-            if let windowScene = scene as? UIWindowScene {
-                let window = UIWindow(windowScene: windowScene)
-                window.rootViewController = MyRootViewController()
-                self.window = window
-                window.makeKeyAndVisible()
-            }
-        }
-        
-    }
     
 }
