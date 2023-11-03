@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         
-        self.initTabbar()
+        
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
@@ -48,6 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             if let navHome = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navHome") as? UINavigationController {
                 self.tabbarController?.viewControllers?.append(navHome)
+                self.tabbarController?.selectedIndex = 0
             }
             if let navProfile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navProfile") as? UINavigationController {
                 self.tabbarController?.viewControllers?.append(navProfile)
@@ -73,10 +74,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     func setRootViewTabbar()  {
         if self.tabbarController != nil {
-            self.window?.rootViewController = self.tabbarController
+            print(self.tabbarController)
+            self.window?.rootViewController = self.tabbarController?.selectedViewController
         } else {
             initTabbar()
-            self.window?.rootViewController = self.tabbarController
+            self.window?.rootViewController = self.tabbarController?.selectedViewController
         }
         //get tabbar from storyboard : id : tabbarID
         //set roootView window.rootview = tabbar
