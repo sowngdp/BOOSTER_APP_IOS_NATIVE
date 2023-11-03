@@ -23,21 +23,17 @@ class MyRootViewController: UIViewController {
     @objc func logoutTapped() {
       // Code để logout
       // Ví dụ:
-      let firebaseAuth = Auth.auth()
-      do {
-        try firebaseAuth.signOut()
-          self.transitionToLogin()
-        // Chuyển về màn hình login
-      } catch let signOutError as NSError {
-        print ("Error signing out: %@", signOutError)
-      }
+        AuthViewModel.share.logout() {
+            result  in
+            switch result {
+            case .success:
+                self.sceneDelegate.setRootViewWelcome()
+            case .failure(let error):
+                print("Logout error: \(error)")
+            }
+        }
     }
     
-    func transitionToLogin() {
-
-        sceneDelegate.setRootViewWelcome()
-            
-    }
     /*
     // MARK: - Navigation
 

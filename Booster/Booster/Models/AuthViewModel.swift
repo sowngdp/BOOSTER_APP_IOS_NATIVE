@@ -69,4 +69,16 @@ class AuthViewModel {
                completion(.success(()))
            }
        }
+    
+    func logout ( completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(.success(()))
+                
+            
+        }catch {
+            completion(.failure(error))
+        }
+    }
+    
 }
