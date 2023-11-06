@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let navHome = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navHome") as? UINavigationController
             let navProfile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navProfile") as? UINavigationController
-            let settingId = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingID") as? UITableViewController
+            let settingId = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingID") as? UINavigationController
             
             let homeVC = navHome!
             let profileVC = navProfile!

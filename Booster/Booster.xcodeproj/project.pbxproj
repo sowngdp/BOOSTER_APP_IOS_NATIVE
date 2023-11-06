@@ -12,6 +12,7 @@
 		0D5235272AEF9AE7002E55B7 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5235262AEF9AE7002E55B7 /* UsersModel.swift */; };
 		0D84BFF02ACBF9B500AFA3D1 /* Slides.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D968B272ACBF52C001A1CBF /* Slides.xib */; };
 		0D84BFF12ACBF9B800AFA3D1 /* Slides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D968B282ACBF52C001A1CBF /* Slides.swift */; };
+		0D8919EE2AF8C8CA0085BBB9 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8919ED2AF8C8CA0085BBB9 /* ProfileTableViewController.swift */; };
 		0D8BA3632AF49F8200A8A9EC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8BA3622AF49F8200A8A9EC /* TabBarController.swift */; };
 		0D968B232ACBF368001A1CBF /* LoginControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */; };
 		0D99948C2ACFB0E3004BFA71 /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */; };
@@ -29,6 +30,7 @@
 		0D1F96F32AF256FB00227904 /* MyRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRootViewController.swift; sourceTree = "<group>"; };
 		0D5235232AEF9AD2002E55B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D5235262AEF9AE7002E55B7 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		0D8919ED2AF8C8CA0085BBB9 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		0D8BA3622AF49F8200A8A9EC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControllerViewController.swift; sourceTree = "<group>"; };
 		0D968B272ACBF52C001A1CBF /* Slides.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slides.xib; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				0DBCB5302ACA9E9A00084934 /* ViewController.swift */,
 				0D1F96F32AF256FB00227904 /* MyRootViewController.swift */,
 				0D8BA3622AF49F8200A8A9EC /* TabBarController.swift */,
+				0D8919ED2AF8C8CA0085BBB9 /* ProfileTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				0DBCB52F2ACA9E9A00084934 /* SceneDelegate.swift in Sources */,
 				0D84BFF12ACBF9B800AFA3D1 /* Slides.swift in Sources */,
 				0D1F96F42AF256FB00227904 /* MyRootViewController.swift in Sources */,
+				0D8919EE2AF8C8CA0085BBB9 /* ProfileTableViewController.swift in Sources */,
 				0D5235272AEF9AE7002E55B7 /* UsersModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
