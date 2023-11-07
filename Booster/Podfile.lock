@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.8.1)
   - FirebaseAppCheckInterop (10.16.0)
   - FirebaseAuth (10.16.0):
     - FirebaseAppCheckInterop (~> 10.0)
@@ -47,12 +48,14 @@ PODS:
   - RecaptchaInterop (100.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - FirebaseAuth
   - FirebaseDatabase
   - FirebaseStorage
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - FirebaseAppCheckInterop
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -68,6 +71,7 @@ SPEC REPOS:
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   FirebaseAppCheckInterop: 82358cff9f33452dd44259e88eea5e562500b1cb
   FirebaseAuth: 3862d87d4d58deff08f705d471896a2f66e8bbf0
   FirebaseAuthInterop: b79fab8ce80e685145eee5f973d9ad5210e19d44
@@ -82,6 +86,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 9d10f5afbf2b72dc5c8162a51cc136f781600e46
+PODFILE CHECKSUM: 4cd39053f8f39393c31913888d58ca206ccff3eb
 
 COCOAPODS: 1.6.2

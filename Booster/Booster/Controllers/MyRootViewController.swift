@@ -18,6 +18,12 @@ class MyRootViewController: UIViewController {
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
         self.navigationItem.rightBarButtonItem = logoutButton
         // Do any additional setup after loading the view.
+        MobyGamesService.share.fetchGames { game in
+            if game != nil {
+                print(game)
+            }
+            
+        }
     }
     
     @objc func logoutTapped() {
