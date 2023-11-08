@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Game
 struct Game: Decodable {
     let alternateTitles: [AlternateTitles]?
-    let description: String
+    let description: String?
     let gameId: Int
     let genres: [Genre]
     let mobyScore: Double?

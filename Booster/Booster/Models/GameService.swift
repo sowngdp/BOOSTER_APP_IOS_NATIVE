@@ -66,6 +66,22 @@ class MobyGamesService {
                 }
             }
         }
+    func fetchGamesByTitle(title: String, completion: @escaping (Result<[Game], Error>) -> Void) {
+            // Đường dẫn của API với tham số tìm kiếm tiêu đề
+            let url = "\(baseURL)/games?api_key=\(apiKey)&title=\(title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+            
+            // Sử dụng Alamofire để gọi API
+            AF.request(url).responseDecodable(of: GameResponse.self) { response in
+                switch response.result {
+                case .success(let gameResponse):
+                    // Trả về mảng game nếu giải mã thành công
+                    completion(.success(gameResponse.games))
+                case .failure(let error):
+                    // Trả về lỗi nếu có vấn đề xảy ra
+                    completion(.failure(error))
+                }
+            }
+        }
     
     
 }
