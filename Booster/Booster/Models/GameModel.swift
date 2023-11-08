@@ -6,7 +6,7 @@ struct Game: Decodable {
     let description: String
     let gameId: Int
     let genres: [Genre]
-    let mobyScore: Double
+    let mobyScore: Double?
     let mobyURL: String
     let numVotes: Int
     let officialURL: String?
