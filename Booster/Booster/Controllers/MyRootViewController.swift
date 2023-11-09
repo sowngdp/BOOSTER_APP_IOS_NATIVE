@@ -12,7 +12,7 @@ class MyRootViewController: UIViewController {
     
     
 
-    @IBOutlet weak var searchBTN: UITextField!
+    
     let sceneDelegate = UIApplication.shared.connectedScenes
                     .first!.delegate as! SceneDelegate
     
@@ -42,21 +42,7 @@ class MyRootViewController: UIViewController {
 
     }
     
-    @IBAction func searchClicked(_ sender: Any) {
-        
-        
-        MobyGamesService.share.fetchGamesByTitle(title: searchBTN!.text!){
-            result in
-            switch result {
-            case .success(let games):
-                print(games[1].title)
-            case .failure(let error):
-                print(error.asAFError)
-            }
-        }
-        
-        
-    }
+
     @objc func logoutTapped() {
       // Code để logout
       // Ví dụ:

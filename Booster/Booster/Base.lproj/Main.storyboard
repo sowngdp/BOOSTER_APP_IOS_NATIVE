@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -173,43 +174,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP9-oH-EnZ">
-                                <rect key="frame" x="102" y="211" width="204" height="245"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="JYf-6d-fij">
+                                <rect key="frame" x="51" y="88" width="363" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="245" id="GAS-Hl-XyO"/>
+                                    <constraint firstAttribute="height" constant="44" id="cv8-00-3Ae"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ekz-km-jzK">
-                                <rect key="frame" x="77" y="431" width="261" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cb4-6S-tVA">
-                                <rect key="frame" x="174" y="500" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="searchClicked:" destination="IVG-ft-yS9" eventType="touchUpInside" id="sSA-pp-sXz"/>
-                                </connections>
-                            </button>
+                            </searchBar>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuS-sV-UFt">
+                                <rect key="frame" x="20" y="132" width="374" height="167"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="167" id="rX3-Ma-nMj"/>
+                                </constraints>
+                            </pickerView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mKM-z5-mIf">
+                                <rect key="frame" x="20" y="307" width="374" height="555"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="555" id="ISz-hg-c3c"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bs4-0N-VHX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2lb-57-dbg">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="s13-oT-SGV">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7N6-vL-ww0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BP9-oH-EnZ" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="102" id="QPD-FO-Oc9"/>
-                            <constraint firstItem="7N6-vL-ww0" firstAttribute="trailing" secondItem="BP9-oH-EnZ" secondAttribute="trailing" constant="108" id="XqX-cg-AoO"/>
-                            <constraint firstItem="BP9-oH-EnZ" firstAttribute="top" secondItem="7N6-vL-ww0" secondAttribute="top" constant="123" id="rqK-l4-6G5"/>
+                            <constraint firstItem="7N6-vL-ww0" firstAttribute="trailing" secondItem="mKM-z5-mIf" secondAttribute="trailing" constant="20" id="Gy6-5L-lmu"/>
+                            <constraint firstItem="JYf-6d-fij" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="51" id="Gz8-I9-Ten"/>
+                            <constraint firstItem="mKM-z5-mIf" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="20" id="Wi0-jW-dq2"/>
+                            <constraint firstItem="7N6-vL-ww0" firstAttribute="trailing" secondItem="CuS-sV-UFt" secondAttribute="trailing" constant="20" id="XiQ-Bi-ysh"/>
+                            <constraint firstItem="CuS-sV-UFt" firstAttribute="top" secondItem="JYf-6d-fij" secondAttribute="bottom" id="Ypk-T9-POs"/>
+                            <constraint firstItem="JYf-6d-fij" firstAttribute="trailing" secondItem="7N6-vL-ww0" secondAttribute="trailing" id="bUl-tR-hdJ"/>
+                            <constraint firstItem="CuS-sV-UFt" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="20" id="f6M-cn-99b"/>
+                            <constraint firstItem="mKM-z5-mIf" firstAttribute="top" secondItem="CuS-sV-UFt" secondAttribute="bottom" constant="8" symbolic="YES" id="gzy-8b-e2d"/>
+                            <constraint firstItem="JYf-6d-fij" firstAttribute="top" secondItem="7N6-vL-ww0" secondAttribute="top" id="iHX-Tt-yI4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YHO-Qt-Lvf"/>
-                    <connections>
-                        <outlet property="searchBTN" destination="Ekz-km-jzK" id="ef0-Dy-ZKd"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="YHO-Qt-Lvf">
+                        <nil key="title"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W9-9f-Zus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
