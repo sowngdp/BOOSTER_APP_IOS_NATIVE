@@ -31,6 +31,8 @@
 		0DE0CE7E2AFA221300B849EC /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE0CE7D2AFA221300B849EC /* Screenshot.swift */; };
 		0DE0CE802AFA242C00B849EC /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE0CE7F2AFA242C00B849EC /* GameService.swift */; };
 		B14AB3DC6BA3887738DCB21C /* Pods_Booster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78D09642F392B8ED40BBC78 /* Pods_Booster.framework */; };
+		E6A97C212B00C1D70034C1CE /* CollectionItemGame.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6A97C202B00C1D70034C1CE /* CollectionItemGame.xib */; };
+		E6A97C232B00C1EB0034C1CE /* CollectionItemGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A97C222B00C1EB0034C1CE /* CollectionItemGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		0DE0CE7F2AFA242C00B849EC /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		726471E9FBCFCBB0F9A24411 /* Pods-Booster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Booster.debug.xcconfig"; path = "Target Support Files/Pods-Booster/Pods-Booster.debug.xcconfig"; sourceTree = "<group>"; };
 		D78D09642F392B8ED40BBC78 /* Pods_Booster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Booster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6A97C202B00C1D70034C1CE /* CollectionItemGame.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionItemGame.xib; sourceTree = "<group>"; };
+		E6A97C222B00C1EB0034C1CE /* CollectionItemGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemGame.swift; sourceTree = "<group>"; };
 		EF20FD24DE5A5E03C311D510 /* Pods-Booster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Booster.release.xcconfig"; path = "Target Support Files/Pods-Booster/Pods-Booster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 			children = (
 				0D968B272ACBF52C001A1CBF /* Slides.xib */,
 				0D968B282ACBF52C001A1CBF /* Slides.swift */,
+				E6A97C202B00C1D70034C1CE /* CollectionItemGame.xib */,
+				E6A97C222B00C1EB0034C1CE /* CollectionItemGame.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 				0DBCB5362ACA9E9B00084934 /* Assets.xcassets in Resources */,
 				0D5235242AEF9AD2002E55B7 /* GoogleService-Info.plist in Resources */,
 				0DBCB5422ACAC02000084934 /* Main.storyboard in Resources */,
+				E6A97C212B00C1D70034C1CE /* CollectionItemGame.xib in Resources */,
 				0D84BFF02ACBF9B500AFA3D1 /* Slides.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +344,7 @@
 				0DBCB52F2ACA9E9A00084934 /* SceneDelegate.swift in Sources */,
 				0D8B5ECF2AFA186900AA1EDE /* PlatformModel.swift in Sources */,
 				0D84BFF12ACBF9B800AFA3D1 /* Slides.swift in Sources */,
+				E6A97C232B00C1EB0034C1CE /* CollectionItemGame.swift in Sources */,
 				0D1F96F42AF256FB00227904 /* MyRootViewController.swift in Sources */,
 				0D8919EE2AF8C8CA0085BBB9 /* ProfileTableViewController.swift in Sources */,
 				0D5235272AEF9AE7002E55B7 /* UsersModel.swift in Sources */,
