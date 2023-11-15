@@ -175,7 +175,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="JYf-6d-fij">
-                                <rect key="frame" x="51" y="88" width="363" height="44"/>
+                                <rect key="frame" x="35" y="88" width="224" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="cv8-00-3Ae"/>
                                 </constraints>
@@ -187,32 +187,47 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="610" id="EYj-aK-z2j"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bs4-0N-VHX">
-                                    <size key="itemSize" width="174" height="204"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bs4-0N-VHX">
+                                    <size key="itemSize" width="150" height="260"/>
+                                    <size key="estimatedItemSize" width="150" height="260"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2lb-57-dbg" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="174" height="204"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="260"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="collectionViewCell" insetsLayoutMarginsFromSafeArea="NO" id="s13-oT-SGV">
-                                            <rect key="frame" x="0.0" y="0.0" width="174" height="204"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="174" height="204"/>
+                                        <size key="customSize" width="150" height="260"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xs4-Jy-1E9">
+                                <rect key="frame" x="272" y="95" width="122" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="i98-VO-xf8"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="ChangeLayout"/>
+                                <connections>
+                                    <action selector="toggleLayout:" destination="IVG-ft-yS9" eventType="touchUpInside" id="GI0-DH-2Pd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7N6-vL-ww0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JYf-6d-fij" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="51" id="Gz8-I9-Ten"/>
+                            <constraint firstItem="JYf-6d-fij" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="35" id="Gz8-I9-Ten"/>
+                            <constraint firstItem="7N6-vL-ww0" firstAttribute="trailing" secondItem="Xs4-Jy-1E9" secondAttribute="trailing" constant="20" id="LRi-7d-2GX"/>
                             <constraint firstItem="mKM-z5-mIf" firstAttribute="top" secondItem="JYf-6d-fij" secondAttribute="bottom" constant="70" id="XAK-gw-2Tx"/>
-                            <constraint firstItem="JYf-6d-fij" firstAttribute="trailing" secondItem="7N6-vL-ww0" secondAttribute="trailing" id="bUl-tR-hdJ"/>
+                            <constraint firstItem="JYf-6d-fij" firstAttribute="trailing" secondItem="7N6-vL-ww0" secondAttribute="trailing" constant="-155" id="bUl-tR-hdJ"/>
+                            <constraint firstItem="Xs4-Jy-1E9" firstAttribute="leading" secondItem="JYf-6d-fij" secondAttribute="trailing" constant="13" id="dhB-Ak-ihl"/>
                             <constraint firstItem="JYf-6d-fij" firstAttribute="top" secondItem="7N6-vL-ww0" secondAttribute="top" id="iHX-Tt-yI4"/>
+                            <constraint firstItem="Xs4-Jy-1E9" firstAttribute="top" secondItem="7N6-vL-ww0" secondAttribute="top" constant="7" id="umG-jX-ReK"/>
                             <constraint firstItem="7N6-vL-ww0" firstAttribute="trailing" secondItem="mKM-z5-mIf" secondAttribute="trailing" constant="20" id="vuR-69-lSQ"/>
                             <constraint firstItem="mKM-z5-mIf" firstAttribute="leading" secondItem="7N6-vL-ww0" secondAttribute="leading" constant="20" id="yXM-IR-QlQ"/>
                         </constraints>
