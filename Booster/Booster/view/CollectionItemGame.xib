@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,15 +20,12 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="item_preview1" translatesAutoresizingMaskIntoConstraints="NO" id="AG6-9F-oCa">
                         <rect key="frame" x="0.0" y="0.0" width="245" height="245"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="245" id="9AG-sW-OuZ"/>
+                            <constraint firstAttribute="height" constant="245" id="qrb-74-FLN"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VbL-v9-CAA">
-                        <rect key="frame" x="16" y="350" width="213" height="40"/>
+                        <rect key="frame" x="16" y="359" width="213" height="31"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="Fe7-VW-Dhm"/>
-                        </constraints>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="+ Add">
@@ -37,29 +34,37 @@
                         </buttonConfiguration>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mir Tankov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHk-Un-iEP">
-                        <rect key="frame" x="16" y="253" width="213" height="24"/>
+                        <rect key="frame" x="16" y="315" width="213" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="VbL-v9-CAA" secondAttribute="trailing" constant="16" id="Drz-h6-Sc3"/>
-                    <constraint firstItem="AG6-9F-oCa" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" id="Hb7-RI-Gbd"/>
-                    <constraint firstAttribute="bottom" secondItem="VbL-v9-CAA" secondAttribute="bottom" constant="10" id="I1Q-Cd-8OT"/>
-                    <constraint firstAttribute="trailing" secondItem="AG6-9F-oCa" secondAttribute="trailing" id="U0E-C4-Fgj"/>
-                    <constraint firstItem="VbL-v9-CAA" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" constant="16" id="aC8-AN-VRT"/>
-                    <constraint firstItem="AG6-9F-oCa" firstAttribute="top" secondItem="mG4-zv-ImG" secondAttribute="top" id="cH7-fS-UAb"/>
-                    <constraint firstItem="RHk-Un-iEP" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" constant="16" id="l6a-pH-SwF"/>
-                    <constraint firstItem="RHk-Un-iEP" firstAttribute="top" secondItem="AG6-9F-oCa" secondAttribute="bottom" constant="8" symbolic="YES" id="m3G-cC-UmY"/>
-                    <constraint firstAttribute="trailing" secondItem="RHk-Un-iEP" secondAttribute="trailing" constant="16" id="sBR-PW-YoN"/>
+                    <constraint firstItem="RHk-Un-iEP" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" constant="16" id="CL5-4a-uF3"/>
+                    <constraint firstItem="AG6-9F-oCa" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" id="Liz-Yr-dc4"/>
+                    <constraint firstItem="AG6-9F-oCa" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" id="NEZ-iG-Vko"/>
+                    <constraint firstItem="VbL-v9-CAA" firstAttribute="top" secondItem="RHk-Un-iEP" secondAttribute="bottom" constant="20" id="OJ7-43-YGM"/>
+                    <constraint firstAttribute="trailing" secondItem="RHk-Un-iEP" secondAttribute="trailing" constant="16" id="SUU-Id-wPw"/>
+                    <constraint firstAttribute="bottom" secondItem="VbL-v9-CAA" secondAttribute="bottom" constant="10" id="U3Z-QH-vNG"/>
+                    <constraint firstItem="RHk-Un-iEP" firstAttribute="top" secondItem="AG6-9F-oCa" secondAttribute="bottom" constant="70" id="YMr-YL-a3I"/>
+                    <constraint firstAttribute="trailing" secondItem="AG6-9F-oCa" secondAttribute="trailing" id="Ywi-sw-E2G"/>
+                    <constraint firstAttribute="trailing" secondItem="VbL-v9-CAA" secondAttribute="trailing" constant="16" id="hwt-fm-Mjx"/>
+                    <constraint firstItem="AG6-9F-oCa" firstAttribute="top" secondItem="mG4-zv-ImG" secondAttribute="top" id="mxE-6e-Ea5"/>
+                    <constraint firstAttribute="trailing" secondItem="AG6-9F-oCa" secondAttribute="trailing" id="nKc-1B-x5G"/>
+                    <constraint firstItem="VbL-v9-CAA" firstAttribute="leading" secondItem="mG4-zv-ImG" secondAttribute="leading" constant="16" id="wkp-XU-Fxw"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="245" height="400"/>
-            <point key="canvasLocation" x="93.89312977099236" y="26.760563380281692"/>
+            <connections>
+                <outlet property="buttonAdd" destination="VbL-v9-CAA" id="Y6z-GP-Tb7"/>
+                <outlet property="imageGame" destination="AG6-9F-oCa" id="UD5-eJ-S1t"/>
+                <outlet property="nameGame" destination="RHk-Un-iEP" id="iZ6-eS-79z"/>
+            </connections>
+            <point key="canvasLocation" x="93.478260869565219" y="26.116071428571427"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="item_preview1" width="470.33334350585938" height="248.33332824707031"/>
+        <image name="item_preview1" width="221" height="117"/>
     </resources>
 </document>

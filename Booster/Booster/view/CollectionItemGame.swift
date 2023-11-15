@@ -10,4 +10,8 @@ import UIKit
 
 class CollectionItemGame: UICollectionViewCell {
     
+    @IBOutlet weak var imageGame: UIImageView!
+    @IBOutlet weak var nameGame: UILabel!
+    @IBOutlet weak var buttonAdd: UIButton!
+    
 }

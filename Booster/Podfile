@@ -6,6 +6,7 @@ target 'Booster' do
 pod 'FirebaseStorage'
 pod 'FirebaseDatabase'
 pod 'Alamofire'
+pod 'AlamofireImage'
 end
 
 
