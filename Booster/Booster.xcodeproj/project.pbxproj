@@ -17,6 +17,7 @@
 		0D8B5ECF2AFA186900AA1EDE /* PlatformModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B5ECE2AFA186900AA1EDE /* PlatformModel.swift */; };
 		0D8B5ED22AFA189600AA1EDE /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B5ED12AFA189600AA1EDE /* GameModel.swift */; };
 		0D8BA3632AF49F8200A8A9EC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8BA3622AF49F8200A8A9EC /* TabBarController.swift */; };
+		0D8C328D2B060351000988D8 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D8C328B2B060351000988D8 /* CoreData.xcdatamodeld */; };
 		0D8FD0342AFA398400C2F748 /* AlternateTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8FD0332AFA398400C2F748 /* AlternateTitles.swift */; };
 		0D968B232ACBF368001A1CBF /* LoginControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */; };
 		0D99948C2ACFB0E3004BFA71 /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */; };
@@ -44,6 +45,7 @@
 		0D8B5ECE2AFA186900AA1EDE /* PlatformModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformModel.swift; sourceTree = "<group>"; };
 		0D8B5ED12AFA189600AA1EDE /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		0D8BA3622AF49F8200A8A9EC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0D8C328C2B060351000988D8 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		0D8FD0332AFA398400C2F748 /* AlternateTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateTitles.swift; sourceTree = "<group>"; };
 		0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControllerViewController.swift; sourceTree = "<group>"; };
 		0D968B272ACBF52C001A1CBF /* Slides.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slides.xib; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		0DBCB5202ACA9E9900084934 = {
 			isa = PBXGroup;
 			children = (
+				0D8C328B2B060351000988D8 /* CoreData.xcdatamodeld */,
 				0DBCB52B2ACA9E9A00084934 /* Booster */,
 				0DBCB52A2ACA9E9A00084934 /* Products */,
 				AFEC02C553653E23718EAF28 /* Pods */,
@@ -343,6 +346,7 @@
 				0D8B5ED22AFA189600AA1EDE /* GameModel.swift in Sources */,
 				0DBCB52D2ACA9E9A00084934 /* AppDelegate.swift in Sources */,
 				0D9E976A2AEF9EB500DAFF3C /* AuthViewModel.swift in Sources */,
+				0D8C328D2B060351000988D8 /* CoreData.xcdatamodeld in Sources */,
 				0DBCB52F2ACA9E9A00084934 /* SceneDelegate.swift in Sources */,
 				0D8B5ECF2AFA186900AA1EDE /* PlatformModel.swift in Sources */,
 				0D84BFF12ACBF9B800AFA3D1 /* Slides.swift in Sources */,
@@ -569,6 +573,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0D8C328B2B060351000988D8 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0D8C328C2B060351000988D8 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 0D8C328C2B060351000988D8 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0DBCB5212ACA9E9900084934 /* Project object */;
 }

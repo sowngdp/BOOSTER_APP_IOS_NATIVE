@@ -147,8 +147,10 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         setupCollectionViewLayout(isGrid: isGridLayout)
         fetchGameAndUpDateCollectionView()
 
-        let toggleButton = UIBarButtonItem(title: "Toggle Layout", style: .plain, target: self, action: #selector(toggleLayout))
-        self.navigationItem.rightBarButtonItem = toggleButton
+//        let toggleButton = UIBarButtonItem(title: "Toggle Layout", style: .plain, target: self, action: #selector(toggleLayout))
+//        self.navigationItem.rightBarButtonItem = toggleButton
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+        self.navigationItem.rightBarButtonItem = logoutButton
     }
 
     func setupCollectionViewLayout(isGrid: Bool) {
@@ -191,7 +193,7 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCell", for: indexPath) as! CollectionItemGame
 
-        let imageUrl = games[indexPath.row].sampleCover.imageURL
+        let imageUrl = games[indexPath.row].sampleCover.thumbnailImageURL
 
         AF.request(imageUrl).responseImage { response in
             switch response.result {
