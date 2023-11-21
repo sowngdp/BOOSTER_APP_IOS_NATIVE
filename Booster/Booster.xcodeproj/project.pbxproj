@@ -112,7 +112,6 @@
 		0DBCB5202ACA9E9900084934 = {
 			isa = PBXGroup;
 			children = (
-				0D8C328B2B060351000988D8 /* CoreData.xcdatamodeld */,
 				0DBCB52B2ACA9E9A00084934 /* Booster */,
 				0DBCB52A2ACA9E9A00084934 /* Products */,
 				AFEC02C553653E23718EAF28 /* Pods */,
@@ -138,6 +137,7 @@
 				0DBCB5322ACA9E9A00084934 /* Main.storyboard */,
 				0DBCB5352ACA9E9B00084934 /* Assets.xcassets */,
 				0DBCB5372ACA9E9B00084934 /* LaunchScreen.storyboard */,
+				0D8C328B2B060351000988D8 /* CoreData.xcdatamodeld */,
 				0DBCB53A2ACA9E9B00084934 /* Info.plist */,
 				0D5235232AEF9AD2002E55B7 /* GoogleService-Info.plist */,
 			);
