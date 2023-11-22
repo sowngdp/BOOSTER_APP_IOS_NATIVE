@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E5F7E2A5B7FA4ED48A19E2A6D7944D6D"
-               BuildableName = "FirebaseCore.framework"
-               BlueprintName = "FirebaseCore"
+               BlueprintIdentifier = "7E193D9EC614B3AEB1EB6335408DCA87"
+               BuildableName = "PopMenu.framework"
+               BlueprintName = "NewPopMenu"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

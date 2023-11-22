@@ -14,6 +14,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var tabbarController : UITabBarController?
     var navWelcomeController : UINavigationController?
     
+    
+    
+    func loadNavControllers() {
+        // Load navHome
+        if let navHome = self.tabbarController?.viewControllers?[0] as? UINavigationController {
+            // Accessing the root view controller of navHome triggers its viewDidLoad
+            let _ = navHome.viewDidLoad() // This will call the viewDidLoad of navHome
+        }
+        
+        // Load navProfile
+        if let navProfile = self.tabbarController?.viewControllers?[1] as? UINavigationController {
+            // Accessing the root view controller of navProfile triggers its viewDidLoad
+            let _ = navProfile.viewDidLoad()// This will call the viewDidLoad of navProfile
+        }
+    }
+
+    
+    
+    
     func isLoggedIn() -> Bool {
         return Auth.auth().currentUser != nil
     }
@@ -57,6 +76,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabbar.viewControllers = [homeVC, profileVC, settingVC]
             
             self.tabbarController = tabbar
+            
+            loadNavControllers()
         }
     }
     
@@ -76,9 +97,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func setRootViewTabbar()  {
         if self.tabbarController != nil {
             self.window?.rootViewController = self.tabbarController
+            loadNavControllers()
         } else {
             initTabbar()
             self.window?.rootViewController = self.tabbarController
+            
         }
         //get tabbar from storyboard : id : tabbarID
         //set roootView window.rootview = tabbar

@@ -28,7 +28,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     }
 
     
-    
+    var results = [NSManagedObject]()
     var games: [Games] = []
     
     
@@ -52,6 +52,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             }
         }
         cell.rowOfIndexPath = indexPath.row
+        cell.buttonAdd.titleLabel?.text = games[indexPath.row].status
         cell.nameGame.text = games[indexPath.row].title
         
         return cell
@@ -67,9 +68,10 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         collectionView.register(UINib(nibName: "CollectionItemGame", bundle: nil), forCellWithReuseIdentifier: "idCell")
         
         fetchGamesFromCoreData()
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchGamesFromCoreData), name: NSNotification.Name("reloadProfileData"), object: nil)
     }
 
-    func fetchGamesFromCoreData() {
+    @objc func fetchGamesFromCoreData() {
         games.removeAll()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -78,11 +80,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         fetchRequest.returnsObjectsAsFaults = false
         
         do {
-            let results = try context.fetch(fetchRequest)
+            results = try context.fetch(fetchRequest) as! [NSManagedObject]
             
             if results.count > 0 {
                 
-                for result in results as! [NSManagedObject] {
+                for result in results  {
                     if let title = result.value(forKey: "title") as? String,
                                        let gameId = result.value(forKey: "game_id") as? Int,
                                        let thumbnailImageURL = result.value(forKey: "thumbnail_image") as? String,
@@ -95,6 +97,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 }
                     
                 collectionView.reloadData()
+                if let tabBarController = self.tabBarController {
+                    if let tabBarItem = tabBarController.tabBar.items?[1] {
+                        tabBarItem.badgeValue = "\(games.count)"
+                    }
+                }
                 
             }
                 
@@ -102,5 +109,32 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 print("Errol")
             }
         }
-
+    
+    
+    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+        if action == #selector(UIResponderStandardEditActions.delete) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            let context = appDelegate.persistentContainer.viewContext
+            
+            results.remove(at: indexPath.row)
+            games.remove(at: indexPath.row)
+            context.delete(results[indexPath.row])
+            
+            
+            self.collectionView.reloadData()
+            
+            do {
+                
+                try context.save()
+                
+            } catch {
+                
+                print("Errol")
+                
+            }
+            
+        }
+    }
+    
 }

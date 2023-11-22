@@ -46,6 +46,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (3.1.1)
   - leveldb-library (1.22.2)
+  - NewPopMenu (2.1.2)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
 
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseDatabase
   - FirebaseStorage
+  - NewPopMenu
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -71,6 +73,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - leveldb-library
+    - NewPopMenu
     - PromisesObjC
     - RecaptchaInterop
 
@@ -88,9 +91,10 @@ SPEC CHECKSUMS:
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
+  NewPopMenu: c6129e08e8192f6257ceb5f9a4357e1b59c6e2e7
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 3624e45b8d6a8cfb3ffc7dfc92f627c0cdf78947
+PODFILE CHECKSUM: fd61e3178bbb6f84cf69762d35fc60e3a42023b1
 
 COCOAPODS: 1.6.2

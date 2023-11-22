@@ -10,22 +10,70 @@ import FirebaseAuth
 import Alamofire
 import AlamofireImage
 import CoreData
+import PopMenu
 
 
 
 class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate {
-    func addButtonTapped(at rowOfIndexPath: Int) {
+    
+    
+    
+
+    
+    func addButtonTapped(at gameCell: Game) {
         
-        let selectedGame = games[rowOfIndexPath]
+        let selectedGame = gameCell
         print(selectedGame.title)
-        saveGameToCoreData(game: selectedGame)
+        
+        if let tabBarController = self.tabBarController {
+            tabBarController.selectedIndex = 1  // Index của tab "Profile"
+        }
+        
+        
+        
+        let menuViewController = PopMenuViewController(actions: [
+            PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+
+                self.saveGameToCoreData(game: selectedGame, status: action.title!)
+                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+            }),
+            PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+
+                self.saveGameToCoreData(game: selectedGame, status: action.title!)
+                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+            }),
+            PopMenuDefaultAction(title: "Played", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+
+                self.saveGameToCoreData(game: selectedGame, status: action.title!)
+                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+            }),
+            PopMenuDefaultAction(title: "To Play", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+
+                self.saveGameToCoreData(game: selectedGame, status: action.title!)
+                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+            })
+        ])
+        
+
+        present(menuViewController, animated: true, completion: nil)
+        
+        
+        
+        // Gửi thông báo để load lại dữ liệu trong navProfile
+        
+        
+
         
     }
     
     
+
     
-    
-    func saveGameToCoreData(game: Game) {
+    func saveGameToCoreData(game: Game, status: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = appDelegate.persistentContainer.viewContext
@@ -34,7 +82,7 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
         // Thiết lập giá trị cho các thuộc tính
         gameEntity.setValue(game.gameId, forKey: "game_id")
-        gameEntity.setValue("played", forKey: "status")
+        gameEntity.setValue(status, forKey: "status")
         gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
         gameEntity.setValue(game.title, forKey: "title")
         
@@ -47,19 +95,6 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
             print("Could not save game to Core Data.")
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     var games: [Game] = []
     var isGridLayout = true
@@ -76,6 +111,7 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         setupCollectionViewLayout(isGrid: isGridLayout)
         fetchGameAndUpDateCollectionView()
+        
         
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
@@ -108,6 +144,11 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
                 self.games = fetchedGames
                 DispatchQueue.main.async {
                     self.gameCollectionView.reloadData()
+                    if let tabBarController = self.tabBarController {
+                        if let tabBarItem = tabBarController.tabBar.items?[0] {
+                            tabBarItem.badgeValue = "\(self.games.count)"
+                        }
+                    }
                 }
             case .failure(let error):
                 print(error.asAFError)
@@ -135,6 +176,7 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
         }
         cell.rowOfIndexPath = indexPath.row
+        cell.gameCell = games[indexPath.row]
         cell.nameGame.text = games[indexPath.row].title
         cell.delegate = self
         return cell
