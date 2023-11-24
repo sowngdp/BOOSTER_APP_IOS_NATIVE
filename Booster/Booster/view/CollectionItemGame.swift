@@ -9,23 +9,23 @@ import Foundation
 import UIKit
 
 protocol CollectionItemGameDelegate: AnyObject {
-    func addButtonTapped( at: Game)
+    func addButtonTapped( at: IndexPath)
 }
 
 
 class CollectionItemGame: UICollectionViewCell {
     
-    var rowOfIndexPath: Int?
+    var rowOfIndexPath: IndexPath?
     @IBOutlet weak var imageGame: UIImageView!
     @IBOutlet weak var nameGame: UILabel!
     @IBOutlet weak var buttonAdd: UIButton!
-    var gameCell: Game?
+    //var gameCell: Game?
     
     weak var delegate: CollectionItemGameDelegate?
     
     @IBAction func addButtonTapped(_ sender: Any) {
         
-        self.delegate?.addButtonTapped( at: gameCell!)
+        self.delegate?.addButtonTapped( at: rowOfIndexPath!)
         
     }
 }

@@ -15,86 +15,124 @@ import PopMenu
 
 
 class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate {
-    
-    
-    
 
-    
-    func addButtonTapped(at gameCell: Game) {
+
+    func addButtonTapped(at rowOfIndexPath: IndexPath) {
         
-        let selectedGame = gameCell
-        print(selectedGame.title)
+        //let selectedGame = gameCell
+        let selectedGame = games[rowOfIndexPath.row]
+        //print(selectedGame.title)
         
-        if let tabBarController = self.tabBarController {
-            tabBarController.selectedIndex = 1  // Index của tab "Profile"
-        }
-        
-        
-        
+
         let menuViewController = PopMenuViewController(actions: [
             PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
 
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
                 NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
+                }
             }),
             PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
 
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
                 NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
+                }
             }),
             PopMenuDefaultAction(title: "Played", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
 
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
                 NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
+                }
             }),
             PopMenuDefaultAction(title: "To Play", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
 
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
                 NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
+                }
             })
         ])
         
 
         present(menuViewController, animated: true, completion: nil)
         
-        
-        
-        // Gửi thông báo để load lại dữ liệu trong navProfile
-        
-        
-
-        
+   
     }
     
-    
-
     
     func saveGameToCoreData(game: Game, status: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         let context = appDelegate.persistentContainer.viewContext
         
-        // Tạo một mới NSManagedObject (Entity là tên của entity trong Core Data)
-        let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
-        // Thiết lập giá trị cho các thuộc tính
-        gameEntity.setValue(game.gameId, forKey: "game_id")
-        gameEntity.setValue(status, forKey: "status")
-        gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
-        gameEntity.setValue(game.title, forKey: "title")
+        // Kiểm tra xem trò chơi với ID đã tồn tại trong Core Data hay chưa
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
+        fetchRequest.predicate = NSPredicate(format: "game_id == %d", game.gameId)
         
-        
-        // Lưu thay đổi vào Core Data
         do {
-            try context.save()
-            print("Game saved to Core Data")
-        } catch  {
-            print("Could not save game to Core Data.")
+            let existingGames = try context.fetch(fetchRequest) as! [NSManagedObject]
+            
+            if let existingGame = existingGames.first {
+                // Trò chơi đã tồn tại, hiển thị thông báo
+                showErrorMessage("This game is already in your collection.")
+            } else {
+                // Trò chơi chưa tồn tại, thêm mới vào Core Data
+                let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
+                gameEntity.setValue(game.gameId, forKey: "game_id")
+                gameEntity.setValue(status, forKey: "status")
+                gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
+                gameEntity.setValue(game.title, forKey: "title")
+                
+                // Lưu thay đổi vào Core Data
+                try context.save()
+                print("Game saved to Core Data")
+            }
+        } catch {
+            print("Error checking for existing game: \(error)")
         }
     }
+
+    func showErrorMessage(_ message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
+//    func saveGameToCoreData(game: Game, status: String) {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//
+//        let context = appDelegate.persistentContainer.viewContext
+//
+//        // Tạo một mới NSManagedObject (Entity là tên của entity trong Core Data)
+//        let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
+//        // Thiết lập giá trị cho các thuộc tính
+//        gameEntity.setValue(game.gameId, forKey: "game_id")
+//        gameEntity.setValue(status, forKey: "status")
+//        gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
+//        gameEntity.setValue(game.title, forKey: "title")
+//
+//
+//        // Lưu thay đổi vào Core Data
+//        do {
+//            try context.save()
+//            print("Game saved to Core Data")
+//        } catch  {
+//            print("Could not save game to Core Data.")
+//        }
+//    }
     
     var games: [Game] = []
     var isGridLayout = true
@@ -151,7 +189,7 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
                     }
                 }
             case .failure(let error):
-                print(error.asAFError)
+                print(error.asAFError!)
             }
         }
     }
@@ -175,8 +213,8 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
                 print("Image download failed: \(error)")
             }
         }
-        cell.rowOfIndexPath = indexPath.row
-        cell.gameCell = games[indexPath.row]
+        cell.rowOfIndexPath = indexPath
+        //cell.gameCell = games[indexPath.row]
         cell.nameGame.text = games[indexPath.row].title
         cell.delegate = self
         return cell

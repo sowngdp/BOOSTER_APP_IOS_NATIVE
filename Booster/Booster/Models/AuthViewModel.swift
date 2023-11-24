@@ -59,7 +59,7 @@ class AuthViewModel {
 
                // Set user properties
                user.updateEmail(to: user.email!) { error in
-                   if let error = error {
+                   if error != nil {
                        print("DEBUG: Failed to update user email, (error.localizedDescription)")
                    }
                }
