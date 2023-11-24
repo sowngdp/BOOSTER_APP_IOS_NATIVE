@@ -27,39 +27,27 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         let menuViewController = PopMenuViewController(actions: [
             PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
-
+                self.dismiss(animated: true)
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
-                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
-                if let tabBarController = self.tabBarController {
-                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
-                }
+                
             }),
             PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
-
+                self.dismiss(animated: true)
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
-                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
-                if let tabBarController = self.tabBarController {
-                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
-                }
+                
             }),
             PopMenuDefaultAction(title: "Played", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
-
+                self.dismiss(animated: true)
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
-                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
-                if let tabBarController = self.tabBarController {
-                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
-                }
+                
             }),
             PopMenuDefaultAction(title: "To Play", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
-
+                self.dismiss(animated: true)
                 self.saveGameToCoreData(game: selectedGame, status: action.title!)
-                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
-                if let tabBarController = self.tabBarController {
-                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
-                }
+
             })
         ])
         
@@ -95,6 +83,10 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
                 // Lưu thay đổi vào Core Data
                 try context.save()
                 print("Game saved to Core Data")
+                NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
+                }
             }
         } catch {
             print("Error checking for existing game: \(error)")

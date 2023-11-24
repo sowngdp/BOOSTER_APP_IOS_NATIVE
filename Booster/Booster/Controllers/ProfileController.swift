@@ -17,26 +17,31 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         let menuViewController = PopMenuViewController(actions: [
             PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
                 self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Uncategorized")
                 
             }),
             PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
                 self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Currently playing")
                 
             }),
             PopMenuDefaultAction(title: "Played", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
                 self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Played")
                 
             }),
             PopMenuDefaultAction(title: "To Play", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
                 self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "To Play")
                 
             }),
             PopMenuDefaultAction(title: "Delete", didSelect: { action in
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
                 self.deleteGameFromCoreData(at: rowOfIndexPath)
                 
             })
@@ -66,29 +71,19 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             results[indexPath.row].setValue(status, forKey: "status")
             
             // Cập nhật cell để hiển thị trạng thái mới
-            collectionView.reloadItems(at: [indexPath])
             
-            // Hiển thị thông báo thành công
-            showSuccessMessage("Game updated successfully")
+            
+
+            collectionView.reloadData()
             
         } catch {
             print("Error updating game: \(error)")
-            // Hiển thị thông báo lỗi
-            showErrorMessage("Failed to update game. Please try again.")
+
+            collectionView.reloadData()
         }
     }
 
-    func showSuccessMessage(_ message: String) {
-        let alertController = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
 
-    func showErrorMessage(_ message: String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
     
     
     func deleteGameFromCoreData(at indexPath: IndexPath) {
@@ -114,13 +109,13 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             }
 
             // Hiển thị thông báo thành công
-            showSuccessMessage("Game deleted successfully")
+            
             collectionView.reloadData()
             
         } catch {
             print("Error deleting game: \(error)")
             // Hiển thị thông báo lỗi
-            showErrorMessage("Failed to delete game. Please try again.")
+            
         }
     }
 
@@ -291,31 +286,6 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-        if action == #selector(UIResponderStandardEditActions.delete) {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            
-            let context = appDelegate.persistentContainer.viewContext
-            
-            results.remove(at: indexPath.row)
-            //games.remove(at: indexPath.row)
-            results.remove(at: indexPath.row)
-            context.delete(results[indexPath.row])
-            
-            
-            self.collectionView.reloadData()
-            
-            do {
-                
-                try context.save()
-                
-            } catch {
-                
-                print("Errol")
-                
-            }
-            
-        }
-    }
+    
     
 }
