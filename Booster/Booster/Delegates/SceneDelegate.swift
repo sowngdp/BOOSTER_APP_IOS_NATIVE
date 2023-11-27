@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -29,8 +30,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let _ = navProfile.viewDidLoad()// This will call the viewDidLoad of navProfile
         }
     }
-
     
+    
+    func updateProfileBadgeValue() {
+            guard let tabBarController = self.tabbarController,
+                  let tabBarItem = tabBarController.tabBar.items?[1] else {
+                return
+            }
+
+            // Fetch games from Core Data
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
+            fetchRequest.returnsObjectsAsFaults = false
+
+            do {
+                let results = try context.fetch(fetchRequest) as! [NSManagedObject]
+                tabBarItem.badgeValue = "\(results.count)"
+            } catch {
+                print("Error fetching games: \(error)")
+            }
+        }
     
     
     func isLoggedIn() -> Bool {
@@ -74,6 +95,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let settingVC = settingId!
             
             tabbar.viewControllers = [homeVC, profileVC, settingVC]
+            if let profile = tabbar.viewControllers?[2] as? ProfileController {
+                profile.viewDidLoad()
+            }
             
             self.tabbarController = tabbar
             
@@ -86,9 +110,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //Window.rootview = welcomeVC
         if self.navWelcomeController != nil {
             self.window?.rootViewController = self.navWelcomeController
+            
         } else {
             initNavWelcome()
             self.window?.rootViewController = self.navWelcomeController
+            
         }
         
         
@@ -98,9 +124,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if self.tabbarController != nil {
             self.window?.rootViewController = self.tabbarController
             loadNavControllers()
+            updateProfileBadgeValue()
         } else {
             initTabbar()
             self.window?.rootViewController = self.tabbarController
+            updateProfileBadgeValue()
             
         }
         //get tabbar from storyboard : id : tabbarID
@@ -135,5 +163,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-  
+    
 }

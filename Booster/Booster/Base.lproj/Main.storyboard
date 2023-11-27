@@ -141,9 +141,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7OT-Wo-1qa">
-                                <rect key="frame" x="20" y="92" width="374" height="770"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7OT-Wo-1qa">
+                                <rect key="frame" x="20" y="128" width="374" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pxH-wZ-K2O">
                                     <size key="itemSize" width="128" height="128"/>
@@ -165,6 +164,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yQN-ff-uZq"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yQN-ff-uZq" firstAttribute="trailing" secondItem="7OT-Wo-1qa" secondAttribute="trailing" constant="20" id="Hl3-Hk-eGr"/>
+                            <constraint firstItem="7OT-Wo-1qa" firstAttribute="top" secondItem="yQN-ff-uZq" secondAttribute="top" constant="40" id="VVh-ED-Tfl"/>
+                            <constraint firstItem="7OT-Wo-1qa" firstAttribute="bottom" secondItem="yQN-ff-uZq" secondAttribute="bottom" id="W0u-01-H67"/>
+                            <constraint firstItem="7OT-Wo-1qa" firstAttribute="leading" secondItem="yQN-ff-uZq" secondAttribute="leading" constant="20" id="YxH-0x-nem"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Bpa-w7-LdY"/>
                     <connections>

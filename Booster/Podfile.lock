@@ -47,6 +47,7 @@ PODS:
   - GTMSessionFetcher/Core (3.1.1)
   - leveldb-library (1.22.2)
   - NewPopMenu (2.1.2)
+  - PinterestSegment (1.2.3)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
 
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - FirebaseDatabase
   - FirebaseStorage
   - NewPopMenu
+  - PinterestSegment
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -74,6 +76,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - NewPopMenu
+    - PinterestSegment
     - PromisesObjC
     - RecaptchaInterop
 
@@ -92,9 +95,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   NewPopMenu: c6129e08e8192f6257ceb5f9a4357e1b59c6e2e7
+  PinterestSegment: 3dd673ffd9feb00dc7816bb1e503d70459e8eaa8
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: fd61e3178bbb6f84cf69762d35fc60e3a42023b1
+PODFILE CHECKSUM: dec6b8e64f928d2a57273ebfb9d3920542f3ade0
 
 COCOAPODS: 1.6.2

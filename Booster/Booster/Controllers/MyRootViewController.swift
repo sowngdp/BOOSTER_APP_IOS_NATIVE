@@ -174,11 +174,6 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
                 self.games = fetchedGames
                 DispatchQueue.main.async {
                     self.gameCollectionView.reloadData()
-                    if let tabBarController = self.tabBarController {
-                        if let tabBarItem = tabBarController.tabBar.items?[0] {
-                            tabBarItem.badgeValue = "\(self.games.count)"
-                        }
-                    }
                 }
             case .failure(let error):
                 print(error.asAFError!)

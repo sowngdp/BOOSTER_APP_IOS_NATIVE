@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D87F403DDE857B631BDC8C8673AE46B0"
+               BlueprintIdentifier = "3F1FD092B19CD49DDA9798F69C4A55AE"
                BuildableName = "RecaptchaInterop.framework"
                BlueprintName = "RecaptchaInterop"
                ReferencedContainer = "container:Pods.xcodeproj">

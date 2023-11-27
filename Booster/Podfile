@@ -8,6 +8,7 @@ pod 'FirebaseDatabase'
 pod 'Alamofire'
 pod 'AlamofireImage'
 pod 'NewPopMenu'
+pod 'PinterestSegment'
 end
 
 

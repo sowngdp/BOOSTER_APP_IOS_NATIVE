@@ -10,6 +10,7 @@ import CoreData
 import Alamofire
 import AlamofireImage
 import PopMenu
+import PinterestSegment
 
 class ProfileController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate {
     func addButtonTapped(at rowOfIndexPath : IndexPath) {
@@ -73,17 +74,17 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             // Cập nhật cell để hiển thị trạng thái mới
             
             
-
+            
             collectionView.reloadData()
             
         } catch {
             print("Error updating game: \(error)")
-
+            
             collectionView.reloadData()
         }
     }
-
-
+    
+    
     
     
     func deleteGameFromCoreData(at indexPath: IndexPath) {
@@ -107,7 +108,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                     tabBarItem.badgeValue = "\(results.count)"
                 }
             }
-
+            
             // Hiển thị thông báo thành công
             
             collectionView.reloadData()
@@ -118,84 +119,17 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             
         }
     }
-
     
 
-    
-//    func updateGameInCoreData(at indexPath: IndexPath, withNewStatus status: String) {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContainer.viewContext
-//
-//        // Lấy đối tượng GameSave tại indexPath
-//        let gameToUpdate = results[indexPath.row] as! GameSave
-//
-//        // Cập nhật trạng thái mới
-//        gameToUpdate.setValue(status, forKey: "status")
-//
-//        do {
-//            // Lưu thay đổi vào Core Data
-//            try context.save()
-//
-//            // Cập nhật dữ liệu trong mảng games
-//            //results[indexPath.row].status = status
-//
-//            // Reload cell để hiển thị trạng thái mới
-//            collectionView.reloadData()
-//
-//
-//        } catch {
-//            print("Error updating game: \(error)")
-//        }
-//    }
-    
-    
-    
-
-    
-    
     var results = [NSManagedObject]()
-    //    var games: [Games] = []
+
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return results.count
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCell", for: indexPath) as! CollectionItemGame
-    //
-    //        guard let gameObject = results[indexPath.row] as? NSManagedObject else {
-    //            // Handle the case where gameObject is not of the expected type
-    //            return cell
-    //        }
-    //
-    //        // Accessing properties using key-value coding
-    //        if let thumbnailImageURL = gameObject.value(forKey: "thumbnail_image") as? String {
-    //            AF.request(thumbnailImageURL).responseImage { response in
-    //                switch response.result {
-    //                case .success(let image):
-    //                    // Set the downloaded image to the UIImageView
-    //                    cell.imageGame.image = image
-    //
-    //                case .failure(let error):
-    //                    print("Image download failed: \(error)")
-    //                }
-    //            }
-    //        }
-    //
-    //        if let status = gameObject.value(forKey: "status") as? String {
-    //            cell.buttonAdd.titleLabel?.text = status
-    //        }
-    //
-    //        if let title = gameObject.value(forKey: "title") as? String {
-    //            cell.nameGame.text = title
-    //        }
-    //
-    //        cell.rowOfIndexPath = indexPath.row
-    //        cell.delegate = self
-    //
-    //        return cell
-    //    }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCell", for: indexPath) as! CollectionItemGame
@@ -227,11 +161,33 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         return cell
     }
     
+    func setUISegment() -> UIView {
+        let w = view.frame.width
+        let s = PinterestSegment(frame: CGRect(x: 20, y: 88, width: w - 40, height: 40), titles: ["All", "Uncategorized", "Currently playing", "Played", "To Play"])
+        s.style.titleFont = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(rawValue: 5))
+        s.valueChange = {
+            index in
+            
+            if index == 0 {
+                self.fetchGamesFromCoreData()
+            } else {
+                self.fetchGamesWithStatus(status: s.titles[index])
+            }
+            
+        }
+        return s
+    }
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let w = view.frame.width
+//        let s = PinterestSegment(frame: CGRect(x: 20, y: 88, width: w - 40, height: 40), titles: ["All", "Uncategorized", "Currently playing", "Played", "To Play"])
+//        s.style.titleFont = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(rawValue: 5))
+        view.addSubview(setUISegment())
+
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "CollectionItemGame", bundle: nil), forCellWithReuseIdentifier: "idCell")
@@ -247,7 +203,9 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     @objc func fetchGamesFromCoreData() {
         results.removeAll()
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
@@ -256,20 +214,30 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         do {
             results = try context.fetch(fetchRequest) as! [NSManagedObject]
             
-            //            if results.count > 0 {
-            //
-            //                for result in results  {
-            //                    if let title = result.value(forKey: "title") as? String,
-            //                                       let gameId = result.value(forKey: "game_id") as? Int,
-            //                                       let thumbnailImageURL = result.value(forKey: "thumbnail_image") as? String,
-            //                                       let status = result.value(forKey: "status") as? String {
-            //
-            //                                        // Tạo đối tượng Game từ dữ liệu Core Data
-            //                                        let game = Games(gameId: String(gameId), status: status, thumbnailImageURL: thumbnailImageURL, title: title)
-            //                                        games.append(game)
-            //                                    }
-            //                }
-            
+            if let tabBarController = self.tabBarController {
+                if let tabBarItem = tabBarController.tabBar.items?[1] {
+                    tabBarItem.badgeValue = "\(results.count)"
+                }
+            }
+            collectionView.reloadData()
+        } catch {
+            print("Errol")
+        }
+    }
+    
+    func fetchGamesWithStatus(status: String) {
+        results.removeAll()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
+        
+        fetchRequest.predicate = NSPredicate(format: "status == %@", status)
+        
+        do {
+            results = try context.fetch(fetchRequest) as! [NSManagedObject]
             
             if let tabBarController = self.tabBarController {
                 if let tabBarItem = tabBarController.tabBar.items?[1] {
@@ -277,15 +245,10 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 }
             }
             collectionView.reloadData()
-            
-            //            }
-            
         } catch {
             print("Errol")
         }
     }
-    
-    
     
     
 }

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F7BD463C7AAFB591AC7DEFC4C41A12DE"
-               BuildableName = "GoogleUtilities.framework"
-               BlueprintName = "GoogleUtilities"
+               BlueprintIdentifier = "2D50F1035827F258FF72A482CFC5B0AF"
+               BuildableName = "PinterestSegment.framework"
+               BlueprintName = "PinterestSegment"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
