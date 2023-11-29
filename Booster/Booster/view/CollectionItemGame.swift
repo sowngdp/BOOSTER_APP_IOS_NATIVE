@@ -10,6 +10,7 @@ import UIKit
 
 protocol CollectionItemGameDelegate: AnyObject {
     func addButtonTapped( at: IndexPath)
+    func imageTapped (at: IndexPath)
 }
 
 
@@ -28,4 +29,15 @@ class CollectionItemGame: UICollectionViewCell {
         self.delegate?.addButtonTapped( at: rowOfIndexPath!)
         
     }
+    
+
+
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+
+        self.delegate?.imageTapped(at: rowOfIndexPath!)
+        
+    }
+    
 }

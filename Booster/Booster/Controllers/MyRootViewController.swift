@@ -15,6 +15,21 @@ import PopMenu
 
 
 class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate {
+    
+    
+    
+    @objc func imageTapped(at rowOfIndexPath: IndexPath) {
+        performSegue(withIdentifier: "homeToDetaiVC", sender: rowOfIndexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeToDetaiVC", let rowOfIndexPath = sender as? IndexPath {
+            let destinationVC = segue.destination as! DetailVC
+            destinationVC.gameDetail = games[rowOfIndexPath.row]
+            
+            
+        }
+    }
 
 
     func addButtonTapped(at rowOfIndexPath: IndexPath) {
@@ -84,9 +99,9 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
                 try context.save()
                 print("Game saved to Core Data")
                 NotificationCenter.default.post(name: NSNotification.Name("reloadProfileData"), object: nil)
-                if let tabBarController = self.tabBarController {
-                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
-                }
+//                if let tabBarController = self.tabBarController {
+//                    tabBarController.selectedIndex = 1  // Index của tab "Profile"
+//                }
             }
         } catch {
             print("Error checking for existing game: \(error)")
@@ -102,29 +117,6 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         present(alertController, animated: true, completion: nil)
     }
 
-    
-//    func saveGameToCoreData(game: Game, status: String) {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//
-//        let context = appDelegate.persistentContainer.viewContext
-//
-//        // Tạo một mới NSManagedObject (Entity là tên của entity trong Core Data)
-//        let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
-//        // Thiết lập giá trị cho các thuộc tính
-//        gameEntity.setValue(game.gameId, forKey: "game_id")
-//        gameEntity.setValue(status, forKey: "status")
-//        gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
-//        gameEntity.setValue(game.title, forKey: "title")
-//
-//
-//        // Lưu thay đổi vào Core Data
-//        do {
-//            try context.save()
-//            print("Game saved to Core Data")
-//        } catch  {
-//            print("Could not save game to Core Data.")
-//        }
-//    }
     
     var games: [Game] = []
     var isGridLayout = true
@@ -202,6 +194,12 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         cell.rowOfIndexPath = indexPath
         //cell.gameCell = games[indexPath.row]
+        let tapGestureRecognizer = UITapGestureRecognizer(target: cell, action: #selector(CollectionItemGame.imageTapped))
+//        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        cell.imageGame.isUserInteractionEnabled = true
+        cell.imageGame.addGestureRecognizer(tapGestureRecognizer)
+        // Your action
         cell.nameGame.text = games[indexPath.row].title
         cell.delegate = self
         return cell

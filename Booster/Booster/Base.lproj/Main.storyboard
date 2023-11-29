@@ -174,11 +174,46 @@
                     <navigationItem key="navigationItem" id="Bpa-w7-LdY"/>
                     <connections>
                         <outlet property="collectionView" destination="7OT-Wo-1qa" id="f5H-Kc-H1M"/>
+                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="profileToDetaiVC" id="71g-gK-4fQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpw-0v-eqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3340.579710144928" y="1931.9196428571427"/>
+        </scene>
+        <!--DetailVC-->
+        <scene sceneID="Ygq-KP-Gic">
+            <objects>
+                <viewController id="Xkx-Wx-d1D" customClass="DetailVC" customModule="Booster" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MrV-nX-mkR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-ox-kcS">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bzO-Pf-kGd">
+                                <rect key="frame" x="0.0" y="338" width="414" height="524"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z64-zh-QTf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bzO-Pf-kGd" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" constant="250" id="ETe-EO-HhR"/>
+                            <constraint firstItem="Z64-zh-QTf" firstAttribute="trailing" secondItem="bzO-Pf-kGd" secondAttribute="trailing" id="M1p-Pn-yqZ"/>
+                            <constraint firstItem="Z64-zh-QTf" firstAttribute="trailing" secondItem="a5A-ox-kcS" secondAttribute="trailing" id="QeI-RA-UWg"/>
+                            <constraint firstItem="Z64-zh-QTf" firstAttribute="bottom" secondItem="bzO-Pf-kGd" secondAttribute="bottom" id="QqD-yS-GxQ"/>
+                            <constraint firstItem="bzO-Pf-kGd" firstAttribute="leading" secondItem="Z64-zh-QTf" secondAttribute="leading" id="exD-Yg-jul"/>
+                            <constraint firstItem="a5A-ox-kcS" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" id="h0g-BT-6H1"/>
+                            <constraint firstItem="Z64-zh-QTf" firstAttribute="bottom" secondItem="a5A-ox-kcS" secondAttribute="bottom" id="uhU-4K-7cF"/>
+                            <constraint firstItem="a5A-ox-kcS" firstAttribute="leading" secondItem="Z64-zh-QTf" secondAttribute="leading" id="yow-5g-X6Z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cOY-fR-r2u"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ll-6e-ilM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4601.449275362319" y="1672.7678571428571"/>
         </scene>
         <!--Home-->
         <scene sceneID="Nze-H3-oWw">
@@ -268,6 +303,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gameCollectionView" destination="mKM-z5-mIf" id="nPr-CH-mpn"/>
+                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="homeToDetaiVC" id="SKX-id-lcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W9-9f-Zus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1136,6 +1172,9 @@
             <point key="canvasLocation" x="4312" y="4663"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="71g-gK-4fQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Illustration" width="414" height="378"/>
         <image name="Illustration_signup" width="1132" height="952"/>
