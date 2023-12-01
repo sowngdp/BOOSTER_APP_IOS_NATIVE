@@ -18,7 +18,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "homeToDetaiVC", let rowOfIndexPath = sender as? IndexPath {
+        if segue.identifier == "profileToDetailVC", let rowOfIndexPath = sender as? IndexPath {
             let destinationVC = segue.destination as! DetailVC
             destinationVC.gameID = results[rowOfIndexPath.row].value(forKey: "game_id") as? Int
             
@@ -167,7 +167,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         if let title = results[indexPath.row].value(forKey: "title") as? String {
             cell.nameGame.text = title
         }
+        let tapGestureRecognizer = UITapGestureRecognizer(target: cell, action: #selector(CollectionItemGame.imageTapped))
+//        let tappedImage = tapGestureRecognizer.view as! UIImageView
         
+        cell.imageGame.isUserInteractionEnabled = true
+        cell.imageGame.addGestureRecognizer(tapGestureRecognizer)
         
         cell.rowOfIndexPath = indexPath
         cell.delegate = self

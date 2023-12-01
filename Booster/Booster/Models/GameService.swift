@@ -7,42 +7,13 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 class MobyGamesService {
     private let apiKey = "moby_8BhL8vYmC9v0PoamriU8vCw0MZ2"
     private let baseURL = "https://api.mobygames.com/v1"
     static let share = MobyGamesService()
-    
-    //    func fetchGames(completion: @escaping (Result<[Game], Error>?) -> Void) {
-    //        let url = "https://api.mobygames.com/v1/games?api_key=moby_8BhL8vYmC9v0PoamriU8vCw0MZ2"
-    //
-    //        AF.request(url).responseJSON { response in
-    //                    switch response.result {
-    //                    case .success(let value):
-    //                        do {
-    //                            // Giải mã dữ liệu JSON thành dictionary
-    //                            if let dict = value as? [String: Any],
-    //                               let data = dict["games"] as? [[String: Any]] {
-    //                                // Từ dictionary, giải mã ra mảng của `Game`
-    //                                let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-    //                                let games = try JSONDecoder().decode([Game].self, from: jsonData)
-    //                                completion(.success(games))
-    //                            } else {
-    //                                // Nếu không tìm thấy key "data", trả về lỗi
-    //                                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Missing 'data' key in JSON"])))
-    //                            }
-    //                        } catch {
-    //                            completion(.failure(error))
-    //                        }
-    //                    case .failure(let error):
-    //                        completion(.failure(error))
-    //                    }
-    //                }
-    //    }
-    
-    // Add similar functions for fetching genres, platforms, etc.
-    
-    
+
     struct GameResponse: Decodable {
         let games: [Game]
     }
@@ -145,6 +116,37 @@ class MobyGamesService {
         }
     }
     
+    func fetchGameById(gameId: Int, completion: @escaping (Result<Game, Error>) -> Void) {
+            // Đường dẫn của API với tham số tìm kiếm theo game_id
+            let url = "\(baseURL)/games/\(gameId)?api_key=\(apiKey)"
+            
+            // Sử dụng Alamofire để gọi API
+            AF.request(url).responseDecodable(of: Game.self) { response in
+                switch response.result {
+                case .success(let game):
+                    // Trả về game nếu giải mã thành công
+                    completion(.success(game))
+                case .failure(let error):
+                    // Trả về lỗi nếu có vấn đề xảy ra
+                    completion(.failure(error))
+                }
+            }
+        }
+    
+    // Hàm để tải hình ảnh từ một đường dẫn link
+        func fetchImage(from link: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+            // Sử dụng AlamofireImage để tải hình ảnh từ đường dẫn
+            AF.request(link).responseImage { response in
+                switch response.result {
+                case .success(let image):
+                    // Truyền hình ảnh thông qua completion handler nếu tải thành công
+                    completion(.success(image))
+                case .failure(let error):
+                    // Truyền lỗi thông qua completion handler nếu có vấn đề xảy ra
+                    completion(.failure(error))
+                }
+            }
+        }
     
 }
 

@@ -174,7 +174,7 @@
                     <navigationItem key="navigationItem" id="Bpa-w7-LdY"/>
                     <connections>
                         <outlet property="collectionView" destination="7OT-Wo-1qa" id="f5H-Kc-H1M"/>
-                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="profileToDetaiVC" id="71g-gK-4fQ"/>
+                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="profileToDetailVC" id="71g-gK-4fQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpw-0v-eqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -189,27 +189,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-ox-kcS">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-ox-kcS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bzO-Pf-kGd">
-                                <rect key="frame" x="0.0" y="338" width="414" height="524"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="734"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4w5-qx-Q8p">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8056607-sargon-v-world-class-chess-pc-98-lets-start" translatesAutoresizingMaskIntoConstraints="NO" id="Fnz-HP-1yw">
+                                                <rect key="frame" x="112" y="4" width="190" height="220"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Fnz-HP-1yw" firstAttribute="top" secondItem="4w5-qx-Q8p" secondAttribute="top" constant="4" id="BVW-eV-cQs"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fnz-HP-1yw" secondAttribute="trailing" constant="112" id="LhP-vp-mJ0"/>
+                                            <constraint firstAttribute="bottom" secondItem="Fnz-HP-1yw" secondAttribute="bottom" constant="4" id="Nm2-Rl-Bms"/>
+                                            <constraint firstItem="Fnz-HP-1yw" firstAttribute="leading" secondItem="4w5-qx-Q8p" secondAttribute="leading" constant="112" id="l8g-as-vjn"/>
+                                            <constraint firstAttribute="height" constant="228" id="yza-AN-PZV"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iT-q3-g7S">
+                                        <rect key="frame" x="0.0" y="228" width="414" height="168"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="168" id="lga-X0-H6t"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpy-NG-LLt">
+                                        <rect key="frame" x="0.0" y="396" width="414" height="338"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4w5-qx-Q8p" firstAttribute="top" secondItem="bzO-Pf-kGd" secondAttribute="top" id="yuv-Qu-tTI"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z64-zh-QTf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bzO-Pf-kGd" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" constant="250" id="ETe-EO-HhR"/>
+                            <constraint firstItem="bzO-Pf-kGd" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" constant="40" id="ETe-EO-HhR"/>
                             <constraint firstItem="Z64-zh-QTf" firstAttribute="trailing" secondItem="bzO-Pf-kGd" secondAttribute="trailing" id="M1p-Pn-yqZ"/>
                             <constraint firstItem="Z64-zh-QTf" firstAttribute="trailing" secondItem="a5A-ox-kcS" secondAttribute="trailing" id="QeI-RA-UWg"/>
                             <constraint firstItem="Z64-zh-QTf" firstAttribute="bottom" secondItem="bzO-Pf-kGd" secondAttribute="bottom" id="QqD-yS-GxQ"/>
+                            <constraint firstAttribute="bottom" secondItem="a5A-ox-kcS" secondAttribute="bottom" id="RfR-j0-q1h"/>
+                            <constraint firstItem="a5A-ox-kcS" firstAttribute="leading" secondItem="MrV-nX-mkR" secondAttribute="leading" id="XZr-xL-g1x"/>
                             <constraint firstItem="bzO-Pf-kGd" firstAttribute="leading" secondItem="Z64-zh-QTf" secondAttribute="leading" id="exD-Yg-jul"/>
-                            <constraint firstItem="a5A-ox-kcS" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" id="h0g-BT-6H1"/>
-                            <constraint firstItem="Z64-zh-QTf" firstAttribute="bottom" secondItem="a5A-ox-kcS" secondAttribute="bottom" id="uhU-4K-7cF"/>
+                            <constraint firstAttribute="trailing" secondItem="a5A-ox-kcS" secondAttribute="trailing" id="rmw-uF-d29"/>
+                            <constraint firstItem="a5A-ox-kcS" firstAttribute="top" secondItem="MrV-nX-mkR" secondAttribute="top" id="x1O-WH-9yc"/>
                             <constraint firstItem="a5A-ox-kcS" firstAttribute="leading" secondItem="Z64-zh-QTf" secondAttribute="leading" id="yow-5g-X6Z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cOY-fR-r2u"/>
+                    <connections>
+                        <outlet property="background" destination="a5A-ox-kcS" id="6uV-Gx-Fv0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ll-6e-ilM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -303,7 +346,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gameCollectionView" destination="mKM-z5-mIf" id="nPr-CH-mpn"/>
-                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="homeToDetaiVC" id="SKX-id-lcm"/>
+                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="homeToDetailVC" id="SKX-id-lcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W9-9f-Zus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1173,9 +1216,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="71g-gK-4fQ"/>
+        <segue reference="SKX-id-lcm"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="8056607-sargon-v-world-class-chess-pc-98-lets-start" width="640" height="400"/>
         <image name="Illustration" width="414" height="378"/>
         <image name="Illustration_signup" width="1132" height="952"/>
         <image name="background" width="750" height="1624"/>

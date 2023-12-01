@@ -19,13 +19,13 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     
     @objc func imageTapped(at rowOfIndexPath: IndexPath) {
-        performSegue(withIdentifier: "homeToDetaiVC", sender: rowOfIndexPath)
+        performSegue(withIdentifier: "homeToDetailVC", sender: rowOfIndexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "homeToDetaiVC", let rowOfIndexPath = sender as? IndexPath {
+        if segue.identifier == "homeToDetailVC", let rowOfIndexPath = sender as? IndexPath {
             let destinationVC = segue.destination as! DetailVC
-            destinationVC.gameDetail = games[rowOfIndexPath.row]
+            destinationVC.gameID = games[rowOfIndexPath.row].gameId
             
             
         }
