@@ -6,24 +6,42 @@
 //
 
 import UIKit
+import WebKit
 
-class DetailVC: UIViewController {
+class DetailVC: UIViewController, WKNavigationDelegate  {
     
     
     @IBOutlet weak var iconImage: UIImageView!
     var gameID: Int?
     var game: Game?
     
+    
+    @IBOutlet weak var descriptionLable: WKWebView!
     @IBOutlet weak var background: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        descriptionLable.navigationDelegate = self
+        if let gameID = gameID {
+            getGameByID(gameID: gameID)
+        }
         if let game = game {
             fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
             fetchIconImage(imageLink: game.sampleCover.thumbnailImageURL)
+            descriptionLable.loadHTMLString(game.description!, baseURL: nil)
         }
         
+    }
+    
+    // WKNavigationDelegate method called when WKWebView finishes loading
+    @objc(webView:didFinishNavigation:) func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // Set font size using JavaScript
+        let fontSize = 25
+        // Your desired font size
+        let fontSizeScript = "document.getElementsByTagName('body')[0].style.fontSize = '\(fontSize)px';"
+
+        // Execute JavaScript to set font size
+        webView.evaluateJavaScript(fontSizeScript, completionHandler: nil)
     }
     
     func getGameByID(gameID: Int) {
@@ -33,6 +51,9 @@ class DetailVC: UIViewController {
                 case .success(let game):
                     // Handle the retrieved game
                     self.game = game
+                    self.fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
+                    self.fetchIconImage(imageLink: game.sampleCover.thumbnailImageURL)
+                    self.descriptionLable.loadHTMLString(game.description!, baseURL: nil)
                     print("Fetched Game Done")
                     
                     

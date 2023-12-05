@@ -21,18 +21,12 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         if segue.identifier == "profileToDetailVC", let rowOfIndexPath = sender as? IndexPath {
             let destinationVC = segue.destination as! DetailVC
             
-            MobyGamesService.share.fetchGameById(gameId: (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!) { result in
-                switch result {
-                case .success(let game):
-                    destinationVC.game = game
-                    
-                    
-                case .failure(let error): break
-                }
-            }
+            destinationVC.gameID = (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!
             
         }
     }
+    
+    
     
     func addButtonTapped(at rowOfIndexPath : IndexPath) {
         
@@ -107,6 +101,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     
+
     
     func deleteGameFromCoreData(at indexPath: IndexPath) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -143,6 +138,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
 
     var results = [NSManagedObject]()
+    var games = [Game]()
 
     
     
@@ -225,6 +221,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 tabBarItem.badgeValue = "\(results.count)"
             }
         }
+
     }
     
     @objc func fetchGamesFromCoreData() {
