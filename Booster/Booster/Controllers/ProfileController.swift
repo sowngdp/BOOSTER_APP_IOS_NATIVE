@@ -20,8 +20,16 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileToDetailVC", let rowOfIndexPath = sender as? IndexPath {
             let destinationVC = segue.destination as! DetailVC
-            destinationVC.gameID = results[rowOfIndexPath.row].value(forKey: "game_id") as? Int
             
+            MobyGamesService.share.fetchGameById(gameId: (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!) { result in
+                switch result {
+                case .success(let game):
+                    destinationVC.game = game
+                    
+                    
+                case .failure(let error): break
+                }
+            }
             
         }
     }

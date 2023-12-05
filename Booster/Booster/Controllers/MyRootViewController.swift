@@ -25,7 +25,10 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeToDetailVC", let rowOfIndexPath = sender as? IndexPath {
             let destinationVC = segue.destination as! DetailVC
-            destinationVC.gameID = games[rowOfIndexPath.row].gameId
+            //destinationVC.gameID = games[rowOfIndexPath.row].gameId
+            destinationVC.game = games[rowOfIndexPath.row]
+
+
             
             
         }
@@ -225,7 +228,7 @@ class MyRootViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    
+
     
 }
 
