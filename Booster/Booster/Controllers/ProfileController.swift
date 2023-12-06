@@ -22,7 +22,9 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             let destinationVC = segue.destination as! DetailVC
             
             destinationVC.gameID = (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!
-            
+            if let title = results[rowOfIndexPath.row].value(forKey: "status") as? String {
+                destinationVC.status = title
+            }
         }
     }
     
@@ -35,6 +37,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
                 self.dismiss(animated: false)
                 self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Uncategorized")
+                
                 
             }),
             PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
@@ -62,6 +65,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 
             })
         ])
+        
         
         
         present(menuViewController, animated: true, completion: nil)
@@ -138,7 +142,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
 
     var results = [NSManagedObject]()
-    var games = [Game]()
+    var games = [GameSave]()
 
     
     
@@ -165,15 +169,17 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         }
         
         if let status = results[indexPath.row].value(forKey: "status") as? String {
-            cell.buttonAdd.titleLabel?.text = status
+            cell.buttonAdd.text = status
         }
+        let tapGesture = UITapGestureRecognizer(target: cell, action: #selector(CollectionItemGame.addButtonTapped))
+        cell.buttonAdd.isUserInteractionEnabled = true
+        cell.buttonAdd.addGestureRecognizer(tapGesture)
         
         if let title = results[indexPath.row].value(forKey: "title") as? String {
             cell.nameGame.text = title
         }
         let tapGestureRecognizer = UITapGestureRecognizer(target: cell, action: #selector(CollectionItemGame.imageTapped))
-//        let tappedImage = tapGestureRecognizer.view as! UIImageView
-        
+
         cell.imageGame.isUserInteractionEnabled = true
         cell.imageGame.addGestureRecognizer(tapGestureRecognizer)
         
@@ -214,18 +220,50 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "CollectionItemGame", bundle: nil), forCellWithReuseIdentifier: "idCell")
         
+        
+        setupCollectionViewLayout(isGrid: false)
         fetchGamesFromCoreData()
         NotificationCenter.default.addObserver(self, selector: #selector(fetchGamesFromCoreData), name: NSNotification.Name("reloadProfileData"), object: nil)
-        if let tabBarController = self.tabBarController {
-            if let tabBarItem = tabBarController.tabBar.items?[1] {
-                tabBarItem.badgeValue = "\(results.count)"
-            }
-        }
+        
+        updateTabBarItemBadge()
+//        if let tabBarController = self.tabBarController {
+//            if let tabBarItem = tabBarController.tabBar.items?[1] {
+//                tabBarItem.badgeValue = "\(results.count)"
+//            }
+//        }
 
     }
     
+    func setupCollectionViewLayout(isGrid: Bool) {
+        let layout: UICollectionViewLayout
+        if isGrid {
+            let gridLayout = UICollectionViewFlowLayout()
+            gridLayout.minimumInteritemSpacing = 10
+            gridLayout.minimumLineSpacing = 10
+            gridLayout.itemSize = CGSize(width: 150, height: 260)
+            layout = gridLayout
+        } else {
+            let singleItemLayout = UICollectionViewFlowLayout()
+            singleItemLayout.minimumInteritemSpacing = 1
+            singleItemLayout.minimumLineSpacing = 1
+            singleItemLayout.itemSize = CGSize(width: 300, height: 520)
+            layout = singleItemLayout
+        }
+        
+        collectionView.collectionViewLayout = layout
+    }
+
+        func updateTabBarItemBadge() {
+            if let tabBarController = self.tabBarController {
+                if let tabBarItem = tabBarController.tabBar.items?[1] {
+                    tabBarItem.badgeValue = "\(results.count)"
+                }
+            }
+        }
+    
     @objc func fetchGamesFromCoreData() {
         results.removeAll()
+        games.removeAll()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -236,6 +274,12 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         
         do {
             results = try context.fetch(fetchRequest) as! [NSManagedObject]
+            
+            for result in results {
+                       if let game = result as? GameSave {
+                           games.append(game)
+                       }
+                   }
             
             if let tabBarController = self.tabBarController {
                 if let tabBarItem = tabBarController.tabBar.items?[1] {

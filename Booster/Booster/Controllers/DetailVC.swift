@@ -13,9 +13,17 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     
     @IBOutlet weak var iconImage: UIImageView!
     var gameID: Int?
+    var status = "";
     var game: Game?
     
     
+    @IBOutlet weak var screnShotImage5: UIImageView!
+    @IBOutlet weak var screnShotImage4: UIImageView!
+    @IBOutlet weak var screnShotImage3: UIImageView!
+    @IBOutlet weak var screnShotImage2: UIImageView!
+    @IBOutlet weak var screnShotImage1: UIImageView!
+    @IBOutlet weak var buttonStatus: UILabel!
+    @IBOutlet weak var titleLable: UILabel!
     @IBOutlet weak var descriptionLable: WKWebView!
     @IBOutlet weak var background: UIImageView!
     override func viewDidLoad() {
@@ -24,11 +32,38 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         descriptionLable.navigationDelegate = self
         if let gameID = gameID {
             getGameByID(gameID: gameID)
+            buttonStatus.text = status
         }
         if let game = game {
             fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
             fetchIconImage(imageLink: game.sampleCover.thumbnailImageURL)
             descriptionLable.loadHTMLString(game.description!, baseURL: nil)
+            buttonStatus.text = "+ Add"
+            titleLable.text = game.title
+            let stackImage = [screnShotImage1, screnShotImage2, screnShotImage3, screnShotImage4, screnShotImage5]
+
+            // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
+            for (index, sampleScrenShot) in game.sampleScreenshots.enumerated() {
+                // Kiểm tra index để đảm bảo không vượt quá kích thước của mảng stackImage
+                if index < stackImage.count {
+                    // Lấy UIImageView từ mảng stackImage
+                    let imageView = stackImage[index]
+                    
+                    // Sử dụng hàm fetchImage để tải ảnh và xử lý kết quả
+                    fetchImage(imageLink: sampleScrenShot.imageURL) { result in
+                        switch result {
+                        case .success(let image):
+                            // Hiển thị ảnh trong UIImageView
+                            imageView?.image = image
+                        case .failure(let error):
+                            // Xử lý lỗi nếu có
+                            print("Error fetching image: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+
+
         }
         
     }
@@ -53,6 +88,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                     self.game = game
                     self.fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
                     self.fetchIconImage(imageLink: game.sampleCover.thumbnailImageURL)
+                    self.titleLable.text = game.title
                     self.descriptionLable.loadHTMLString(game.description!, baseURL: nil)
                     print("Fetched Game Done")
                     
@@ -109,5 +145,17 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             }
         }
     }
+    
+    func fetchImage(imageLink: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        MobyGamesService.share.fetchImage(from: imageLink) { result in
+            switch result {
+            case .success(let image):
+                completion(.success(image))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     
 }

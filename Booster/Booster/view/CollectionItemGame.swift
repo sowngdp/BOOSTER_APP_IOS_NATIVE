@@ -19,12 +19,13 @@ class CollectionItemGame: UICollectionViewCell {
     var rowOfIndexPath: IndexPath?
     @IBOutlet weak var imageGame: UIImageView!
     @IBOutlet weak var nameGame: UILabel!
-    @IBOutlet weak var buttonAdd: UIButton!
+    
     //var gameCell: Game?
+    @IBOutlet weak var buttonAdd: UILabel!
     
     weak var delegate: CollectionItemGameDelegate?
     
-    @IBAction func addButtonTapped(_ sender: Any) {
+    @objc func addButtonTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         
         self.delegate?.addButtonTapped( at: rowOfIndexPath!)
         
