@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import PopMenu
 
 class DetailVC: UIViewController, WKNavigationDelegate  {
     
@@ -33,6 +34,16 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         if let gameID = gameID {
             getGameByID(gameID: gameID)
             buttonStatus.text = status
+            
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addButtonTapped))
+            
+            buttonStatus.isUserInteractionEnabled = true
+            
+            buttonStatus.addGestureRecognizer(tapGesture)
+            
+
+            
         }
         if let game = game {
             fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
@@ -68,6 +79,56 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         
     }
     
+    @objc func addButtonTapped(at gameID : Int) {
+        
+        let menuViewController = PopMenuViewController(actions: [
+            PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
+                //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Uncategorized")
+                CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "Uncategorized")
+                
+                
+            }),
+            PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
+                //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Currently playing")
+                CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "Currently playing")
+                
+            }),
+            PopMenuDefaultAction(title: "Played", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
+                //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Played")
+                CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "Played")
+                
+            }),
+            PopMenuDefaultAction(title: "To Play", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
+                //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "To Play")
+                CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "To Play")
+                
+            }),
+            PopMenuDefaultAction(title: "Delete", didSelect: { action in
+                // action is a `PopMenuAction`, in this case it's a `PopMenuDefaultAction`
+                self.dismiss(animated: false)
+                //self.deleteGameFromCoreData(at: rowOfIndexPath)
+                CoredataController.share.deleteGameFromCoreData(gameID: gameID)
+                
+            })
+        ])
+        
+        
+        
+        present(menuViewController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    
     // WKNavigationDelegate method called when WKWebView finishes loading
     @objc(webView:didFinishNavigation:) func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // Set font size using JavaScript
@@ -91,6 +152,29 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                     self.titleLable.text = game.title
                     self.descriptionLable.loadHTMLString(game.description!, baseURL: nil)
                     print("Fetched Game Done")
+                    self.titleLable.text = game.title
+                    let stackImage = [self.screnShotImage1, self.screnShotImage2, self.screnShotImage3, self.screnShotImage4, self.screnShotImage5]
+
+                    // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
+                    for (index, sampleScrenShot) in game.sampleScreenshots.enumerated() {
+                        // Kiểm tra index để đảm bảo không vượt quá kích thước của mảng stackImage
+                        if index < stackImage.count {
+                            // Lấy UIImageView từ mảng stackImage
+                            let imageView = stackImage[index]
+                            
+                            // Sử dụng hàm fetchImage để tải ảnh và xử lý kết quả
+                            self.fetchImage(imageLink: sampleScrenShot.imageURL) { result in
+                                switch result {
+                                case .success(let image):
+                                    // Hiển thị ảnh trong UIImageView
+                                    imageView?.image = image
+                                case .failure(let error):
+                                    // Xử lý lỗi nếu có
+                                    print("Error fetching image: \(error.localizedDescription)")
+                                }
+                            }
+                        }
+                    }
                     
                     
                 case .failure(let error):
