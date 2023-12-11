@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import PopMenu
+import TagListView
 
 class DetailVC: UIViewController, WKNavigationDelegate  {
     
@@ -17,7 +18,14 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     var status = "";
     var game: Game?
     
+    var reloadDelegate: ProfileDataReloadDelegate?
+
     
+    
+    @IBOutlet weak var scroceRating: UILabel!
+    
+    @IBOutlet weak var tagListView: TagListView!
+    @IBOutlet weak var starRatingView: StarRatingView!
     @IBOutlet weak var screnShotImage5: UIImageView!
     @IBOutlet weak var screnShotImage4: UIImageView!
     @IBOutlet weak var screnShotImage3: UIImageView!
@@ -81,6 +89,8 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 }
             }
 
+            self.starRatingView.rating = Float(Double(game.mobyScore!/2))
+            self.scroceRating.text = "\(Double(game.mobyScore!/2))"
 
         }
         
@@ -208,6 +218,12 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 self.dismiss(animated: false)
                 //self.deleteGameFromCoreData(at: rowOfIndexPath)
                 CoredataController.share.deleteGameFromCoreData(gameID: gameID)
+                //ProfileController().updateTabBarItemBadge()
+                // Khi bạn muốn quay lại profileViewController từ DetailVC
+                self.reloadDelegate?.reloadData()
+
+                // Quay về màn hình trước đó (Profile Game)
+                self.navigationController?.popViewController(animated: true)
                 
             })
         ])

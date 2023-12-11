@@ -9,6 +9,7 @@ pod 'Alamofire'
 pod 'AlamofireImage'
 pod 'NewPopMenu'
 pod 'PinterestSegment'
+pod 'TagListView', '~> 1.0'
 end
 
 

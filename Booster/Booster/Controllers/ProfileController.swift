@@ -12,7 +12,11 @@ import AlamofireImage
 import PopMenu
 import PinterestSegment
 
-class ProfileController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate {
+protocol ProfileDataReloadDelegate: AnyObject {
+    func reloadData()
+}
+
+class ProfileController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate, ProfileDataReloadDelegate {
     func imageTapped(at rowOfIndexPath : IndexPath) {
         performSegue(withIdentifier: "profileToDetailVC", sender: rowOfIndexPath)
     }
@@ -24,10 +28,16 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             destinationVC.gameID = (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!
             if let title = results[rowOfIndexPath.row].value(forKey: "status") as? String {
                 destinationVC.status = title
+                destinationVC.reloadDelegate = self
             }
         }
     }
     
+    
+    func reloadData() {
+            fetchGamesFromCoreData()
+            collectionView.reloadData()
+        }
     
     
     func addButtonTapped(at rowOfIndexPath : IndexPath) {
@@ -318,17 +328,6 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            
-            // Gọi hàm reloadData() hoặc cập nhật dữ liệu của bạn ở đây
-            reloadData()
-        }
-
-        func reloadData() {
-            // Đặt mã để reload dữ liệu hoặc cập nhật giao diện của bạn ở đây
-            // Ví dụ: tableView.reloadData() hoặc các bước cần thiết để cập nhật dữ liệu
-            self.collectionView.reloadData()
-        }
+    
     
 }

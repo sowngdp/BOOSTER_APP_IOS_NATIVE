@@ -52,6 +52,7 @@ class CoredataController {
                 
                 // Lưu thay đổi
                 try context.save()
+                print("Deleted")
             }
         } catch {
             print("Error deleting game: \(error)")

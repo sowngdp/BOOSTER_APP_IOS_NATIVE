@@ -50,6 +50,7 @@ PODS:
   - PinterestSegment (1.2.3)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
+  - TagListView (1.4.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - FirebaseStorage
   - NewPopMenu
   - PinterestSegment
+  - TagListView (~> 1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -79,6 +81,7 @@ SPEC REPOS:
     - PinterestSegment
     - PromisesObjC
     - RecaptchaInterop
+    - TagListView
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
@@ -98,7 +101,8 @@ SPEC CHECKSUMS:
   PinterestSegment: 3dd673ffd9feb00dc7816bb1e503d70459e8eaa8
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: dec6b8e64f928d2a57273ebfb9d3920542f3ade0
+PODFILE CHECKSUM: 238f4d82f92ca1ea6fc35aac327a53adbebac77c
 
 COCOAPODS: 1.6.2
