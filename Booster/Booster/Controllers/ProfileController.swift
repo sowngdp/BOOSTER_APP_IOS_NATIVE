@@ -318,4 +318,17 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            // Gọi hàm reloadData() hoặc cập nhật dữ liệu của bạn ở đây
+            reloadData()
+        }
+
+        func reloadData() {
+            // Đặt mã để reload dữ liệu hoặc cập nhật giao diện của bạn ở đây
+            // Ví dụ: tableView.reloadData() hoặc các bước cần thiết để cập nhật dữ liệu
+            self.collectionView.reloadData()
+        }
+    
 }

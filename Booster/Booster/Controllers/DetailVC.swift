@@ -36,7 +36,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             buttonStatus.text = status
             
             
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addButtonTapped))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.changeButtonTapped))
             
             buttonStatus.isUserInteractionEnabled = true
             
@@ -51,6 +51,13 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             descriptionLable.loadHTMLString(game.description!, baseURL: nil)
             buttonStatus.text = "+ Add"
             titleLable.text = game.title
+            gameID = game.gameId
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addButtonTapped(_:)))
+            
+            buttonStatus.isUserInteractionEnabled = true
+            
+            buttonStatus.addGestureRecognizer(tapGesture)
+            
             let stackImage = [screnShotImage1, screnShotImage2, screnShotImage3, screnShotImage4, screnShotImage5]
 
             // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
@@ -79,7 +86,89 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         
     }
     
-    @objc func addButtonTapped(at gameID : Int) {
+    @objc func addButtonTapped(_ sender: UITapGestureRecognizer) {
+        guard let game = game else {
+            return
+        }
+
+        let menuViewController = PopMenuViewController(actions: [
+            PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
+                self.dismiss(animated: false)
+                CoredataController.share.saveGameToCoreData(game: game, status: "Uncategorized") { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.buttonStatus.text = "Uncategorized"
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showErrorMessage("This game is already in your collection.")
+                        }
+                    }
+                }
+            }),
+            PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
+                self.dismiss(animated: false)
+                CoredataController.share.saveGameToCoreData(game: game, status: "Currently playing") { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.buttonStatus.text = "Currently playing"
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showErrorMessage("This game is already in your collection.")
+                        }
+                    }
+                }
+            }),
+            PopMenuDefaultAction(title: "Played", didSelect: { action in
+                self.dismiss(animated: false)
+                CoredataController.share.saveGameToCoreData(game: game, status: "Played") { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.buttonStatus.text = "Played"
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showErrorMessage("This game is already in your collection.")
+                        }
+                    }
+                }
+            }),
+            PopMenuDefaultAction(title: "To Play", didSelect: { action in
+                self.dismiss(animated: false)
+                CoredataController.share.saveGameToCoreData(game: game, status: "To Play") { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.buttonStatus.text = "To Play"
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showErrorMessage("This game is already in your collection.")
+                        }
+                    }
+                }
+            })
+        ])
+
+        present(menuViewController, animated: true, completion: nil)
+    }
+    
+    func showErrorMessage(_ message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
+    @objc func changeButtonTapped(_ sender: UITapGestureRecognizer) {
+        
+        guard let gameID = gameID else {
+                // Không có gameID, không thể thực hiện thao tác
+                return
+            }
         
         let menuViewController = PopMenuViewController(actions: [
             PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
@@ -87,7 +176,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 self.dismiss(animated: false)
                 //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Uncategorized")
                 CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "Uncategorized")
-                
+                self.buttonStatus.text = "Uncategorized"
                 
             }),
             PopMenuDefaultAction(title: "Currently playing", didSelect: { action in
@@ -95,6 +184,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 self.dismiss(animated: false)
                 //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Currently playing")
                 CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "Currently playing")
+                self.buttonStatus.text = "Currently playing"
                 
             }),
             PopMenuDefaultAction(title: "Played", didSelect: { action in
@@ -102,6 +192,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 self.dismiss(animated: false)
                 //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "Played")
                 CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "Played")
+                self.buttonStatus.text = "Played"
                 
             }),
             PopMenuDefaultAction(title: "To Play", didSelect: { action in
@@ -109,6 +200,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 self.dismiss(animated: false)
                 //self.updateGameInCoreData(at: rowOfIndexPath, withNewStatus: "To Play")
                 CoredataController.share.updateGameToCoreDataByGameID(gameID: gameID, withNewStatus: "To Play")
+                self.buttonStatus.text = "To Play"
                 
             }),
             PopMenuDefaultAction(title: "Delete", didSelect: { action in
@@ -126,9 +218,6 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         
         
     }
-    
-    
-    
     // WKNavigationDelegate method called when WKWebView finishes loading
     @objc(webView:didFinishNavigation:) func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // Set font size using JavaScript
@@ -241,5 +330,9 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         }
     }
 
+    
+    
+    
+    
     
 }
