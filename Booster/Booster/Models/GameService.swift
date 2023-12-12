@@ -26,6 +26,9 @@ class MobyGamesService {
         let platform: [Platform]
     }
     
+    struct GameIdRespone: Decodable {
+        let games: [Int]
+    }
     // Service class để tương tác với API
     
     func fetchPlatforms(completion: @escaping (Result<[Platform], Error>) -> Void) {
@@ -132,6 +135,24 @@ class MobyGamesService {
                 }
             }
         }
+    
+    // Hàm lấy id game recent
+    func fetchGameId(completion: @escaping (Result<[Int], Error>) -> Void)  {
+        let url = "\(baseURL)/games/recent?api_key=\(apiKey)"
+        print(url)
+        // Sử dụng Alamofire để gọi API
+        AF.request(url).responseDecodable(of: GameIdRespone.self) { response in
+            print(response)
+            switch response.result {
+            case .success(let gameRespone):
+                // Trả về game nếu giải mã thành công
+                completion(.success(gameRespone.games))
+            case .failure(let error):
+                // Trả về lỗi nếu có vấn đề xảy ra
+                completion(.failure(error))
+            }
+        }
+    }
     
     // Hàm để tải hình ảnh từ một đường dẫn link
         func fetchImage(from link: String, completion: @escaping (Result<UIImage, Error>) -> Void) {

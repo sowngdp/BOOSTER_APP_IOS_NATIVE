@@ -58,7 +58,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             
             buttonStatus.addGestureRecognizer(tapGesture)
             
-            print(recommendGame.count)
+            
             
 
             
@@ -91,7 +91,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                         case .success(let image):
                             // Hiển thị ảnh trong UIImageView
                             imageView?.image = image
-                            self.recommendGame[1].imageGame.image = image
+                            
                         case .failure(let error):
                             // Xử lý lỗi nếu có
                             print("Error fetching image: \(error.localizedDescription)")
@@ -122,6 +122,87 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         }
         
     }
+    
+    func fetchRecommendGame () {
+        MobyGamesService.share.fetchGameId {
+            result in
+
+            switch result {
+            case .success(let gameId):
+                for i in 1...5 {
+//                    MobyGamesService.share.fetchGameById(gameId: gameId[i]) {
+//                        result in
+//
+//                        switch result {
+//                        case .success(let game):
+//                            self.recommendGame[i].nameGame?.text = game.title
+//                            MobyGamesService.share.fetchImage(from: game.sampleCover.thumbnailImageURL) {
+//                                result in
+//
+//                                switch result {
+//                                case .success(let image):
+//                                    self.recommendGame[i].imageGame?.image = image
+//
+//                                case .failure(let error):
+//                                    print(error)
+//                                }
+//                            }
+//
+//                        case .failure(let error):
+//                            print( error)
+//                        }
+//                    }
+                    
+                    self.getRecommendGameByID(gameID: gameId[i], indexOfRCMView: i)
+                }
+
+
+
+            case .failure(let error):
+                print( error)
+
+            }
+        }
+    }
+    
+//    func fetchRecommendGame() {
+//        MobyGamesService.share.fetchGameId { result in
+//            switch result {
+//            case .success(let gameId):
+//                let numberOfGamesToFetch = min(5, gameId.count)
+//
+//                for i in 0..<numberOfGamesToFetch {
+//                    MobyGamesService.share.fetchGameById(gameId: gameId[i]) { [weak self] result in
+//                        switch result {
+//                        case .success(let game):
+//                            DispatchQueue.main.async {
+//                                self?.recommendGame[i].nameGame?.text = game.title
+//
+//                                MobyGamesService.share.fetchImage(from: game.sampleCover.thumbnailImageURL) { imageResult in
+//                                    switch imageResult {
+//                                    case .success(let image):
+//                                        DispatchQueue.main.async {
+//                                            self?.recommendGame[i].imageGame?.image = image
+//                                        }
+//
+//                                    case .failure(let error):
+//                                        print(error)
+//                                    }
+//                                }
+//                            }
+//
+//                        case .failure(let error):
+//                            print(error)
+//                        }
+//                    }
+//                }
+//
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
+
     
     @objc func addButtonTapped(_ sender: UITapGestureRecognizer) {
         guard let game = game else {
@@ -272,6 +353,33 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         webView.evaluateJavaScript(fontSizeScript, completionHandler: nil)
     }
     
+    func getRecommendGameByID (gameID: Int, indexOfRCMView: Int) {
+        MobyGamesService.share.fetchGameById(gameId: gameID) {
+            result in
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let game):
+                    self.recommendGame[indexOfRCMView].nameGame?.text = game.title
+                    MobyGamesService.share.fetchImage(from: game.sampleCover.thumbnailImageURL) {
+                        result in
+                        
+                        switch result {
+                        case .success(let image):
+                            self.recommendGame[indexOfRCMView].imageGame?.image = image
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print( error)
+                }
+            }
+        }
+    }
+    
     func getGameByID(gameID: Int) {
         MobyGamesService.share.fetchGameById(gameId: gameID) { result in
             DispatchQueue.main.async {
@@ -325,6 +433,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                         platformNames.append(platformName.platformName)
                     }
                     self.tagListViewPlatform.addTags(platformNames)
+                    self.fetchRecommendGame()
                     
                 case .failure(let error):
                     // Handle the error
