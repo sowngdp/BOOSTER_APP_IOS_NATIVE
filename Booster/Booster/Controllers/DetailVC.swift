@@ -24,6 +24,14 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     
     @IBOutlet weak var scroceRating: UILabel!
     
+    
+    
+    
+    
+  
+    
+    @IBOutlet var recommendGame: [CollectionItemGame]!
+    @IBOutlet weak var tagListViewPlatform: TagListView!
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var starRatingView: StarRatingView!
     @IBOutlet weak var screnShotImage5: UIImageView!
@@ -49,6 +57,8 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             buttonStatus.isUserInteractionEnabled = true
             
             buttonStatus.addGestureRecognizer(tapGesture)
+            
+            print(recommendGame.count)
             
 
             
@@ -81,6 +91,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                         case .success(let image):
                             // Hiển thị ảnh trong UIImageView
                             imageView?.image = image
+                            self.recommendGame[1].imageGame.image = image
                         case .failure(let error):
                             // Xử lý lỗi nếu có
                             print("Error fetching image: \(error.localizedDescription)")
@@ -89,9 +100,25 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 }
             }
 
-            self.starRatingView.rating = Float(Double(game.mobyScore!/2))
-            self.scroceRating.text = "\(Double(game.mobyScore!/2))"
-
+            if let gameMobyScroce = game.mobyScore {
+                self.starRatingView.rating = Float(Double(gameMobyScroce/2))
+                self.scroceRating.text = "\(Double(gameMobyScroce/2))"
+            } else {
+                self.starRatingView.rating = 0
+                self.scroceRating.text = "0"
+            }
+            var genresName = [String]()
+            for genres in game.genres {
+                genresName.append(genres.genreName)
+            }
+            tagListView.addTags(genresName)
+            var platformNames = [String]()
+            for platformName in game.platforms {
+                platformNames.append(platformName.platformName)
+            }
+            tagListViewPlatform.addTags(platformNames)
+            
+            
         }
         
     }
@@ -281,6 +308,23 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                         }
                     }
                     
+                    if let gameMobyScroce = game.mobyScore {
+                        self.starRatingView.rating = Float(Double(gameMobyScroce/2))
+                        self.scroceRating.text = "\(Double(gameMobyScroce/2))"
+                    } else {
+                        self.starRatingView.rating = 0
+                        self.scroceRating.text = "0"
+                    }
+                    var genresName = [String]()
+                    for genres in game.genres {
+                        genresName.append(genres.genreName)
+                    }
+                    self.tagListView.addTags(genresName)
+                    var platformNames = [String]()
+                    for platformName in game.platforms {
+                        platformNames.append(platformName.platformName)
+                    }
+                    self.tagListViewPlatform.addTags(platformNames)
                     
                 case .failure(let error):
                     // Handle the error

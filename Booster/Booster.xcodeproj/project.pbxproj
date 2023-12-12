@@ -13,7 +13,6 @@
 		0D7F34932B26F53300DDE4B7 /* StarRatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F34902B26F53300DDE4B7 /* StarRatingStackView.swift */; };
 		0D7F34942B26F53300DDE4B7 /* StarRatingStackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F34912B26F53300DDE4B7 /* StarRatingStackView.xib */; };
 		0D7F34952B26F53300DDE4B7 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F34922B26F53300DDE4B7 /* StarRatingView.swift */; };
-		0D7F34982B2707D000DDE4B7 /* genres.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F34972B2707D000DDE4B7 /* genres.xib */; };
 		0D84BFF02ACBF9B500AFA3D1 /* Slides.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D968B272ACBF52C001A1CBF /* Slides.xib */; };
 		0D84BFF12ACBF9B800AFA3D1 /* Slides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D968B282ACBF52C001A1CBF /* Slides.swift */; };
 		0D8919EE2AF8C8CA0085BBB9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8919ED2AF8C8CA0085BBB9 /* ProfileController.swift */; };
@@ -49,7 +48,6 @@
 		0D7F34902B26F53300DDE4B7 /* StarRatingStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingStackView.swift; sourceTree = "<group>"; };
 		0D7F34912B26F53300DDE4B7 /* StarRatingStackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StarRatingStackView.xib; sourceTree = "<group>"; };
 		0D7F34922B26F53300DDE4B7 /* StarRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
-		0D7F34972B2707D000DDE4B7 /* genres.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = genres.xib; sourceTree = "<group>"; };
 		0D8919ED2AF8C8CA0085BBB9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		0D8AFA3F2B21A508006FE0F0 /* CoredataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataController.swift; sourceTree = "<group>"; };
 		0D8B5ECC2AFA183600AA1EDE /* GenresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresModel.swift; sourceTree = "<group>"; };
@@ -97,6 +95,8 @@
 		0D5235252AEF9AD8002E55B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0D8AFA3F2B21A508006FE0F0 /* CoredataController.swift */,
+				0DE0CE7F2AFA242C00B849EC /* GameService.swift */,
 				0D5235262AEF9AE7002E55B7 /* UsersModel.swift */,
 				0D9E97692AEF9EB500DAFF3C /* AuthViewModel.swift */,
 				0D8B5ECC2AFA183600AA1EDE /* GenresModel.swift */,
@@ -112,13 +112,13 @@
 		0D968B262ACBF52C001A1CBF /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0D7F34922B26F53300DDE4B7 /* StarRatingView.swift */,
 				0D7F34902B26F53300DDE4B7 /* StarRatingStackView.swift */,
 				0D7F34912B26F53300DDE4B7 /* StarRatingStackView.xib */,
 				0D968B272ACBF52C001A1CBF /* Slides.xib */,
 				0D968B282ACBF52C001A1CBF /* Slides.swift */,
 				E6A97C202B00C1D70034C1CE /* CollectionItemGame.xib */,
 				E6A97C222B00C1EB0034C1CE /* CollectionItemGame.swift */,
-				0D7F34972B2707D000DDE4B7 /* genres.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -178,7 +178,6 @@
 		E6D26D332AEB63E7001E1A46 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0DE0CE7F2AFA242C00B849EC /* GameService.swift */,
 				0D968B222ACBF368001A1CBF /* LoginControllerViewController.swift */,
 				0D99948B2ACFB0E3004BFA71 /* Signup_VC.swift */,
 				0DBCB5302ACA9E9A00084934 /* ViewController.swift */,
@@ -186,8 +185,6 @@
 				0D8BA3622AF49F8200A8A9EC /* TabBarController.swift */,
 				0D8919ED2AF8C8CA0085BBB9 /* ProfileController.swift */,
 				0D9402AD2B17292A00E42513 /* DetailVC.swift */,
-				0D8AFA3F2B21A508006FE0F0 /* CoredataController.swift */,
-				0D7F34922B26F53300DDE4B7 /* StarRatingView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 				E6A97C212B00C1D70034C1CE /* CollectionItemGame.xib in Resources */,
 				0D7F34942B26F53300DDE4B7 /* StarRatingStackView.xib in Resources */,
 				0D84BFF02ACBF9B500AFA3D1 /* Slides.xib in Resources */,
-				0D7F34982B2707D000DDE4B7 /* genres.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
