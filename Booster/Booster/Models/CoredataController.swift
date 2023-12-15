@@ -66,7 +66,7 @@ class CoredataController {
 
         // Kiểm tra xem trò chơi với ID đã tồn tại trong Core Data hay chưa
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
-        fetchRequest.predicate = NSPredicate(format: "game_id == %d", game.gameId)
+        fetchRequest.predicate = NSPredicate(format: "game_id == %d", game.gameId!)
 
         do {
             let existingGames = try context.fetch(fetchRequest) as! [NSManagedObject]
@@ -79,7 +79,7 @@ class CoredataController {
                 let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
                 gameEntity.setValue(game.gameId, forKey: "game_id")
                 gameEntity.setValue(status, forKey: "status")
-                gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
+                gameEntity.setValue(game.sampleCover?.thumbnailImageURL, forKey: "thumbnail_image")
                 gameEntity.setValue(game.title, forKey: "title")
 
                 // Lưu thay đổi vào Core Data

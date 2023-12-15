@@ -4,16 +4,16 @@ import Foundation
 struct Game: Decodable {
     let alternateTitles: [AlternateTitles]?
     let description: String?
-    let gameId: Int
-    let genres: [Genre]
+    let gameId: Int?
+    let genres: [Genre]?
     let mobyScore: Double?
-    let mobyURL: String
-    let numVotes: Int
+    let mobyURL: String?
+    let numVotes: Int?
     let officialURL: String?
-    let platforms: [Platform]
-    let sampleCover: Cover
-    let sampleScreenshots: [Screenshot]
-    let title: String
+    let platforms: [Platform]?
+    let sampleCover: Cover?
+    let sampleScreenshots: [Screenshot]?
+    let title: String?
 
     private enum CodingKeys: String, CodingKey {
         case alternateTitles = "alternate_titles"

@@ -7,176 +7,176 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "822A1960-650D-4DC8-8B97-2D7840DC715B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Booster/Models/GameService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "fetchImage(from:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "003C7D62-2F4A-4B50-A3E7-A556B044A28B"
+            uuid = "F3488BE7-693A-4901-9CCB-5A3CB0FE1212"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Booster/Controllers/DetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
-            landmarkName = "getRecommendGameByID(gameID:indexOfRCMView:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2694229C-3DAA-4145-86FB-8CBA901284AE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Booster/Models/GameService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "fetchGameById(gameId:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0532B0FD-CB73-432B-A12F-5343CFE31DAF"
+            uuid = "C543B921-6985-4EFD-8789-E9816F5289E8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Booster/Controllers/DetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "getRecommendGameByID(gameID:indexOfRCMView:)"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "fetchRecommendGamesRecursive(index:gameIdArray:recommendGame:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D746290B-F4D1-4FDD-922C-AF82ED6CF489"
+            uuid = "5CBD27CC-C0D6-4A56-AA14-18ABAE8189BA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Booster/Controllers/DetailVC.swift"
+            filePath = "Booster/view/CollectionItemGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "getRecommendGameByID(gameID:indexOfRCMView:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "displayRecommendGame(game:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C2FF94B0-AB32-4F10-B6BE-6835CF99A2BD"
+            uuid = "304030B8-849C-4611-8621-AF86F5B7E88F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Booster/Controllers/DetailVC.swift"
+            filePath = "Booster/view/CollectionItemGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
-            landmarkName = "getRecommendGameByID(gameID:indexOfRCMView:)"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "displayRecommendGame(game:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "304030B8-849C-4611-8621-AF86F5B7E88F - f26b1dd6e30a47da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.CollectionItemGame.displayRecommendGame(game: Booster.Game) -&gt; ()"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/CollectionItemGame.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  uuid = "304030B8-849C-4611-8621-AF86F5B7E88F - f26b1dd6e30a47da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Booster.CollectionItemGame.displayRecommendGame(game: Booster.Game) -&gt; ()"
+                  moduleName = "Booster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fyspoti/booster/Booster/Booster/view/CollectionItemGame.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "146">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34859E34-8FB6-4587-9CD0-C38E3B7264C4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Booster/view/CollectionItemGame.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "displayRecommendGame(game:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6EF87973-D09B-4F5D-9B44-8F38395821C0"
+            uuid = "97D9C690-450E-4B09-BA6B-DE39A12CB100"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Booster/Controllers/DetailVC.swift"
+            filePath = "Booster/view/CollectionItemGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "fetchRecommendGame()"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "displayRecommendGame(game:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62F8B3C0-DA66-402A-8710-3F5FE1110BDB"
+            uuid = "52143F34-64D6-4A12-894F-AE2B5D7ACAC2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Booster/Models/GameService.swift"
+            filePath = "Booster/view/CollectionItemGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "fetchGameId(completion:)"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "displayRecommendGame(game:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3D77E987-70B5-432F-8BE5-352E5345941B"
+            uuid = "1E703E4F-B8CE-41FC-9FBD-AFE0F1002FB5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Booster/Models/GameService.swift"
+            filePath = "Booster/view/CollectionItemGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "fetchGameId(completion:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "displayRecommendGame(game:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2435721F-B51E-4ECF-93C7-164695632634"
+            uuid = "2EBEC1C3-7385-403C-B333-BD2F5BC2D905"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Booster/Models/GameService.swift"
+            filePath = "Booster/view/CollectionItemGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "fetchGameId(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "97D257D3-ECB7-4130-B793-83E9F888E1CE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Booster/Models/GameService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "fetchGameId(completion:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "displayRecommendGame(game:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

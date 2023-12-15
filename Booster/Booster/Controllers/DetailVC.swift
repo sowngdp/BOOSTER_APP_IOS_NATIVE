@@ -19,7 +19,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     var game: Game?
     
     var reloadDelegate: ProfileDataReloadDelegate?
-
+    
     
     
     @IBOutlet weak var scroceRating: UILabel!
@@ -28,7 +28,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     
     
     
-  
+    
     
     @IBOutlet var recommendGame: [CollectionItemGame]!
     @IBOutlet weak var tagListViewPlatform: TagListView!
@@ -60,155 +60,118 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             
             
             
-
+            
             
         }
         if let game = game {
-            fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
-            fetchIconImage(imageLink: game.sampleCover.thumbnailImageURL)
-            descriptionLable.loadHTMLString(game.description!, baseURL: nil)
-            buttonStatus.text = "+ Add"
-            titleLable.text = game.title
-            gameID = game.gameId
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addButtonTapped(_:)))
-            
-            buttonStatus.isUserInteractionEnabled = true
-            
-            buttonStatus.addGestureRecognizer(tapGesture)
-            
-            let stackImage = [screnShotImage1, screnShotImage2, screnShotImage3, screnShotImage4, screnShotImage5]
-
-            // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
-            for (index, sampleScrenShot) in game.sampleScreenshots.enumerated() {
-                // Kiểm tra index để đảm bảo không vượt quá kích thước của mảng stackImage
-                if index < stackImage.count {
-                    // Lấy UIImageView từ mảng stackImage
-                    let imageView = stackImage[index]
-                    
-                    // Sử dụng hàm fetchImage để tải ảnh và xử lý kết quả
-                    fetchImage(imageLink: sampleScrenShot.imageURL) { result in
-                        switch result {
-                        case .success(let image):
-                            // Hiển thị ảnh trong UIImageView
-                            imageView?.image = image
-                            
-                        case .failure(let error):
-                            // Xử lý lỗi nếu có
-                            print("Error fetching image: \(error.localizedDescription)")
-                        }
-                    }
-                }
-            }
-
-            if let gameMobyScroce = game.mobyScore {
-                self.starRatingView.rating = Float(Double(gameMobyScroce/2))
-                self.scroceRating.text = "\(Double(gameMobyScroce/2))"
-            } else {
-                self.starRatingView.rating = 0
-                self.scroceRating.text = "0"
-            }
-            var genresName = [String]()
-            for genres in game.genres {
-                genresName.append(genres.genreName)
-            }
-            tagListView.addTags(genresName)
-            var platformNames = [String]()
-            for platformName in game.platforms {
-                platformNames.append(platformName.platformName)
-            }
-            tagListViewPlatform.addTags(platformNames)
-            
+            loadGameToView(game: game)
             
         }
         
     }
     
-    func fetchRecommendGame () {
-        MobyGamesService.share.fetchGameId {
-            result in
-
-            switch result {
-            case .success(let gameId):
-                for i in 1...5 {
-//                    MobyGamesService.share.fetchGameById(gameId: gameId[i]) {
-//                        result in
-//
-//                        switch result {
-//                        case .success(let game):
-//                            self.recommendGame[i].nameGame?.text = game.title
-//                            MobyGamesService.share.fetchImage(from: game.sampleCover.thumbnailImageURL) {
-//                                result in
-//
-//                                switch result {
-//                                case .success(let image):
-//                                    self.recommendGame[i].imageGame?.image = image
-//
-//                                case .failure(let error):
-//                                    print(error)
-//                                }
-//                            }
-//
-//                        case .failure(let error):
-//                            print( error)
-//                        }
-//                    }
-                    
-                    self.getRecommendGameByID(gameID: gameId[i], indexOfRCMView: i)
-                }
-
-
-
-            case .failure(let error):
-                print( error)
-
-            }
-        }
-    }
-    
 //    func fetchRecommendGame() {
+//        let group = DispatchGroup()
+//
+//        group.enter()
 //        MobyGamesService.share.fetchGameId { result in
+//            defer { group.leave() }
 //            switch result {
 //            case .success(let gameId):
-//                let numberOfGamesToFetch = min(5, gameId.count)
+//                for i in 1...5 {
+//                    print(gameId[i])
 //
-//                for i in 0..<numberOfGamesToFetch {
-//                    MobyGamesService.share.fetchGameById(gameId: gameId[i]) { [weak self] result in
-//                        switch result {
-//                        case .success(let game):
-//                            DispatchQueue.main.async {
-//                                self?.recommendGame[i].nameGame?.text = game.title
-//
-//                                MobyGamesService.share.fetchImage(from: game.sampleCover.thumbnailImageURL) { imageResult in
-//                                    switch imageResult {
-//                                    case .success(let image):
-//                                        DispatchQueue.main.async {
-//                                            self?.recommendGame[i].imageGame?.image = image
-//                                        }
-//
-//                                    case .failure(let error):
-//                                        print(error)
-//                                    }
-//                                }
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//                        MobyGamesService.share.fetchGameById(gameId: gameId[i]) { result in
+//                            switch result {
+//                            case .success(let game):
+//                                self.recommendGame[i].displayRecommendGame(game: game)
+//                            case .failure(let error):
+//                                print(error)
 //                            }
-//
-//                        case .failure(let error):
-//                            print(error)
 //                        }
 //                    }
 //                }
-//
 //            case .failure(let error):
 //                print(error)
 //            }
 //        }
+//
+//        group.notify(queue: DispatchQueue.main) {
+//            // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
+//            // Gọi các hàm hoặc thực hiện các công việc tiếp theo
+//            // Ví dụ: Cập nhật giao diện người dùng
+//        }
 //    }
 
+    func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int],recommendGame: [CollectionItemGame]) {
+//        guard index < 5 && index < gameIdArray.count else {
+//            // Đã xử lý đủ 5 phần tử hoặc hết phần tử
+//            group.leave()
+//            return
+//        }
+
+        guard index < 9 && index < recommendGame.count else {
+                // Đã xử lý hết tất cả các phần tử
+                
+                return
+            }
+        
+        let currentGameId = gameIdArray[index]
+
+        print(currentGameId)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            MobyGamesService.share.fetchGameById(gameId: currentGameId) { result in
+                switch result {
+                case .success(let game):
+                    self.recommendGame[index].displayRecommendGame(game: game)
+                    //group.leave()
+                case .failure(let error):
+                    print(error)
+                }
+//                group.notify(queue: DispatchQueue.main) {
+                          // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
+                          // Gọi các hàm hoặc thực hiện các công việc tiếp theo
+                          // Ví dụ: Cập nhật giao diện người dùng
+                    self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommendGame)
+                      }
+                // Gọi đệ quy để xử lý phần tử tiếp theo
+                
+//            }
+        }
+    }
+
+    func fetchRecommendGame() {
+//        let group = DispatchGroup()
+//
+//        group.enter()
+        MobyGamesService.share.fetchGameId { result in
+//            defer { group.leave() }
+            switch result {
+            case .success(let gameIdArray):
+                // Bắt đầu lặp từ index 0
+                self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommendGame)
+            case .failure(let error):
+                print(error)
+            }
+        }
+//
+//        group.notify(queue: DispatchQueue.main) {
+//            // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
+//            // Gọi các hàm hoặc thực hiện các công việc tiếp theo
+//            // Ví dụ: Cập nhật giao diện người dùng
+//        }
+    }
+
+    
+    
     
     @objc func addButtonTapped(_ sender: UITapGestureRecognizer) {
         guard let game = game else {
             return
         }
-
+        
         let menuViewController = PopMenuViewController(actions: [
             PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
                 self.dismiss(animated: false)
@@ -267,7 +230,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 }
             })
         ])
-
+        
         present(menuViewController, animated: true, completion: nil)
     }
     
@@ -279,14 +242,14 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         // Present the alert controller
         present(alertController, animated: true, completion: nil)
     }
-
+    
     
     @objc func changeButtonTapped(_ sender: UITapGestureRecognizer) {
         
         guard let gameID = gameID else {
-                // Không có gameID, không thể thực hiện thao tác
-                return
-            }
+            // Không có gameID, không thể thực hiện thao tác
+            return
+        }
         
         let menuViewController = PopMenuViewController(actions: [
             PopMenuDefaultAction(title: "Uncategorized", didSelect: { action in
@@ -329,7 +292,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 //ProfileController().updateTabBarItemBadge()
                 // Khi bạn muốn quay lại profileViewController từ DetailVC
                 self.reloadDelegate?.reloadData()
-
+                
                 // Quay về màn hình trước đó (Profile Game)
                 self.navigationController?.popViewController(animated: true)
                 
@@ -348,7 +311,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         let fontSize = 25
         // Your desired font size
         let fontSizeScript = "document.getElementsByTagName('body')[0].style.fontSize = '\(fontSize)px';"
-
+        
         // Execute JavaScript to set font size
         webView.evaluateJavaScript(fontSizeScript, completionHandler: nil)
     }
@@ -361,7 +324,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 switch result {
                 case .success(let game):
                     self.recommendGame[indexOfRCMView].nameGame?.text = game.title
-                    MobyGamesService.share.fetchImage(from: game.sampleCover.thumbnailImageURL) {
+                    MobyGamesService.share.fetchImage(from: game.sampleCover!.thumbnailImageURL) {
                         result in
                         
                         switch result {
@@ -381,66 +344,30 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     }
     
     func getGameByID(gameID: Int) {
+        
+        let group = DispatchGroup()
+
+        group.enter()
         MobyGamesService.share.fetchGameById(gameId: gameID) { result in
+            
+            defer { group.leave() }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let game):
-                    // Handle the retrieved game
-                    self.game = game
-                    self.fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover.imageURL)
-                    self.fetchIconImage(imageLink: game.sampleCover.thumbnailImageURL)
-                    self.titleLable.text = game.title
-                    self.descriptionLable.loadHTMLString(game.description!, baseURL: nil)
-                    print("Fetched Game Done")
-                    self.titleLable.text = game.title
-                    let stackImage = [self.screnShotImage1, self.screnShotImage2, self.screnShotImage3, self.screnShotImage4, self.screnShotImage5]
-
-                    // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
-                    for (index, sampleScrenShot) in game.sampleScreenshots.enumerated() {
-                        // Kiểm tra index để đảm bảo không vượt quá kích thước của mảng stackImage
-                        if index < stackImage.count {
-                            // Lấy UIImageView từ mảng stackImage
-                            let imageView = stackImage[index]
-                            
-                            // Sử dụng hàm fetchImage để tải ảnh và xử lý kết quả
-                            self.fetchImage(imageLink: sampleScrenShot.imageURL) { result in
-                                switch result {
-                                case .success(let image):
-                                    // Hiển thị ảnh trong UIImageView
-                                    imageView?.image = image
-                                case .failure(let error):
-                                    // Xử lý lỗi nếu có
-                                    print("Error fetching image: \(error.localizedDescription)")
-                                }
-                            }
-                        }
-                    }
                     
-                    if let gameMobyScroce = game.mobyScore {
-                        self.starRatingView.rating = Float(Double(gameMobyScroce/2))
-                        self.scroceRating.text = "\(Double(gameMobyScroce/2))"
-                    } else {
-                        self.starRatingView.rating = 0
-                        self.scroceRating.text = "0"
-                    }
-                    var genresName = [String]()
-                    for genres in game.genres {
-                        genresName.append(genres.genreName)
-                    }
-                    self.tagListView.addTags(genresName)
-                    var platformNames = [String]()
-                    for platformName in game.platforms {
-                        platformNames.append(platformName.platformName)
-                    }
-                    self.tagListViewPlatform.addTags(platformNames)
-                    self.fetchRecommendGame()
-                    
+                    self.loadGameToView(game: game)
                 case .failure(let error):
                     // Handle the error
                     print("Error fetching game: \(error.localizedDescription)")
                 }
             }
         }
+        
+        group.notify(queue: DispatchQueue.main) {
+                    // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
+                    // Gọi các hàm hoặc thực hiện các công việc tiếp theo
+                    self.fetchRecommendGame()
+                }
     }
     
     func fetchImageFromLinkToApplyBlur (imageLink: String) {
@@ -449,8 +376,8 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             case .success(let image):
                 // Handle the retrieved image
                 
-                  self.background.image = self.applyBlur(to: image)
-//                self.background.image = image
+                self.background.image = self.applyBlur(to: image)
+                //                self.background.image = image
                 print("Fetched Image")
             case .failure(let error):
                 // Handle the error
@@ -498,8 +425,63 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             }
         }
     }
-
     
+    func loadGameToView (game: Game) {
+        self.game = game
+        self.fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover!.imageURL)
+        self.fetchIconImage(imageLink: game.sampleCover!.thumbnailImageURL)
+        self.titleLable.text = game.title
+        self.descriptionLable.loadHTMLString(game.description!, baseURL: nil)
+        print("Fetched Game Done")
+        self.titleLable.text = game.title
+        let stackImage = [self.screnShotImage1, self.screnShotImage2, self.screnShotImage3, self.screnShotImage4, self.screnShotImage5]
+        
+        // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
+
+        for (index, sampleScrenShot) in game.sampleScreenshots!.enumerated() {
+            // Kiểm tra index để đảm bảo không vượt quá kích thước của mảng stackImage
+
+            if index < stackImage.count {
+                // Lấy UIImageView từ mảng stackImage
+                let imageView = stackImage[index]
+                
+                // Sử dụng hàm fetchImage để tải ảnh và xử lý kết quả
+                self.fetchImage(imageLink: sampleScrenShot.imageURL) { result in
+                    switch result {
+                    case .success(let image):
+                        // Hiển thị ảnh trong UIImageView
+                        imageView?.image = image
+                    case .failure(let error):
+                        // Xử lý lỗi nếu có
+                        print("Error fetching image: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+        
+        
+            if let gameMobyScroce = game.mobyScore {
+                self.starRatingView.rating = Float(Double(gameMobyScroce/2))
+                self.scroceRating.text = "\(Double(gameMobyScroce/2))"
+            } else {
+                self.starRatingView.rating = 0
+                self.scroceRating.text = "0"
+            }
+            var genresName = [String]()
+            for genres in game.genres! {
+                genresName.append(genres.genreName)
+            }
+            self.tagListView.addTags(genresName)
+            var platformNames = [String]()
+            for platformName in game.platforms! {
+                platformNames.append(platformName.platformName)
+            }
+            self.tagListViewPlatform.addTags(platformNames)
+            self.fetchRecommendGame()
+        
+        
+        
+    }
     
     
     

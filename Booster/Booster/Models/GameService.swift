@@ -124,7 +124,21 @@ class MobyGamesService {
             let url = "\(baseURL)/games/\(gameId)?api_key=\(apiKey)"
             
             // Sử dụng Alamofire để gọi API
+//        AF.request(url).response {
+//            response in
+//            
+//            switch response.result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let data):
+//                if let dataString = String(data: data!, encoding: .utf8) {
+//                    print("Raw data: \(dataString)")
+//                }
+//                    
+//            }
+//        }
             AF.request(url).responseDecodable(of: Game.self) { response in
+                print(response)
                 switch response.result {
                 case .success(let game):
                     // Trả về game nếu giải mã thành công
@@ -155,18 +169,21 @@ class MobyGamesService {
     }
     
     // Hàm để tải hình ảnh từ một đường dẫn link
-        func fetchImage(from link: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        func fetchImage(from link: String?, completion: @escaping (Result<UIImage, Error>) -> Void) {
             // Sử dụng AlamofireImage để tải hình ảnh từ đường dẫn
-            AF.request(link).responseImage { response in
-                switch response.result {
-                case .success(let image):
-                    // Truyền hình ảnh thông qua completion handler nếu tải thành công
-                    completion(.success(image))
-                case .failure(let error):
-                    // Truyền lỗi thông qua completion handler nếu có vấn đề xảy ra
-                    completion(.failure(error))
+            if let link = link {
+                AF.request(link).responseImage { response in
+                    switch response.result {
+                    case .success(let image):
+                        // Truyền hình ảnh thông qua completion handler nếu tải thành công
+                        completion(.success(image))
+                    case .failure(let error):
+                        // Truyền lỗi thông qua completion handler nếu có vấn đề xảy ra
+                        completion(.failure(error))
+                    }
                 }
             }
+            
         }
     
 }

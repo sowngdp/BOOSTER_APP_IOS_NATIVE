@@ -32,7 +32,26 @@ class CollectionItemGame: UICollectionViewCell {
     }
     
 
-
+    func displayRecommendGame(game: Game) {
+//        self.nameGame?.text = game.title
+        if let name = game.title {
+            self.nameGame?.text! = name
+            print(nameGame?.text!)
+        }
+        MobyGamesService.share.fetchImage(from: game.sampleCover?.thumbnailImageURL) {
+            result in
+            switch result {
+            case .success(let image):
+                self.imageGame?.image = image
+                
+            case .failure(let error):
+                print(error)
+            }
+        
+        }
+    }
+    
+    
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {

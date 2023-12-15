@@ -82,7 +82,7 @@
             
             // Kiểm tra xem trò chơi với ID đã tồn tại trong Core Data hay chưa
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
-            fetchRequest.predicate = NSPredicate(format: "game_id == %d", game.gameId)
+            fetchRequest.predicate = NSPredicate(format: "game_id == %d", game.gameId!)
             
             do {
                 let existingGames = try context.fetch(fetchRequest) as! [NSManagedObject]
@@ -95,7 +95,7 @@
                     let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)
                     gameEntity.setValue(game.gameId, forKey: "game_id")
                     gameEntity.setValue(status, forKey: "status")
-                    gameEntity.setValue(game.sampleCover.thumbnailImageURL, forKey: "thumbnail_image")
+                    gameEntity.setValue(game.sampleCover?.thumbnailImageURL, forKey: "thumbnail_image")
                     gameEntity.setValue(game.title, forKey: "title")
                     
                     // Lưu thay đổi vào Core Data
@@ -183,7 +183,7 @@
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCell", for: indexPath) as! CollectionItemGame
             
-            let imageUrl = games[indexPath.row].sampleCover.thumbnailImageURL
+            let imageUrl = games[indexPath.row].sampleCover!.thumbnailImageURL
             
             AF.request(imageUrl).responseImage { response in
                 switch response.result {
