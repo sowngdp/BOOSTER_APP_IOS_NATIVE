@@ -1,35 +1,30 @@
 //
-//  CollectionItemGame.swift
+//  ItemGame.swift
 //  Booster
 //
-//  Created by hoi on 12/11/2023.
+//  Created by Fy Spoti on 18/12/2023.
 //
 
 import Foundation
 import UIKit
 
-protocol CollectionItemGameDelegate: AnyObject {
-    func addButtonTapped( at: IndexPath)
+protocol ItemGameDelegate: AnyObject {
+
     func imageTapped (at: IndexPath)
 }
 
 
-class CollectionItemGame: UICollectionViewCell {
+class ItemGame: UIView {
     
     var rowOfIndexPath: IndexPath?
     @IBOutlet weak var imageGame: UIImageView!
     @IBOutlet weak var nameGame: UILabel!
     
     //var gameCell: Game?
-    @IBOutlet weak var buttonAdd: UILabel!
+
     
-    weak var delegate: CollectionItemGameDelegate?
-    
-    @objc func addButtonTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        
-        self.delegate?.addButtonTapped( at: rowOfIndexPath!)
-        
-    }
+    weak var delegate: ItemGameDelegate?
+
     
 
     func displayRecommendGame(game: Game) {
@@ -66,3 +61,4 @@ class CollectionItemGame: UICollectionViewCell {
     }
     
 }
+

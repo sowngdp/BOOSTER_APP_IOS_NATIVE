@@ -156,7 +156,6 @@ class MobyGamesService {
         print(url)
         // Sử dụng Alamofire để gọi API
         AF.request(url).responseDecodable(of: GameIdRespone.self) { response in
-            print(response)
             switch response.result {
             case .success(let gameRespone):
                 // Trả về game nếu giải mã thành công

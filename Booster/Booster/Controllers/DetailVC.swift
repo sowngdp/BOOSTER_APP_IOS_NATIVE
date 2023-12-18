@@ -30,7 +30,9 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     
     
     
-    @IBOutlet var recommendGame: [CollectionItemGame]!
+    
+    @IBOutlet weak var recommendGame1: ItemGame!
+    @IBOutlet var recommnedGame: [ItemGame]!
     @IBOutlet weak var tagListViewPlatform: TagListView!
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var starRatingView: StarRatingView!
@@ -45,6 +47,8 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     @IBOutlet weak var background: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         descriptionLable.navigationDelegate = self
         if let gameID = gameID {
@@ -70,50 +74,12 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
         
     }
     
-//    func fetchRecommendGame() {
-//        let group = DispatchGroup()
-//
-//        group.enter()
-//        MobyGamesService.share.fetchGameId { result in
-//            defer { group.leave() }
-//            switch result {
-//            case .success(let gameId):
-//                for i in 1...5 {
-//                    print(gameId[i])
-//
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//                        MobyGamesService.share.fetchGameById(gameId: gameId[i]) { result in
-//                            switch result {
-//                            case .success(let game):
-//                                self.recommendGame[i].displayRecommendGame(game: game)
-//                            case .failure(let error):
-//                                print(error)
-//                            }
-//                        }
-//                    }
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//
-//        group.notify(queue: DispatchQueue.main) {
-//            // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
-//            // Gọi các hàm hoặc thực hiện các công việc tiếp theo
-//            // Ví dụ: Cập nhật giao diện người dùng
-//        }
-//    }
 
-    func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int],recommendGame: [CollectionItemGame]) {
-//        guard index < 5 && index < gameIdArray.count else {
-//            // Đã xử lý đủ 5 phần tử hoặc hết phần tử
-//            group.leave()
-//            return
-//        }
+
+    func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int],recommendGame: [ItemGame]) {
+
 
         guard index < 9 && index < recommendGame.count else {
-                // Đã xử lý hết tất cả các phần tử
-                
                 return
             }
         
@@ -123,9 +89,31 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             MobyGamesService.share.fetchGameById(gameId: currentGameId) { result in
+                
                 switch result {
+                    
                 case .success(let game):
-                    self.recommendGame[index].displayRecommendGame(game: game)
+                    print(recommendGame.count)
+                        self.recommnedGame[index].displayRecommendGame(game: game)
+                    if let name = game.title {
+                        self.recommendGame1.nameGame?.text = name
+                    }
+                    
+                    if let url = game.sampleCover?.thumbnailImageURL {
+                        MobyGamesService.share.fetchImage(from: url) {
+                            result in
+                            
+                            switch result {
+                            case .success(let image):
+                                self.recommendGame1.imageGame?.image = image
+                                
+                            case .failure(let error):
+                                print(error)
+                            }
+                    }
+                    
+                    
+                    }
                     //group.leave()
                 case .failure(let error):
                     print(error)
@@ -134,7 +122,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                           // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
                           // Gọi các hàm hoặc thực hiện các công việc tiếp theo
                           // Ví dụ: Cập nhật giao diện người dùng
-                    self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommendGame)
+                    self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommnedGame)
                       }
                 // Gọi đệ quy để xử lý phần tử tiếp theo
                 
@@ -151,7 +139,13 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             switch result {
             case .success(let gameIdArray):
                 // Bắt đầu lặp từ index 0
-                self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommendGame)
+//                self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
+                for i in 1...2 {
+                    if i < 2 {
+                        self.recommnedGame[i].rowOfIndexPath = IndexPath(row: i, section: 0)
+                        self.getRecommendGameByID(gameID: gameIdArray[i], indexOfRCMView: i)
+                        }
+                    }
             case .failure(let error):
                 print(error)
             }
@@ -323,13 +317,17 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let game):
-                    self.recommendGame[indexOfRCMView].nameGame?.text = game.title
+                    
+                    self.recommendGame1.nameGame?.text = game.title
+                    print(self.recommendGame1.nameGame?.text)
+                    
                     MobyGamesService.share.fetchImage(from: game.sampleCover!.thumbnailImageURL) {
                         result in
                         
                         switch result {
                         case .success(let image):
-                            self.recommendGame[indexOfRCMView].imageGame?.image = image
+                            self.recommendGame1.imageGame?.image = image
+                            
                             
                         case .failure(let error):
                             print(error)
@@ -345,12 +343,10 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     
     func getGameByID(gameID: Int) {
         
-        let group = DispatchGroup()
 
-        group.enter()
         MobyGamesService.share.fetchGameById(gameId: gameID) { result in
             
-            defer { group.leave() }
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let game):
@@ -362,12 +358,6 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 }
             }
         }
-        
-        group.notify(queue: DispatchQueue.main) {
-                    // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
-                    // Gọi các hàm hoặc thực hiện các công việc tiếp theo
-                    self.fetchRecommendGame()
-                }
     }
     
     func fetchImageFromLinkToApplyBlur (imageLink: String) {
@@ -478,7 +468,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             }
             self.tagListViewPlatform.addTags(platformNames)
             self.fetchRecommendGame()
-        
+            
         
         
     }

@@ -548,73 +548,73 @@
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-dE-EpK">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NI2-6J-wQS">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="StackId" translatesAutoresizingMaskIntoConstraints="NO" id="NI2-6J-wQS">
                                                                 <rect key="frame" x="0.0" y="0.0" width="4140" height="311"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je9-9d-kKe" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je9-9d-kKe" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="CfN-DK-kOm"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6A-4s-uca" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6A-4s-uca" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="414" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="FYW-ut-YWV"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="by1-tX-QYT" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="by1-tX-QYT" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="828" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="S18-co-MqT"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrU-Li-oz4" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrU-Li-oz4" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="1242" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="I9q-iQ-3Yv"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWr-0V-m8X" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWr-0V-m8X" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="1656" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="z7d-xf-j77"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eE-c9-3gb" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eE-c9-3gb" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="2070" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="zD5-x2-Nou"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mL8-h4-g39" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mL8-h4-g39" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="2484" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="8M2-7n-Zgm"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dts-aC-elL" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dts-aC-elL" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="2898" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="jyG-bD-YtW"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oP-HO-YN7" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oP-HO-YN7" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="3312" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="414" id="dbU-Bo-ddj"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMl-10-t6V" customClass="CollectionItemGame" customModule="Booster" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMl-10-t6V" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
                                                                         <rect key="frame" x="3726" y="0.0" width="414" height="311"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
@@ -679,6 +679,7 @@
                         <outlet property="buttonStatus" destination="jjW-Jg-OPc" id="lKT-2X-BWG"/>
                         <outlet property="descriptionLable" destination="Ba6-zI-1QV" id="sOb-iK-Q6q"/>
                         <outlet property="iconImage" destination="ZmA-SI-ZJ9" id="7fS-Kf-IdX"/>
+                        <outlet property="recommendGame1" destination="je9-9d-kKe" id="ky8-7v-x6e"/>
                         <outlet property="screnShotImage1" destination="hXn-BP-jO0" id="NDe-Kc-VX3"/>
                         <outlet property="screnShotImage2" destination="sIL-LV-eMD" id="UrR-8C-8S1"/>
                         <outlet property="screnShotImage3" destination="KrQ-Uj-obe" id="L5Z-UQ-fhl"/>
@@ -689,16 +690,16 @@
                         <outlet property="tagListView" destination="Zbd-eT-xvR" id="H8P-7e-b10"/>
                         <outlet property="tagListViewPlatform" destination="e3N-fY-W9n" id="4aU-cx-T2t"/>
                         <outlet property="titleLable" destination="DLd-Au-Tvb" id="qp2-yZ-TqX"/>
-                        <outletCollection property="recommendGame" destination="je9-9d-kKe" collectionClass="NSMutableArray" id="TZR-Bw-pyA"/>
-                        <outletCollection property="recommendGame" destination="v6A-4s-uca" collectionClass="NSMutableArray" id="cFG-zV-ic7"/>
-                        <outletCollection property="recommendGame" destination="by1-tX-QYT" collectionClass="NSMutableArray" id="nm7-nh-wec"/>
-                        <outletCollection property="recommendGame" destination="KrU-Li-oz4" collectionClass="NSMutableArray" id="KJd-tD-Ihc"/>
-                        <outletCollection property="recommendGame" destination="TWr-0V-m8X" collectionClass="NSMutableArray" id="f8H-zL-UPo"/>
-                        <outletCollection property="recommendGame" destination="9eE-c9-3gb" collectionClass="NSMutableArray" id="Eae-gQ-5n0"/>
-                        <outletCollection property="recommendGame" destination="mL8-h4-g39" collectionClass="NSMutableArray" id="oQ0-7w-P1o"/>
-                        <outletCollection property="recommendGame" destination="dts-aC-elL" collectionClass="NSMutableArray" id="mb9-YD-9NF"/>
-                        <outletCollection property="recommendGame" destination="5oP-HO-YN7" collectionClass="NSMutableArray" id="zqH-el-boR"/>
-                        <outletCollection property="recommendGame" destination="JMl-10-t6V" collectionClass="NSMutableArray" id="5Ix-mG-CFI"/>
+                        <outletCollection property="recommnedGame" destination="je9-9d-kKe" collectionClass="NSMutableArray" id="P0j-RM-cIc"/>
+                        <outletCollection property="recommnedGame" destination="v6A-4s-uca" collectionClass="NSMutableArray" id="PGy-L9-lQp"/>
+                        <outletCollection property="recommnedGame" destination="by1-tX-QYT" collectionClass="NSMutableArray" id="nMU-QI-Ptf"/>
+                        <outletCollection property="recommnedGame" destination="KrU-Li-oz4" collectionClass="NSMutableArray" id="zWP-ni-6mB"/>
+                        <outletCollection property="recommnedGame" destination="TWr-0V-m8X" collectionClass="NSMutableArray" id="fCo-da-Dlj"/>
+                        <outletCollection property="recommnedGame" destination="9eE-c9-3gb" collectionClass="NSMutableArray" id="NXT-dC-Z9b"/>
+                        <outletCollection property="recommnedGame" destination="mL8-h4-g39" collectionClass="NSMutableArray" id="6J2-yG-xJ4"/>
+                        <outletCollection property="recommnedGame" destination="dts-aC-elL" collectionClass="NSMutableArray" id="dDE-GT-M5L"/>
+                        <outletCollection property="recommnedGame" destination="5oP-HO-YN7" collectionClass="NSMutableArray" id="FzX-bq-v5z"/>
+                        <outletCollection property="recommnedGame" destination="JMl-10-t6V" collectionClass="NSMutableArray" id="noH-ER-t61"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ll-6e-ilM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1662,16 +1663,8 @@
             <point key="canvasLocation" x="4312" y="4663"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Zbd-eT-xvR">
-            <size key="intrinsicContentSize" width="398" height="22"/>
-        </designable>
-        <designable name="e3N-fY-W9n">
-            <size key="intrinsicContentSize" width="398" height="52"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="71g-gK-4fQ"/>
+        <segue reference="SKX-id-lcm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="4062982-the-x-files-game-windows-front-cover" width="690" height="800"/>

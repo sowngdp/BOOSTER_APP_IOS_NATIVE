@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WEI-FY-MMS" customClass="ItemGame" customModule="Booster" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="260"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="item_preview1" translatesAutoresizingMaskIntoConstraints="NO" id="PY9-lA-Cit">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="204"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mir Tankov" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Fr0-zq-FEE">
+                    <rect key="frame" x="8" y="212" width="134" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="V9s-71-NzL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="hPf-mo-Tz9"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="PY9-lA-Cit" firstAttribute="leading" secondItem="hPf-mo-Tz9" secondAttribute="leading" id="7zz-Xk-TMk"/>
+                <constraint firstItem="hPf-mo-Tz9" firstAttribute="bottom" secondItem="Fr0-zq-FEE" secondAttribute="bottom" constant="8" id="E2x-Pb-Hrf"/>
+                <constraint firstItem="PY9-lA-Cit" firstAttribute="trailing" secondItem="hPf-mo-Tz9" secondAttribute="trailing" id="Lc7-H9-DhZ"/>
+                <constraint firstItem="PY9-lA-Cit" firstAttribute="top" secondItem="WEI-FY-MMS" secondAttribute="top" id="O7A-Mu-dJ2"/>
+                <constraint firstItem="Fr0-zq-FEE" firstAttribute="leading" secondItem="hPf-mo-Tz9" secondAttribute="leading" constant="8" id="Whw-wQ-zZC"/>
+                <constraint firstItem="hPf-mo-Tz9" firstAttribute="trailing" secondItem="Fr0-zq-FEE" secondAttribute="trailing" constant="8" id="axv-Zk-vwy"/>
+                <constraint firstItem="Fr0-zq-FEE" firstAttribute="top" secondItem="PY9-lA-Cit" secondAttribute="bottom" constant="8" symbolic="YES" id="dCw-vn-ixJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageGame" destination="PY9-lA-Cit" id="pTU-uE-Igz"/>
+                <outlet property="nameGame" destination="Fr0-zq-FEE" id="awW-Ga-X8I"/>
+            </connections>
+            <point key="canvasLocation" x="254" y="-7"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="item_preview1" width="221" height="117"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
