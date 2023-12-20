@@ -9,8 +9,23 @@ import UIKit
 import WebKit
 import PopMenu
 import TagListView
+import zlib
 
-class DetailVC: UIViewController, WKNavigationDelegate  {
+class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
+    func imageTapped(at gameID: Int) {
+        let storyboardName = "Main"  // Tên của storyboard của bạn
+        let storyboardID = "DetailVC"  // Storyboard ID của UIViewController cần khởi tạo
+
+        // Khởi tạo storyboard từ tên
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+
+        // Instantiate UIViewController từ storyboard bằng cách sử dụng storyboardID
+        if let viewController = storyboard.instantiateViewController(withIdentifier: storyboardID) as? DetailVC {
+            // Sử dụng `viewController` ở đây
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
     
     
     @IBOutlet weak var iconImage: UIImageView!
@@ -29,9 +44,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     
     
     
-    
-    
-    @IBOutlet weak var recommendGame1: ItemGame!
+
     @IBOutlet var recommnedGame: [ItemGame]!
     @IBOutlet weak var tagListViewPlatform: TagListView!
     @IBOutlet weak var tagListView: TagListView!
@@ -79,7 +92,7 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
     func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int],recommendGame: [ItemGame]) {
 
 
-        guard index < 9 && index < recommendGame.count else {
+        guard  index < recommendGame.count else {
                 return
             }
         
@@ -94,26 +107,31 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                     
                 case .success(let game):
                     print(recommendGame.count)
-                        self.recommnedGame[index].displayRecommendGame(game: game)
+                    
                     if let name = game.title {
-                        self.recommendGame1.nameGame?.text = name
-                    }
-                    
-                    if let url = game.sampleCover?.thumbnailImageURL {
-                        MobyGamesService.share.fetchImage(from: url) {
-                            result in
-                            
-                            switch result {
-                            case .success(let image):
-                                self.recommendGame1.imageGame?.image = image
+                        let recomendGame = recommendGame[index]
+                        recomendGame.nameGame?.text = name
+                        
+                        if let url = game.sampleCover?.thumbnailImageURL {
+                            MobyGamesService.share.fetchImage(from: url) {
+                                result in
                                 
-                            case .failure(let error):
-                                print(error)
-                            }
+                                switch result {
+                                case .success(let image):
+                                    recomendGame.imageGame?.image = image
+                                    let tappedImgage = UITapGestureRecognizer(target: recomendGame, action: #selector(ItemGame.imageTapped))
+                                    recomendGame.imageGame.isUserInteractionEnabled = true
+                                    recomendGame.imageGame.addGestureRecognizer(tappedImgage)
+                                case .failure(let error):
+                                    print(error)
+                                }
+                        }
+                        
+                        
+                        }
                     }
                     
                     
-                    }
                     //group.leave()
                 case .failure(let error):
                     print(error)
@@ -139,13 +157,13 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
             switch result {
             case .success(let gameIdArray):
                 // Bắt đầu lặp từ index 0
-//                self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
-                for i in 1...2 {
-                    if i < 2 {
-                        self.recommnedGame[i].rowOfIndexPath = IndexPath(row: i, section: 0)
-                        self.getRecommendGameByID(gameID: gameIdArray[i], indexOfRCMView: i)
-                        }
-                    }
+                self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
+//                for i in 1...2 {
+//                    if i < 2 {
+//                        self.recommnedGame[i].rowOfIndexPath = IndexPath(row: i, section: 0)
+//                        self.getRecommendGameByID(gameID: gameIdArray[i], indexOfRCMView: i)
+//                        }
+//                    }
             case .failure(let error):
                 print(error)
             }
@@ -318,15 +336,15 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 switch result {
                 case .success(let game):
                     
-                    self.recommendGame1.nameGame?.text = game.title
-                    print(self.recommendGame1.nameGame?.text)
+                    self.recommnedGame[1].nameGame?.text = game.title
+                    print(self.recommnedGame[1].nameGame?.text!)
                     
                     MobyGamesService.share.fetchImage(from: game.sampleCover!.thumbnailImageURL) {
                         result in
                         
                         switch result {
                         case .success(let image):
-                            self.recommendGame1.imageGame?.image = image
+                            self.recommnedGame[1].imageGame.image = image
                             
                             
                         case .failure(let error):
@@ -358,6 +376,34 @@ class DetailVC: UIViewController, WKNavigationDelegate  {
                 }
             }
         }
+    }
+    
+    func createItemGame() -> [ItemGame] {
+        let itemGame1: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+
+        let itemGame2: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame3: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+
+        let itemGame4: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame5: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame6: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame7: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame8: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame9: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+        let itemGame10: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
+        
+
+        
+
+        
+        return [itemGame1, itemGame2, itemGame3, itemGame4, itemGame5, itemGame6, itemGame7, itemGame8, itemGame9, itemGame10]
     }
     
     func fetchImageFromLinkToApplyBlur (imageLink: String) {
