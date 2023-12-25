@@ -32,7 +32,7 @@ class ItemGame: UIView {
     
     
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    @objc func imageTapp(tapGestureRecognizer: UITapGestureRecognizer)
     {
 
         self.delegate?.imageTapped(at: gameID!)

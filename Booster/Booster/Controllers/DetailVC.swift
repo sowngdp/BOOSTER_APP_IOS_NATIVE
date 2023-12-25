@@ -22,6 +22,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         // Instantiate UIViewController từ storyboard bằng cách sử dụng storyboardID
         if let viewController = storyboard.instantiateViewController(withIdentifier: storyboardID) as? DetailVC {
             // Sử dụng `viewController` ở đây
+            viewController.gameID = gameID
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
@@ -108,18 +109,23 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                 case .success(let game):
                     print(recommendGame.count)
                     
+
+                    
                     if let name = game.title {
                         let recomendGame = recommendGame[index]
                         recomendGame.nameGame?.text = name
-                        
+                        if let gameID = game.gameId {
+                            recomendGame.gameID = gameID
+                        }
                         if let url = game.sampleCover?.thumbnailImageURL {
                             MobyGamesService.share.fetchImage(from: url) {
                                 result in
                                 
                                 switch result {
                                 case .success(let image):
+                                    recomendGame.delegate = self
                                     recomendGame.imageGame?.image = image
-                                    let tappedImgage = UITapGestureRecognizer(target: recomendGame, action: #selector(ItemGame.imageTapped))
+                                    let tappedImgage = UITapGestureRecognizer(target: self.recommnedGame[index], action: #selector(ItemGame.imageTapp))
                                     recomendGame.imageGame.isUserInteractionEnabled = true
                                     recomendGame.imageGame.addGestureRecognizer(tappedImgage)
                                 case .failure(let error):
@@ -149,31 +155,19 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     }
 
     func fetchRecommendGame() {
-//        let group = DispatchGroup()
-//
-//        group.enter()
+
         MobyGamesService.share.fetchGameId { result in
-//            defer { group.leave() }
+
             switch result {
             case .success(let gameIdArray):
-                // Bắt đầu lặp từ index 0
+
                 self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
-//                for i in 1...2 {
-//                    if i < 2 {
-//                        self.recommnedGame[i].rowOfIndexPath = IndexPath(row: i, section: 0)
-//                        self.getRecommendGameByID(gameID: gameIdArray[i], indexOfRCMView: i)
-//                        }
-//                    }
+
             case .failure(let error):
                 print(error)
             }
         }
-//
-//        group.notify(queue: DispatchQueue.main) {
-//            // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
-//            // Gọi các hàm hoặc thực hiện các công việc tiếp theo
-//            // Ví dụ: Cập nhật giao diện người dùng
-//        }
+
     }
 
     
@@ -467,7 +461,10 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         self.fetchImageFromLinkToApplyBlur(imageLink: game.sampleCover!.imageURL)
         self.fetchIconImage(imageLink: game.sampleCover!.thumbnailImageURL)
         self.titleLable.text = game.title
-        self.descriptionLable.loadHTMLString(game.description!, baseURL: nil)
+        if let description = game.description {
+            self.descriptionLable.loadHTMLString(description, baseURL: nil)
+        }
+        
         print("Fetched Game Done")
         self.titleLable.text = game.title
         let stackImage = [self.screnShotImage1, self.screnShotImage2, self.screnShotImage3, self.screnShotImage4, self.screnShotImage5]
