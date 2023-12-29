@@ -231,14 +231,14 @@
                                                             <constraint firstAttribute="height" constant="75" id="4g4-od-BA5"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                                        <color key="textColor" systemColor="systemBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjW-Jg-OPc">
-                                                        <rect key="frame" x="25" y="105" width="364" height="70"/>
+                                                        <rect key="frame" x="55" y="105" width="304" height="70"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="h7x-2v-60V"/>
@@ -253,9 +253,9 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="jjW-Jg-OPc" firstAttribute="trailing" secondItem="DLd-Au-Tvb" secondAttribute="trailing" id="S0k-hy-Mpg"/>
+                                                    <constraint firstItem="jjW-Jg-OPc" firstAttribute="trailing" secondItem="DLd-Au-Tvb" secondAttribute="trailing" constant="-30" id="S0k-hy-Mpg"/>
                                                     <constraint firstItem="DLd-Au-Tvb" firstAttribute="leading" secondItem="dIX-DS-cwJ" secondAttribute="leading" constant="25" id="Vav-4c-v0k"/>
-                                                    <constraint firstItem="jjW-Jg-OPc" firstAttribute="leading" secondItem="DLd-Au-Tvb" secondAttribute="leading" id="arm-o9-MCM"/>
+                                                    <constraint firstItem="jjW-Jg-OPc" firstAttribute="leading" secondItem="DLd-Au-Tvb" secondAttribute="leading" constant="30" id="arm-o9-MCM"/>
                                                     <constraint firstItem="DLd-Au-Tvb" firstAttribute="top" secondItem="dIX-DS-cwJ" secondAttribute="top" constant="25" id="fA8-GR-R8b"/>
                                                     <constraint firstAttribute="trailing" secondItem="DLd-Au-Tvb" secondAttribute="trailing" constant="25" id="jvu-MG-hgT"/>
                                                     <constraint firstAttribute="bottom" secondItem="jjW-Jg-OPc" secondAttribute="bottom" constant="25" id="y0u-1i-n2E"/>
@@ -410,9 +410,12 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-a9-MdR" customClass="StarRatingView" customModule="Booster" customModuleProvider="target">
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-a9-MdR" customClass="StarRatingView" customModule="Booster" customModuleProvider="target">
                                                         <rect key="frame" x="8" y="40" width="398" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                                                 <real key="value" value="5"/>
@@ -462,9 +465,12 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbd-eT-xvR" customClass="TagListView" customModule="TagListView">
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbd-eT-xvR" customClass="TagListView" customModule="TagListView">
                                                         <rect key="frame" x="8" y="43" width="398" height="99"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -511,9 +517,12 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3N-fY-W9n" customClass="TagListView" customModule="TagListView">
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3N-fY-W9n" customClass="TagListView" customModule="TagListView">
                                                         <rect key="frame" x="8" y="43" width="398" height="260"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -522,10 +531,16 @@
                                                                 <color key="value" systemColor="linkColor"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                                                <real key="value" value="20"/>
+                                                                <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                                                <real key="value" value="40"/>
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="11"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="textSize">
+                                                                <integer key="value" value="30"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
@@ -931,7 +946,11 @@
                         <outlet property="background" destination="a5A-ox-kcS" id="6uV-Gx-Fv0"/>
                         <outlet property="buttonStatus" destination="jjW-Jg-OPc" id="lKT-2X-BWG"/>
                         <outlet property="descriptionLable" destination="Ba6-zI-1QV" id="sOb-iK-Q6q"/>
+                        <outlet property="genresView" destination="S0Z-AD-sWr" id="yb2-87-4Eh"/>
+                        <outlet property="genresViewHeightConstraint" destination="UNt-Pu-qoK" id="xXj-R5-A9o"/>
                         <outlet property="iconImage" destination="ZmA-SI-ZJ9" id="7fS-Kf-IdX"/>
+                        <outlet property="platformView" destination="7JR-zk-Mih" id="QHr-xa-4gw"/>
+                        <outlet property="platformViewHeightConstraint" destination="JXs-61-9td" id="Q5C-Yx-woL"/>
                         <outlet property="screnShotImage1" destination="hXn-BP-jO0" id="NDe-Kc-VX3"/>
                         <outlet property="screnShotImage2" destination="sIL-LV-eMD" id="UrR-8C-8S1"/>
                         <outlet property="screnShotImage3" destination="KrQ-Uj-obe" id="L5Z-UQ-fhl"/>
@@ -1920,7 +1939,7 @@
             <size key="intrinsicContentSize" width="398" height="22"/>
         </designable>
         <designable name="e3N-fY-W9n">
-            <size key="intrinsicContentSize" width="398" height="52"/>
+            <size key="intrinsicContentSize" width="398" height="32"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
@@ -1964,9 +1983,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

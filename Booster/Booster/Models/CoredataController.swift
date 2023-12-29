@@ -33,6 +33,11 @@ class CoredataController {
                 // Lưu thay đổi vào Core Data
                 try context.save()
             }
+                  else {
+                      print("game chưa có trong core data")
+                      
+                      
+                  }
         } catch {
             print("Error updating game: \(error)")
         }

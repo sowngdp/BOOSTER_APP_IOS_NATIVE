@@ -12,22 +12,31 @@ import TagListView
 import zlib
 
 class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
-    func imageTapped(at gameID: Int) {
+    func imageTapped(at game: Game) {
         let storyboardName = "Main"  // Tên của storyboard của bạn
         let storyboardID = "DetailVC"  // Storyboard ID của UIViewController cần khởi tạo
-
+        
         // Khởi tạo storyboard từ tên
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-
+        
         // Instantiate UIViewController từ storyboard bằng cách sử dụng storyboardID
         if let viewController = storyboard.instantiateViewController(withIdentifier: storyboardID) as? DetailVC {
             // Sử dụng `viewController` ở đây
-            viewController.gameID = gameID
+            viewController.game = game
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
+    @objc func callback() {
+        if let game = self.game {
+            self.loadGameToView(game: game)
+        }
+    }
     
+    
+    func performCallback() {
+        perform(#selector(callback), with: nil, afterDelay: 1.0)
+    }
     
     @IBOutlet weak var iconImage: UIImageView!
     var gameID: Int?
@@ -45,10 +54,21 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     
     
-
+    
     @IBOutlet var recommnedGame: [ItemGame]!
     @IBOutlet weak var tagListViewPlatform: TagListView!
     @IBOutlet weak var tagListView: TagListView!
+    
+    @IBOutlet weak var genresView: UIView!
+    
+    @IBOutlet weak var genresViewHeightConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var platformView: UIView!
+    
+    
+    @IBOutlet weak var platformViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var starRatingView: StarRatingView!
     @IBOutlet weak var screnShotImage5: UIImageView!
     @IBOutlet weak var screnShotImage4: UIImageView!
@@ -66,6 +86,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         
         descriptionLable.navigationDelegate = self
         if let gameID = gameID {
+            
             getGameByID(gameID: gameID)
             buttonStatus.text = status
             
@@ -76,31 +97,43 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
             
             buttonStatus.addGestureRecognizer(tapGesture)
             
-            
+            /*// Lặp qua mảng các tag và in ra độ rộng của mỗi tag
+             for tagView in tagListView.tagViews {
+             let tagWidth = tagView.intrinsicContentSize.width
+             print("Độ rộng của tag '\(tagView.titleLabel?.text ?? "")': \(tagWidth)")
+             } */
             
             
             
         }
         if let game = game {
+            buttonStatus.text = "Add"
+            
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addButtonTapped))
+            
+            buttonStatus.isUserInteractionEnabled = true
+            
+            buttonStatus.addGestureRecognizer(tapGesture)
             loadGameToView(game: game)
             
         }
         
     }
     
-
-
+    
+    
     func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int],recommendGame: [ItemGame]) {
-
-
+        
+        
         guard  index < recommendGame.count else {
-                return
-            }
+            return
+        }
         
         let currentGameId = gameIdArray[index]
-
+        
         print(currentGameId)
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             MobyGamesService.share.fetchGameById(gameId: currentGameId) { result in
                 
@@ -109,14 +142,14 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                 case .success(let game):
                     print(recommendGame.count)
                     
-
+                    
                     
                     if let name = game.title {
                         let recomendGame = recommendGame[index]
                         recomendGame.nameGame?.text = name
-                        if let gameID = game.gameId {
-                            recomendGame.gameID = gameID
-                        }
+                        
+                        recomendGame.game = game
+                        
                         if let url = game.sampleCover?.thumbnailImageURL {
                             MobyGamesService.share.fetchImage(from: url) {
                                 result in
@@ -131,9 +164,9 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                                 case .failure(let error):
                                     print(error)
                                 }
-                        }
-                        
-                        
+                            }
+                            
+                            
                         }
                     }
                     
@@ -142,34 +175,34 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                 case .failure(let error):
                     print(error)
                 }
-//                group.notify(queue: DispatchQueue.main) {
-                          // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
-                          // Gọi các hàm hoặc thực hiện các công việc tiếp theo
-                          // Ví dụ: Cập nhật giao diện người dùng
-                    self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommnedGame)
-                      }
-                // Gọi đệ quy để xử lý phần tử tiếp theo
-                
-//            }
+                //                group.notify(queue: DispatchQueue.main) {
+                // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
+                // Gọi các hàm hoặc thực hiện các công việc tiếp theo
+                // Ví dụ: Cập nhật giao diện người dùng
+                self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommnedGame)
+            }
+            // Gọi đệ quy để xử lý phần tử tiếp theo
+            
+            //            }
         }
     }
-
+    
     func fetchRecommendGame() {
-
+        
         MobyGamesService.share.fetchGameId { result in
-
+            
             switch result {
             case .success(let gameIdArray):
-
+                
                 self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
-
+                
             case .failure(let error):
                 print(error)
             }
         }
-
+        
     }
-
+    
     
     
     
@@ -355,15 +388,18 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     func getGameByID(gameID: Int) {
         
-
+        
         MobyGamesService.share.fetchGameById(gameId: gameID) { result in
             
             
             DispatchQueue.main.async {
                 switch result {
                 case .success(let game):
+                    self.game = game
+                    self.performCallback()
                     
-                    self.loadGameToView(game: game)
+                    
+                    
                 case .failure(let error):
                     // Handle the error
                     print("Error fetching game: \(error.localizedDescription)")
@@ -374,11 +410,11 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     func createItemGame() -> [ItemGame] {
         let itemGame1: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-
+        
         let itemGame2: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
         
         let itemGame3: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-
+        
         let itemGame4: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
         
         let itemGame5: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
@@ -393,9 +429,9 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         
         let itemGame10: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
         
-
         
-
+        
+        
         
         return [itemGame1, itemGame2, itemGame3, itemGame4, itemGame5, itemGame6, itemGame7, itemGame8, itemGame9, itemGame10]
     }
@@ -470,10 +506,10 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         let stackImage = [self.screnShotImage1, self.screnShotImage2, self.screnShotImage3, self.screnShotImage4, self.screnShotImage5]
         
         // Lặp qua mảng ảnh từ thuộc tính game.sampleScreenshots
-
+        
         for (index, sampleScrenShot) in game.sampleScreenshots!.enumerated() {
             // Kiểm tra index để đảm bảo không vượt quá kích thước của mảng stackImage
-
+            
             if index < stackImage.count {
                 // Lấy UIImageView từ mảng stackImage
                 let imageView = stackImage[index]
@@ -493,25 +529,69 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         }
         
         
-            if let gameMobyScroce = game.mobyScore {
-                self.starRatingView.rating = Float(Double(gameMobyScroce/2))
-                self.scroceRating.text = "\(Double(gameMobyScroce/2))"
-            } else {
-                self.starRatingView.rating = 0
-                self.scroceRating.text = "0"
-            }
-            var genresName = [String]()
-            for genres in game.genres! {
-                genresName.append(genres.genreName)
-            }
-            self.tagListView.addTags(genresName)
-            var platformNames = [String]()
-            for platformName in game.platforms! {
-                platformNames.append(platformName.platformName)
-            }
-            self.tagListViewPlatform.addTags(platformNames)
-            self.fetchRecommendGame()
+        if let gameMobyScroce = game.mobyScore {
+            self.starRatingView.rating = Float(Double(gameMobyScroce/2))
+            self.scroceRating.text = "\(Double(gameMobyScroce/2))"
+        } else {
+            self.starRatingView.rating = 0
+            self.scroceRating.text = "0"
+        }
+        var genresName = [String]()
+        for genres in game.genres! {
+            genresName.append(genres.genreName)
+        }
+        
+
+        
+        self.tagListView.addTags(genresName)
+        
+        var genresWidth : CGFloat = 0
+        var genresHeight : CGFloat = 0
+        for tagGenres in tagListView.tagViews {
+            let tagWidth = tagGenres.intrinsicContentSize.width
+            genresWidth += tagWidth
+        }
+        
+        genresHeight = ceil(genresWidth / 398) * ( tagListView.tagViews[0].intrinsicContentSize.height + 15 + 27 + 8 )
+        UIView.animate(withDuration: 0.3) {
+            // Cập nhật chiều cao
+            self.genresViewHeightConstraint.constant = genresHeight
+            // Làm tương tự cho các ràng buộc khác nếu có
             
+            // Gọi layoutIfNeeded để thực hiện animation
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        
+        
+        var platformNames = [String]()
+        for platformName in game.platforms! {
+            platformNames.append(platformName.platformName)
+        }
+        
+
+        
+        self.tagListViewPlatform.addTags(platformNames)
+        var platformWidth : CGFloat = 0
+        var platformHeight : CGFloat = 0
+        for tagGenres in tagListViewPlatform.tagViews {
+            let tagWidth = tagGenres.intrinsicContentSize.width
+            platformWidth += tagWidth
+        }
+        
+        platformHeight = ceil(platformWidth / 398) * (tagListViewPlatform.tagViews[0].intrinsicContentSize.height + 15 + 27 + 8)
+        UIView.animate(withDuration: 0.3) {
+            // Cập nhật chiều cao
+            self.platformViewHeightConstraint.constant = platformHeight
+            // Làm tương tự cho các ràng buộc khác nếu có
+            
+            // Gọi layoutIfNeeded để thực hiện animation
+            self.view.layoutIfNeeded()
+        }
+        
+        self.fetchRecommendGame()
+        
         
         
     }

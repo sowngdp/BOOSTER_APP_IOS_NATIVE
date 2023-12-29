@@ -22,11 +22,38 @@
             performSegue(withIdentifier: "homeToDetailVC", sender: rowOfIndexPath)
         }
         
+
+        
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "homeToDetailVC", let rowOfIndexPath = sender as? IndexPath {
                 let destinationVC = segue.destination as! DetailVC
                 //destinationVC.gameID = games[rowOfIndexPath.row].gameId
-                destinationVC.game = games[rowOfIndexPath.row]
+                
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
+                fetchRequest.predicate = NSPredicate(format: "game_id == %d", games[rowOfIndexPath.row].gameId!)
+        //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
+        //        fetchRequest.returnsObjectsAsFaults = false
+                      do {
+                    let games = try context.fetch(fetchRequest) as? [NSManagedObject]
+                    if let gameToUpdate = games?.first as? GameSave {
+                        // Cập nhật trạng thái mới
+                        destinationVC.status = gameToUpdate.status!
+                        destinationVC.gameID = Int(gameToUpdate.game_id)
+                        
+                    }
+                          else {
+                              destinationVC.game = self.games[rowOfIndexPath.row]
+                              
+                              
+                          }
+                } catch {
+                    print("Error updating game: \(error)")
+                }
+                
 
 
                 

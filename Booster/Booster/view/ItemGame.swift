@@ -10,7 +10,7 @@ import UIKit
 
 protocol ItemGameDelegate: AnyObject {
 
-    func imageTapped (at: Int)
+    func imageTapped (at: Game)
 }
 
 
@@ -20,7 +20,7 @@ class ItemGame: UIView {
     @IBOutlet weak var imageGame: UIImageView!
     @IBOutlet weak var nameGame: UILabel!
     
-    //var gameCell: Game?
+    var game: Game?
 
     
     weak var delegate: ItemGameDelegate?
@@ -35,7 +35,7 @@ class ItemGame: UIView {
     @objc func imageTapp(tapGestureRecognizer: UITapGestureRecognizer)
     {
 
-        self.delegate?.imageTapped(at: gameID!)
+        self.delegate?.imageTapped(at: game!)
         
     }
     
