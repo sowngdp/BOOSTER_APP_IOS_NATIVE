@@ -78,7 +78,7 @@ class CoredataController {
 
             if let existingGame = existingGames.first {
                 // Trò chơi đã tồn tại, không thay đổi trạng thái và không thực hiện lưu
-                completion(false)
+                self.updateGameToCoreDataByGameID(gameID: game.gameId!, withNewStatus: status)
             } else {
                 // Trò chơi chưa tồn tại, thêm mới vào Core Data
                 let gameEntity = NSEntityDescription.insertNewObject(forEntityName: "GameSave", into: context)

@@ -52,7 +52,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     
     
-    
+    var recomendGame : [Game] = []
     
     
     @IBOutlet var recommnedGame: [ItemGame]!
@@ -66,6 +66,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     @IBOutlet weak var platformView: UIView!
     
+    @IBOutlet weak var descriptionHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var platformViewHeightConstraint: NSLayoutConstraint!
     
@@ -77,14 +78,14 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     @IBOutlet weak var screnShotImage1: UIImageView!
     @IBOutlet weak var buttonStatus: UILabel!
     @IBOutlet weak var titleLable: UILabel!
-    @IBOutlet weak var descriptionLable: WKWebView!
+    @IBOutlet weak var descriptionLable: UITextView!
     @IBOutlet weak var background: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         
-        descriptionLable.navigationDelegate = self
+        
         if let gameID = gameID {
             
             getGameByID(gameID: gameID)
@@ -187,6 +188,46 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         }
     }
     
+    func fetchRecommendGamesRecursive1(index: Int, gameIdArray: [Int]) {
+        
+        
+        guard  index < 10 else {
+            return
+        }
+        
+        let currentGameId = gameIdArray[index]
+        
+        print(currentGameId)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            MobyGamesService.share.fetchGameById(gameId: currentGameId) { result in
+                
+                switch result {
+                    
+                case .success(let game):
+                    self.recomendGame.append(game)
+                    
+                    
+                    
+                    
+                    
+                    
+                    //group.leave()
+                case .failure(let error):
+                    print(error)
+                }
+                //                group.notify(queue: DispatchQueue.main) {
+                // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
+                // Gọi các hàm hoặc thực hiện các công việc tiếp theo
+                // Ví dụ: Cập nhật giao diện người dùng
+                self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommnedGame)
+            }
+            // Gọi đệ quy để xử lý phần tử tiếp theo
+            
+            //            }
+        }
+    }
+    
     func fetchRecommendGame() {
         
         MobyGamesService.share.fetchGameId { result in
@@ -204,7 +245,10 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     }
     
     
-    
+    func loadRecommendGame(){
+
+        
+    }
     
     @objc func addButtonTapped(_ sender: UITapGestureRecognizer) {
         guard let game = game else {
@@ -218,6 +262,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                     if success {
                         DispatchQueue.main.async {
                             self.buttonStatus.text = "Uncategorized"
+                            
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -498,7 +543,11 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         self.fetchIconImage(imageLink: game.sampleCover!.thumbnailImageURL)
         self.titleLable.text = game.title
         if let description = game.description {
-            self.descriptionLable.loadHTMLString(description, baseURL: nil)
+            self.descriptionLable.text = description
+        }
+        let heightDescription = self.descriptionLable.calculateViewHeightWithCurrentWidth()
+        if heightDescription < 400 {
+            descriptionHeightConstraint.constant = heightDescription
         }
         
         print("Fetched Game Done")
@@ -552,7 +601,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
             genresWidth += tagWidth
         }
         
-        genresHeight = ceil(genresWidth / 398) * ( tagListView.tagViews[0].intrinsicContentSize.height + 15 + 27 + 8 )
+        genresHeight = ceil(genresWidth / 398) * ( tagListView.tagViews[0].intrinsicContentSize.height) + (15 + 27 + 8 )
         UIView.animate(withDuration: 0.3) {
             // Cập nhật chiều cao
             self.genresViewHeightConstraint.constant = genresHeight
@@ -580,7 +629,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
             platformWidth += tagWidth
         }
         
-        platformHeight = ceil(platformWidth / 398) * (tagListViewPlatform.tagViews[0].intrinsicContentSize.height + 15 + 27 + 8)
+        platformHeight = ceil(platformWidth / 398) * (tagListViewPlatform.tagViews[0].intrinsicContentSize.height) + (15 + 27 + 8)
         UIView.animate(withDuration: 0.3) {
             // Cập nhật chiều cao
             self.platformViewHeightConstraint.constant = platformHeight
@@ -599,4 +648,22 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     
     
+}
+extension UITextView {
+    // Note: This will trigger a text rendering!
+    func calculateViewHeightWithCurrentWidth() -> CGFloat {
+        let textWidth = self.frame.width -
+            self.textContainerInset.left -
+            self.textContainerInset.right -
+            self.textContainer.lineFragmentPadding * 2.0 -
+            self.contentInset.left -
+            self.contentInset.right
+        
+        let maxSize = CGSize(width: textWidth, height: CGFloat.greatestFiniteMagnitude)
+        var calculatedSize = self.attributedText.boundingRect(with: maxSize,options: [.usesLineFragmentOrigin, .usesFontLeading],context: nil).size
+        calculatedSize.height += self.textContainerInset.top
+        calculatedSize.height += self.textContainerInset.bottom
+        
+        return ceil(calculatedSize.height)
+    }
 }
