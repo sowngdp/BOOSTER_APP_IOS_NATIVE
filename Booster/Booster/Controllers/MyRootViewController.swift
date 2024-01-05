@@ -43,6 +43,7 @@
                         // Cập nhật trạng thái mới
                         destinationVC.status = gameToUpdate.status!
                         destinationVC.gameID = Int(gameToUpdate.game_id)
+                        destinationVC.game = self.games[rowOfIndexPath.row]
                         
                     }
                           else {

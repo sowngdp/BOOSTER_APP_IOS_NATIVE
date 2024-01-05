@@ -24,11 +24,21 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileToDetailVC", let rowOfIndexPath = sender as? IndexPath {
             let destinationVC = segue.destination as! DetailVC
-            
+//            let gameID = (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!
+//            MobyGamesService.share.fetchGameById(gameId: gameID) {
+//                result in
+//                switch result {
+//                case .success(let game):
+//                    destinationVC.game = game
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
             destinationVC.gameID = (results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!
             if let title = results[rowOfIndexPath.row].value(forKey: "status") as? String {
                 destinationVC.status = title
                 destinationVC.reloadDelegate = self
+                
             }
         }
     }
@@ -114,7 +124,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     
-    
+
 
     
     func deleteGameFromCoreData(at indexPath: IndexPath) {
@@ -153,6 +163,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
 
     var results = [NSManagedObject]()
     var games = [GameSave]()
+    
 
     
     

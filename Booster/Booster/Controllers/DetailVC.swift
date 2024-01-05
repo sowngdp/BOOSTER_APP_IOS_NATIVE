@@ -87,27 +87,30 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         
         
         if let gameID = gameID {
-            
-            getGameByID(gameID: gameID)
-            buttonStatus.text = status
-            
-            
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.changeButtonTapped))
-            
-            buttonStatus.isUserInteractionEnabled = true
-            
-            buttonStatus.addGestureRecognizer(tapGesture)
-            
-            /*// Lặp qua mảng các tag và in ra độ rộng của mỗi tag
-             for tagView in tagListView.tagViews {
-             let tagWidth = tagView.intrinsicContentSize.width
-             print("Độ rộng của tag '\(tagView.titleLabel?.text ?? "")': \(tagWidth)")
-             } */
-            
-            
-            
+            if let game = game {
+                loadGameToView(game: game)
+                buttonStatus.text = status
+                
+                
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.changeButtonTapped))
+                
+                buttonStatus.isUserInteractionEnabled = true
+                
+                buttonStatus.addGestureRecognizer(tapGesture)
+            } else {
+                getGameByID(gameID: gameID)
+                buttonStatus.text = status
+                
+                
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.changeButtonTapped))
+                
+                buttonStatus.isUserInteractionEnabled = true
+                
+                buttonStatus.addGestureRecognizer(tapGesture)
+            }
+
         }
-        if let game = game {
+        else if let game = game {
             buttonStatus.text = "Add"
             
             
@@ -281,6 +284,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                     } else {
                         DispatchQueue.main.async {
                             self.showErrorMessage("This game is already in your collection.")
+                            self.buttonStatus.text = "Currently playing"
                         }
                     }
                 }
@@ -441,7 +445,12 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
                 switch result {
                 case .success(let game):
                     self.game = game
-                    self.performCallback()
+                    if let title = game.title {
+                        self.performCallback()
+                    } else {
+                        self.getGameByID(gameID: gameID)
+                    }
+                    
                     
                     
                     
@@ -452,35 +461,7 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
             }
         }
     }
-    
-    func createItemGame() -> [ItemGame] {
-        let itemGame1: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame2: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame3: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame4: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame5: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame6: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame7: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame8: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame9: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        let itemGame10: ItemGame = Bundle.main.loadNibNamed("ItemGame", owner: self, options: nil)?.first as! ItemGame
-        
-        
-        
-        
-        
-        return [itemGame1, itemGame2, itemGame3, itemGame4, itemGame5, itemGame6, itemGame7, itemGame8, itemGame9, itemGame10]
-    }
-    
+
     func fetchImageFromLinkToApplyBlur (imageLink: String) {
         MobyGamesService.share.fetchImage(from: imageLink) { result in
             switch result {
