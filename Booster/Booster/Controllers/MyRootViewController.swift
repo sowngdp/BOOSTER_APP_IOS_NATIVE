@@ -19,8 +19,43 @@
         
         
         @objc func imageTapped(at rowOfIndexPath: IndexPath) {
-            performSegue(withIdentifier: "homeToDetailVC", sender: rowOfIndexPath)
+//            performSegue(withIdentifier: "homeToDetailVC", sender: rowOfIndexPath)
+            if let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC {
+                // Configure the detailVC if needed
+                present(detailVC, animated: true) {
+                    // Code to be executed after the child view controller is dismissed
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let context = appDelegate.persistentContainer.viewContext
+                    
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GameSave")
+                    fetchRequest.predicate = NSPredicate(format: "game_id == %d", self.games[rowOfIndexPath.row].gameId!)
+                    
+                    do {
+                        let games = try context.fetch(fetchRequest) as? [NSManagedObject]
+                        if let gameToUpdate = games?.first as? GameSave {
+                            // Cập nhật trạng thái mới
+                            detailVC.status = gameToUpdate.status!
+                            detailVC.gameID = Int(gameToUpdate.game_id)
+                            detailVC.game = self.games[rowOfIndexPath.row]
+                            detailVC.viewDidLoad()
+                        } else {
+                            detailVC.game = self.games[rowOfIndexPath.row]
+                            detailVC.viewDidLoad()
+                        }
+                    } catch {
+                        print("Error updating game: \(error)")
+                    }
+                    
+                    // Dismiss the current view controller after processing
+                    //self.dismiss(animated: true, completion: nil)
+//                    detailVC.dismiss(animated: true) {
+//                        // Giải phóng bộ nhớ của DetailVC
+//                        detailVC.removeFromParent()
+//                    }
+                }
+            }
         }
+        
         
 
         

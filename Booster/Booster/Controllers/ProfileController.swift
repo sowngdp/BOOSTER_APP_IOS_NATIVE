@@ -18,7 +18,18 @@ protocol ProfileDataReloadDelegate: AnyObject {
 
 class ProfileController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionItemGameDelegate, ProfileDataReloadDelegate {
     func imageTapped(at rowOfIndexPath : IndexPath) {
-        performSegue(withIdentifier: "profileToDetailVC", sender: rowOfIndexPath)
+//        performSegue(withIdentifier: "profileToDetailVC", sender: rowOfIndexPath)
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC {
+            // Configure the detailVC if needed
+            present(detailVC, animated: true) {
+                detailVC.gameID = (self.results[rowOfIndexPath.row].value(forKey: "game_id") as? Int)!
+                if let title = self.results[rowOfIndexPath.row].value(forKey: "status") as? String {
+                    detailVC.status = title
+                    detailVC.reloadDelegate = self
+                    detailVC.viewDidLoad()
+            }
+        }
+    }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

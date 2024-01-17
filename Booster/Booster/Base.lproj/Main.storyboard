@@ -175,7 +175,6 @@
                     <navigationItem key="navigationItem" id="Bpa-w7-LdY"/>
                     <connections>
                         <outlet property="collectionView" destination="7OT-Wo-1qa" id="f5H-Kc-H1M"/>
-                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="profileToDetailVC" id="71g-gK-4fQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpw-0v-eqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -185,7 +184,7 @@
         <!--DetailVC-->
         <scene sceneID="Ygq-KP-Gic">
             <objects>
-                <viewController storyboardIdentifier="DetailVC" id="Xkx-Wx-d1D" customClass="DetailVC" customModule="Booster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" modalPresentationStyle="fullScreen" id="Xkx-Wx-d1D" customClass="DetailVC" customModule="Booster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MrV-nX-mkR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,8 +192,19 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blurdefault" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-ox-kcS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSC-OR-Fhw">
+                                <rect key="frame" x="20" y="44" width="78" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="BKe-wm-MmF"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="backButton:" destination="Xkx-Wx-d1D" eventType="touchUpInside" id="fyW-IA-SZL"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnQ-tw-QVq">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="822"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZqZ-Nr-MGp">
                                         <rect key="frame" x="0.0" y="8" width="414" height="1983"/>
@@ -289,16 +299,16 @@
                                                 <rect key="frame" x="0.0" y="800" width="414" height="311"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5d-63-MK8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
+                                                        <rect key="frame" x="0.0" y="10" width="414" height="301"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xld-Kd-JLa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="2070" height="311"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="2070" height="301"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vtd-0o-B3c">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXn-BP-jO0">
-                                                                                <rect key="frame" x="20" y="0.0" width="374" height="311"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="374" height="301"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                                                                                 </userDefinedRuntimeAttributes>
@@ -314,10 +324,10 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDz-eP-0Q1">
-                                                                        <rect key="frame" x="414" y="0.0" width="414" height="311"/>
+                                                                        <rect key="frame" x="414" y="0.0" width="414" height="301"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sIL-LV-eMD">
-                                                                                <rect key="frame" x="20" y="0.0" width="374" height="311"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="374" height="301"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                                                                                 </userDefinedRuntimeAttributes>
@@ -333,10 +343,10 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-Fc-vk3">
-                                                                        <rect key="frame" x="828" y="0.0" width="414" height="311"/>
+                                                                        <rect key="frame" x="828" y="0.0" width="414" height="301"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KrQ-Uj-obe">
-                                                                                <rect key="frame" x="20" y="0.0" width="374" height="311"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="374" height="301"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                                                                                 </userDefinedRuntimeAttributes>
@@ -352,10 +362,10 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zl-Gs-NUD">
-                                                                        <rect key="frame" x="1242" y="0.0" width="414" height="311"/>
+                                                                        <rect key="frame" x="1242" y="0.0" width="414" height="301"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ErA-YJ-aPl">
-                                                                                <rect key="frame" x="20" y="0.0" width="374" height="311"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="374" height="301"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                                                                                 </userDefinedRuntimeAttributes>
@@ -371,10 +381,10 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqX-Rg-oMC">
-                                                                        <rect key="frame" x="1656" y="0.0" width="414" height="311"/>
+                                                                        <rect key="frame" x="1656" y="0.0" width="414" height="301"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gsc-XF-Kt2">
-                                                                                <rect key="frame" x="20" y="0.0" width="374" height="311"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="374" height="301"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                                                                                 </userDefinedRuntimeAttributes>
@@ -412,7 +422,7 @@
                                                     <constraint firstAttribute="height" constant="311" id="Agu-6n-aYP"/>
                                                     <constraint firstItem="P5d-63-MK8" firstAttribute="leading" secondItem="ncq-p6-Hdg" secondAttribute="leading" id="EZC-7b-JME"/>
                                                     <constraint firstAttribute="trailing" secondItem="P5d-63-MK8" secondAttribute="trailing" id="IZG-wg-mTo"/>
-                                                    <constraint firstItem="P5d-63-MK8" firstAttribute="top" secondItem="ncq-p6-Hdg" secondAttribute="top" id="WUk-fz-ICQ"/>
+                                                    <constraint firstItem="P5d-63-MK8" firstAttribute="top" secondItem="ncq-p6-Hdg" secondAttribute="top" constant="10" id="WUk-fz-ICQ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Wr-rH-ZLc">
@@ -944,6 +954,9 @@
                                                                         </connections>
                                                                     </view>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="JMl-10-t6V" secondAttribute="trailing" id="sgL-Eq-4ur"/>
+                                                                </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <constraints>
@@ -984,11 +997,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KnQ-tw-QVq" firstAttribute="trailing" secondItem="Z64-zh-QTf" secondAttribute="trailing" id="0x7-2I-Soh"/>
+                            <constraint firstItem="NSC-OR-Fhw" firstAttribute="leading" secondItem="Z64-zh-QTf" secondAttribute="leading" constant="20" id="IwK-7n-53B"/>
                             <constraint firstAttribute="bottom" secondItem="KnQ-tw-QVq" secondAttribute="bottom" id="L4b-xd-vik"/>
+                            <constraint firstItem="Z64-zh-QTf" firstAttribute="trailing" secondItem="NSC-OR-Fhw" secondAttribute="trailing" constant="316" id="Okh-iD-b58"/>
                             <constraint firstItem="Z64-zh-QTf" firstAttribute="trailing" secondItem="a5A-ox-kcS" secondAttribute="trailing" id="QeI-RA-UWg"/>
                             <constraint firstAttribute="bottom" secondItem="a5A-ox-kcS" secondAttribute="bottom" id="RfR-j0-q1h"/>
                             <constraint firstItem="a5A-ox-kcS" firstAttribute="leading" secondItem="MrV-nX-mkR" secondAttribute="leading" id="XZr-xL-g1x"/>
-                            <constraint firstItem="KnQ-tw-QVq" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" id="fut-Z5-YgE"/>
+                            <constraint firstItem="KnQ-tw-QVq" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" constant="30" id="fut-Z5-YgE"/>
+                            <constraint firstItem="NSC-OR-Fhw" firstAttribute="top" secondItem="Z64-zh-QTf" secondAttribute="top" id="ofX-0n-Syc"/>
                             <constraint firstAttribute="trailing" secondItem="a5A-ox-kcS" secondAttribute="trailing" id="rmw-uF-d29"/>
                             <constraint firstItem="KnQ-tw-QVq" firstAttribute="leading" secondItem="Z64-zh-QTf" secondAttribute="leading" id="sq0-Ba-CWe"/>
                             <constraint firstItem="a5A-ox-kcS" firstAttribute="top" secondItem="MrV-nX-mkR" secondAttribute="top" id="x1O-WH-9yc"/>
@@ -1120,7 +1136,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gameCollectionView" destination="mKM-z5-mIf" id="nPr-CH-mpn"/>
-                        <segue destination="Xkx-Wx-d1D" kind="show" identifier="homeToDetailVC" id="SKX-id-lcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W9-9f-Zus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1997,9 +2012,6 @@
             <size key="intrinsicContentSize" width="398" height="32"/>
         </designable>
     </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="71g-gK-4fQ"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Illustration" width="414" height="378"/>
         <image name="Illustration_signup" width="1132" height="952"/>

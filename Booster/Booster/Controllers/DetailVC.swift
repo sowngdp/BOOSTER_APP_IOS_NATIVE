@@ -80,6 +80,20 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     @IBOutlet weak var titleLable: UILabel!
     @IBOutlet weak var descriptionLable: UITextView!
     @IBOutlet weak var background: UIImageView!
+    
+    
+    private var asyncWorkItem: DispatchWorkItem?
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.removeFromParent()
+    }
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -127,8 +141,9 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     
     
-    func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int],recommendGame: [ItemGame]) {
+    func fetchRecommendGamesRecursive(index: Int, gameIdArray: [Int], recommendGame: [ItemGame]) {
         
+
         
         guard  index < recommendGame.count else {
             return
@@ -138,59 +153,65 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
         
         print(currentGameId)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            MobyGamesService.share.fetchGameById(gameId: currentGameId) { result in
+        // Tạo một weak self để tránh retain cycle
+        weak var weakSelf = self
+        
+        asyncWorkItem = DispatchWorkItem {
+            // Thực hiện các hoạt động bất đồng bộ ở đây
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                guard self.isViewLoaded && self.view.window != nil else {
+                    // View controller không nằm trong cấu trúc view; dừng xử lý tiếp theo.
+                    return
+                }
+                guard let strongSelf = weakSelf else {
+                    return
+                }
                 
-                switch result {
+                MobyGamesService.share.fetchGameById(gameId: currentGameId) { result in
                     
-                case .success(let game):
-                    print(recommendGame.count)
-                    
-                    
-                    
-                    if let name = game.title {
-                        let recomendGame = recommendGame[index]
-                        recomendGame.nameGame?.text = name
+                    switch result {
                         
-                        recomendGame.game = game
+                    case .success(let game):
+                        print(recommendGame.count)
                         
-                        if let url = game.sampleCover?.thumbnailImageURL {
-                            MobyGamesService.share.fetchImage(from: url) {
-                                result in
-                                
-                                switch result {
-                                case .success(let image):
-                                    recomendGame.delegate = self
-                                    recomendGame.imageGame?.image = image
-                                    let tappedImgage = UITapGestureRecognizer(target: self.recommnedGame[index], action: #selector(ItemGame.imageTapp))
-                                    recomendGame.imageGame.isUserInteractionEnabled = true
-                                    recomendGame.imageGame.addGestureRecognizer(tappedImgage)
-                                case .failure(let error):
-                                    print(error)
+                        if let name = game.title {
+                            let recomendGame = recommendGame[index]
+                            recomendGame.nameGame?.text = name
+                            
+                            recomendGame.game = game
+                            
+                            if let url = game.sampleCover?.thumbnailImageURL {
+                                MobyGamesService.share.fetchImage(from: url) { result in
+                                    
+                                    switch result {
+                                    case .success(let image):
+                                        recomendGame.delegate = strongSelf
+                                        recomendGame.imageGame?.image = image
+                                        let tappedImgage = UITapGestureRecognizer(target: strongSelf.recommnedGame[index], action: #selector(ItemGame.imageTapp))
+                                        recomendGame.imageGame.isUserInteractionEnabled = true
+                                        recomendGame.imageGame.addGestureRecognizer(tappedImgage)
+                                    case .failure(let error):
+                                        print(error)
+                                    }
                                 }
                             }
-                            
-                            
                         }
+                        
+                    case .failure(let error):
+                        print(error)
                     }
                     
-                    
-                    //group.leave()
-                case .failure(let error):
-                    print(error)
+                    DispatchQueue.global().async {
+                        // Gọi đệ quy để xử lý phần tử tiếp theo
+                        strongSelf.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray, recommendGame: strongSelf.recommnedGame)
+                    }
                 }
-                //                group.notify(queue: DispatchQueue.main) {
-                // Tất cả các công việc bất đồng bộ đã hoàn thành ở đây
-                // Gọi các hàm hoặc thực hiện các công việc tiếp theo
-                // Ví dụ: Cập nhật giao diện người dùng
-                self.fetchRecommendGamesRecursive(index: index + 1, gameIdArray: gameIdArray,recommendGame: self.recommnedGame)
             }
-            // Gọi đệ quy để xử lý phần tử tiếp theo
-            
-            //            }
         }
+        
+        DispatchQueue.global().async(execute: asyncWorkItem!)
     }
-    
+
     func fetchRecommendGamesRecursive1(index: Int, gameIdArray: [Int]) {
         
         
@@ -233,17 +254,20 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     
     func fetchRecommendGame() {
         
-        MobyGamesService.share.fetchGameId { result in
-            
-            switch result {
-            case .success(let gameIdArray):
+        asyncWorkItem = DispatchWorkItem {
+            MobyGamesService.share.fetchGameId { result in
                 
-                self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
-                
-            case .failure(let error):
-                print(error)
+                switch result {
+                case .success(let gameIdArray):
+                    
+                    self.fetchRecommendGamesRecursive(index: 0, gameIdArray: gameIdArray, recommendGame: self.recommnedGame)
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
+        DispatchQueue.global().async(execute: asyncWorkItem!)
         
     }
     
@@ -438,28 +462,36 @@ class DetailVC: UIViewController, WKNavigationDelegate, ItemGameDelegate  {
     func getGameByID(gameID: Int) {
         
         
-        MobyGamesService.share.fetchGameById(gameId: gameID) { result in
-            
-            
+        asyncWorkItem = DispatchWorkItem {
             DispatchQueue.main.async {
-                switch result {
-                case .success(let game):
-                    self.game = game
-                    if let title = game.title {
-                        self.performCallback()
-                    } else {
-                        self.getGameByID(gameID: gameID)
+                
+                
+            MobyGamesService.share.fetchGameById(gameId: gameID) { result in
+                
+                
+                
+                    switch result {
+                    case .success(let game):
+                        self.game = game
+                        if let title = game.title {
+                            self.performCallback()
+                        } else {
+                            return
+                        }
+                        
+                        
+                        
+                        
+                    case .failure(let error):
+                        // Handle the error
+                        print("Error fetching game: \(error.localizedDescription)")
                     }
                     
-                    
-                    
-                    
-                case .failure(let error):
-                    // Handle the error
-                    print("Error fetching game: \(error.localizedDescription)")
                 }
+                
             }
         }
+        DispatchQueue.global().async(execute: asyncWorkItem!)
     }
 
     func fetchImageFromLinkToApplyBlur (imageLink: String) {
